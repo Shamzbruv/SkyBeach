@@ -4,7 +4,7 @@ export const contact = {
   mobile: "(876) 547-3971",
   mobileHref: "+18765473971",
   whatsapp: "https://wa.me/18765473971",
-  address: "Negril, Westmoreland, Jamaica",
+  address: "Hopewell, Hanover, Jamaica",
   website: "skybeachjamaica.com",
 };
 
@@ -25,25 +25,25 @@ export const venueSpaces = [
     title: "Private Seaside Huts",
     description:
       "Laid-back, intimate dining spaces tucked into the tropical landscape and made for unhurried moments.",
-    image: "/images/hut-table.webp",
+    image: "/images/client-gallery/b1-01.jpg",
   },
   {
     title: "Garden & Gazebo Spaces",
     description:
       "Lush open-air settings for celebrations, private dining, small gatherings and beautiful photo moments.",
-    image: "/images/garden-dining.webp",
+    image: "/images/client-gallery/b4-03.jpg",
   },
   {
     title: "Banquet & Event Areas",
     description:
       "Flexible indoor and outdoor spaces for weddings, parties, meetings, expos, stage shows and special functions.",
-    image: "/images/celebration-hall.webp",
+    image: "/images/client-gallery/b2-11.jpg",
   },
   {
     title: "Terrace by the Water",
     description:
       "A scenic coastal setting that moves effortlessly from daytime dining to a glowing evening atmosphere.",
-    image: "/images/night-terrace.webp",
+    image: "/images/client-gallery/b2-32.jpg",
   },
 ];
 
@@ -96,4 +96,3 @@ export const drinkSelections = [
     ],
   },
 ];
-

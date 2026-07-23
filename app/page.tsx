@@ -18,10 +18,10 @@ export default function Home() {
               talk about long after the sun goes down.
             </p>
             <p>
-              Born from the culture and landscape of Hopewell, Hanover, our
-              story now welcomes guests in Negril, Westmoreland—with private
-              huts, gardens, terraces and flexible event spaces all carrying
-              that same warm Jamaican spirit.
+              Born from the culture and landscape of Hopewell, Hanover, Sky
+              Beach is one original seaside destination—with private huts,
+              gardens, terraces and flexible event spaces all carrying that
+              same warm Jamaican spirit.
             </p>
             <Link href="/about" className="text-link">
               Read our story <span aria-hidden="true">→</span>
@@ -30,10 +30,10 @@ export default function Home() {
 
           <div className="photo-composition" aria-label="Sky Beach scenes">
             <figure className="photo-main">
-              <img src="/images/ocean-table.webp" alt="A table set beside the sea" />
+              <img src="/images/client-gallery/b1-01.jpg" alt="A table set beside the sea at Sky Beach" />
             </figure>
             <figure className="photo-float">
-              <img src="/images/sunset.webp" alt="A golden sunset over the water" />
+              <img src="/images/client-gallery/b1-18.jpg" alt="A golden sunset over the water" />
             </figure>
             <div className="sun-stamp" aria-hidden="true">
               <span>Feel</span>
@@ -75,7 +75,7 @@ export default function Home() {
 
       <section className="flavour-band">
         <div className="flavour-image">
-          <img src="/images/fish-stew.webp" alt="A pot of Jamaican fish stew" />
+          <img src="/images/client-gallery/b5-06.jpg" alt="A Jamaican meal prepared at Sky Beach" />
         </div>
         <div className="flavour-copy">
           <p className="eyebrow light">Fresh from Jamaica</p>
@@ -128,7 +128,7 @@ export default function Home() {
       </section>
 
       <section className="image-cta">
-        <img src="/images/night-deck.webp" alt="Sky Beach terrace glowing at night" />
+        <img src="/images/client-gallery/b2-04.jpg" alt="A seaside celebration glowing at night" />
         <div className="image-cta-scrim" />
         <div className="container image-cta-content">
           <p className="eyebrow light">Bring your people</p>
@@ -145,4 +145,3 @@ export default function Home() {
     </>
   );
 }
-

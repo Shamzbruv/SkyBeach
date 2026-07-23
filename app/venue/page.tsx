@@ -16,7 +16,7 @@ export default function VenuePage() {
         eyebrow="The venue"
         title="A tropical setting for every kind of gathering."
         text="From a table for two to a full celebration, find your space by the sea."
-        image="/images/night-deck.webp"
+        image="/images/client-gallery/b2-04.jpg"
       />
 
       <section className="section">
@@ -50,6 +50,34 @@ export default function VenuePage() {
         </div>
       </section>
 
+      <section className="section hut-story">
+        <div className="container">
+          <div className="section-heading split-heading">
+            <div>
+              <p className="eyebrow">A map of Hanover</p>
+              <h2>Every hut carries a place name.</h2>
+            </div>
+            <p>
+              The thatched huts are named for real communities across Hanover,
+              turning a walk through the grounds into a small journey through
+              the parish Sky Beach calls home.
+            </p>
+          </div>
+          <div className="hut-story-grid">
+            {[
+              ["Orchard Hut", "/images/client-gallery/b1-24.jpg"],
+              ["Lookout Hut", "/images/client-gallery/b1-25.jpg"],
+              ["Green Island Hut", "/images/client-gallery/b1-26.jpg"],
+            ].map(([name, image]) => (
+              <figure className="hut-story-card" key={name}>
+                <img src={image} alt={`${name}, named for a Hanover community`} />
+                <figcaption><span>Hanover, Jamaica</span><h3>{name}</h3></figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="occasion-strip">
         <div className="container">
           <p className="eyebrow light">Made to host</p>
@@ -66,4 +94,3 @@ export default function VenuePage() {
     </>
   );
 }
-

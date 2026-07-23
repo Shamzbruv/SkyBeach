@@ -1370,6 +1370,88 @@ p {
 .gallery-item-5 { grid-column: span 3; grid-row: span 3; }
 .gallery-item-6 { grid-column: span 5; grid-row: span 3; }
 
+.gallery-intro { padding-bottom: 55px; }
+
+.gallery-chapter {
+  padding: 75px 0 100px;
+}
+
+.gallery-chapter:nth-of-type(even) {
+  background: var(--cream);
+}
+
+.gallery-chapter-heading {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 760px);
+  gap: 25px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+.gallery-chapter-heading > span {
+  padding-top: 8px;
+  color: var(--coral);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.gallery-chapter-heading h2 {
+  margin-bottom: 14px;
+  font-size: clamp(2.3rem, 4vw, 4.4rem);
+}
+
+.gallery-chapter-heading p {
+  max-width: 650px;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.hut-story {
+  background: var(--cream);
+}
+
+.hut-story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.hut-story-card {
+  position: relative;
+  min-height: 520px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 160px 160px 20px 20px;
+  background: var(--ink);
+}
+
+.hut-story-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hut-story-card figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 55px 28px 25px;
+  background: linear-gradient(transparent, rgba(5, 31, 30, .9));
+  color: white;
+}
+
+.hut-story-card figcaption span {
+  color: var(--sun);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.hut-story-card h3 { margin: 5px 0 0; font-family: Georgia, serif; font-size: 2rem; font-weight: 500; }
+
 .coral-cta {
   background: var(--coral);
   color: white;
@@ -1722,6 +1804,8 @@ p {
   .gallery-grid { display: block; }
   .gallery-item { height: 330px; margin-bottom: 14px; }
   .gallery-item figcaption { opacity: 1; }
+  .hut-story-grid { grid-template-columns: 1fr; }
+  .hut-story-card { min-height: 480px; }
   .contact-list > div { grid-template-columns: 1fr; gap: 3px; }
   .footer-grid { grid-template-columns: 1fr; gap: 38px; }
   .footer-grid > div:last-child { grid-column: auto; }

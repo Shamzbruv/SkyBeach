@@ -15,14 +15,14 @@ export default function AboutPage() {
         eyebrow="Our story"
         title="Rooted in Jamaica. Made for connection."
         text="A restaurant, a landscape and a gathering place shaped by island culture."
-        image="/images/beach-sign.webp"
+        image="/images/client-gallery/b1-27.jpg"
       />
 
       <section className="section">
         <div className="container story-grid">
           <div>
             <p className="eyebrow">Where it began</p>
-            <h2>From Hopewell roots to a wider Sky Beach experience.</h2>
+            <h2>The original Sky Beach, rooted in Hopewell.</h2>
           </div>
           <div className="prose-stack">
             <p className="lead">
@@ -31,14 +31,14 @@ export default function AboutPage() {
               dining and celebrating.
             </p>
             <p>
-              Our early story is tied to Hopewell, Hanover—a place rich in
-              culture, history and lush green beauty. As the brand expanded,
-              the vision stayed simple: create a welcoming destination where
+              Our story is tied to Hopewell, Hanover—a place rich in culture,
+              history and lush green beauty. The vision has stayed simple:
+              create a welcoming destination where
               good food, beautiful spaces and genuine Jamaican hospitality live
               together.
             </p>
             <p>
-              Today, guests can experience Sky Beach in Negril, Westmoreland,
+              Today, guests experience the one original Sky Beach in Hopewell,
               whether they are stopping in for seafood, reserving a private
               table or planning a full celebration.
             </p>
@@ -48,7 +48,7 @@ export default function AboutPage() {
 
       <section className="culture-panel">
         <div className="culture-image">
-          <img src="/images/private-hut.webp" alt="A traditional thatched private hut" />
+          <img src="/images/client-gallery/b1-24.jpg" alt="Orchard Hut in the Sky Beach garden" />
         </div>
         <div className="culture-copy">
           <p className="eyebrow">The feeling behind the place</p>
@@ -92,4 +92,3 @@ export default function AboutPage() {
     </>
   );
 }
-

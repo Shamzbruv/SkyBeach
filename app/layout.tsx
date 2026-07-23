@@ -16,16 +16,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://skybeachjamaica.com"),
   title: {
-    default: "Sky Beach Restaurant & Bar | Negril, Jamaica",
+    default: "Sky Beach Restaurant & Bar | Hopewell, Hanover",
     template: "%s | Sky Beach Jamaica",
   },
   description:
-    "Authentic Jamaican seafood, tropical dining, private huts, catering and event spaces in Negril, Westmoreland, Jamaica.",
+    "Authentic Jamaican seafood, tropical dining, private huts, catering and event spaces in Hopewell, Hanover, Jamaica.",
   keywords: [
     "seafood restaurant Jamaica",
-    "seafood grill Negril",
+    "seafood restaurant Hopewell Hanover",
     "venue rental Jamaica",
-    "event space Westmoreland",
+    "event space Hanover",
     "catering services Jamaica",
     "Sky Beach Jamaica",
   ],
@@ -35,15 +35,15 @@ export const metadata: Metadata = {
     siteName: "Sky Beach Restaurant & Bar",
     title: "Sky Beach Restaurant & Bar",
     description:
-      "Come for the food. Stay for the feeling. Discover coastal dining, private events and island hospitality in Negril.",
-    images: [{ url: "/images/hut-table.webp", width: 1600, height: 837 }],
+      "Come for the food. Stay for the feeling. Discover coastal dining, private events and island hospitality in Hopewell, Hanover.",
+    images: [{ url: "/images/client-gallery/b1-01.jpg", width: 1600, height: 837 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sky Beach Restaurant & Bar",
     description:
       "Authentic Jamaican seafood and unforgettable celebrations by the sea.",
-    images: ["/images/hut-table.webp"],
+    images: ["/images/client-gallery/b1-01.jpg"],
   },
   other: {
     "codex-preview": "development",

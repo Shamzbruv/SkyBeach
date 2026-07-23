@@ -16,7 +16,7 @@ export default function MenuPage() {
         eyebrow="Food & drinks"
         title="Jamaican flavour, served with a sea breeze."
         text="Fresh seafood, familiar island favourites and drinks made for slow afternoons."
-        image="/images/fish-stew.webp"
+        image="/images/client-gallery/b5-06.jpg"
       />
 
       <section className="section menu-section">
@@ -47,7 +47,7 @@ export default function MenuPage() {
           </Link>
         </div>
         <div className="menu-feature-image">
-          <img src="/images/cocktails.webp" alt="A colourful Sky Beach cocktail" />
+          <img src="/images/client-gallery/b3-10.jpg" alt="Colourful Sky Beach cocktails" />
         </div>
       </section>
 
@@ -67,4 +67,3 @@ export default function MenuPage() {
     </>
   );
 }
-

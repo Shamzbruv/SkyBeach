@@ -9,7 +9,7 @@ const slides = [
     eyebrow: "Seafood · sunsets · island flavour",
     title: "Taste Jamaica by the sea.",
     text: "Fresh flavours, warm hospitality and a coastal table made for lingering a little longer.",
-    image: "/images/hut-table.webp",
+    image: "/images/client-gallery/b1-01.jpg",
     href: "/menu",
     cta: "Explore the menu",
   },
@@ -18,16 +18,16 @@ const slides = [
     eyebrow: "Weddings · parties · private events",
     title: "Your occasion, with an ocean view.",
     text: "From intimate dinners to lively celebrations, create a gathering that feels unmistakably yours.",
-    image: "/images/celebration-hall.webp",
+    image: "/images/client-gallery/b2-11.jpg",
     href: "/venue",
     cta: "Discover the venue",
   },
   {
     tab: "Escape",
-    eyebrow: "Negril · Westmoreland · Jamaica",
+    eyebrow: "Hopewell · Hanover · Jamaica",
     title: "Come for the food. Stay for the feeling.",
     text: "Private huts, green gardens, glowing terraces and that easy island rhythm—welcome to Sky Beach.",
-    image: "/images/night-deck.webp",
+    image: "/images/client-gallery/b1-14.jpg",
     href: "/reservations",
     cta: "Plan your visit",
   },
@@ -96,4 +96,3 @@ export function HeroTabs() {
     </section>
   );
 }
-
