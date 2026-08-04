@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -9,7 +10,7 @@ const slides = [
     eyebrow: "Seafood · sunsets · island flavour",
     title: "Taste Jamaica by the sea.",
     text: "Fresh flavours, warm hospitality and a coastal table made for lingering a little longer.",
-    image: "/images/client-gallery/b1-01.jpg",
+    image: "/images/hero-dine-v2.png",
     href: "/menu",
     cta: "Explore the menu",
   },
@@ -18,7 +19,7 @@ const slides = [
     eyebrow: "Weddings · parties · private events",
     title: "Your occasion, with an ocean view.",
     text: "From intimate dinners to lively celebrations, create a gathering that feels unmistakably yours.",
-    image: "/images/client-gallery/b2-11.jpg",
+    image: "/images/hero-celebrate-v2.png",
     href: "/venue",
     cta: "Discover the venue",
   },
@@ -27,7 +28,7 @@ const slides = [
     eyebrow: "Hopewell · Hanover · Jamaica",
     title: "Come for the food. Stay for the feeling.",
     text: "Private huts, green gardens, glowing terraces and that easy island rhythm—welcome to Sky Beach.",
-    image: "/images/client-gallery/b1-14.jpg",
+    image: "/images/hero-escape-v2.png",
     href: "/reservations",
     cta: "Plan your visit",
   },
@@ -54,8 +55,17 @@ export function HeroTabs() {
           <div
             key={item.tab}
             className={`hero-image ${index === active ? "is-active" : ""}`}
-            style={{ backgroundImage: `url(${item.image})` }}
-          />
+          >
+            <Image
+              src={item.image}
+              alt=""
+              fill
+              priority={index === 0}
+              quality={95}
+              sizes="100vw"
+              unoptimized
+            />
+          </div>
         ))}
         <div className="hero-scrim" />
       </div>

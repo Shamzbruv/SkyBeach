@@ -20,7 +20,7 @@ export default function CareersPage() {
         eyebrow="Careers"
         title="Bring your energy to the Sky Beach team."
         text="Warm service, island pride and memorable guest experiences start with good people."
-        image="/images/client-gallery/b1-09.jpg"
+        image="/images/hero-escape-v2.png"
       />
 
       <section className="section careers-section">

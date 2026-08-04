@@ -48,7 +48,7 @@ export default function ServicesPage() {
         eyebrow="Services & facilities"
         title="From a good meal to the whole occasion."
         text="Dining, catering and flexible event support—all with the warmth of Sky Beach."
-        image="/images/client-gallery/b2-13.jpg"
+        image="/images/hero-celebrate-v2.png"
       />
 
       <section className="section">

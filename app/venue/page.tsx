@@ -16,7 +16,7 @@ export default function VenuePage() {
         eyebrow="The venue"
         title="A tropical setting for every kind of gathering."
         text="From a table for two to a full celebration, find your space by the sea."
-        image="/images/client-gallery/b2-04.jpg"
+        image="/images/hero-celebrate-v2.png"
       />
 
       <section className="section">

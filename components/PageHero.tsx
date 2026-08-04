@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function PageHero({
   eyebrow,
   title,
@@ -11,11 +13,17 @@ export function PageHero({
 }) {
   return (
     <section className="page-hero">
-      <div
-        className="page-hero-image"
-        style={{ backgroundImage: `url(${image})` }}
-        aria-hidden="true"
-      />
+      <div className="page-hero-image" aria-hidden="true">
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          quality={95}
+          sizes="100vw"
+          unoptimized
+        />
+      </div>
       <div className="page-hero-scrim" aria-hidden="true" />
       <div className="container page-hero-content">
         <p className="eyebrow light">{eyebrow}</p>
@@ -26,4 +34,3 @@ export function PageHero({
     </section>
   );
 }
-

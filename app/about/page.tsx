@@ -15,7 +15,7 @@ export default function AboutPage() {
         eyebrow="Our story"
         title="Rooted in Jamaica. Made for connection."
         text="A restaurant, a landscape and a gathering place shaped by island culture."
-        image="/images/client-gallery/b1-27.jpg"
+        image="/images/hero-escape-v2.png"
       />
 
       <section className="section">

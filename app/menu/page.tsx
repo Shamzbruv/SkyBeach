@@ -16,7 +16,7 @@ export default function MenuPage() {
         eyebrow="Food & drinks"
         title="Jamaican flavour, served with a sea breeze."
         text="Fresh seafood, familiar island favourites and drinks made for slow afternoons."
-        image="/images/client-gallery/b5-06.jpg"
+        image="/images/hero-dine-v2.png"
       />
 
       <section className="section menu-section">

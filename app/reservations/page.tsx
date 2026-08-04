@@ -16,7 +16,7 @@ export default function ReservationsPage() {
         eyebrow="Events & reservations"
         title="Tell us what you are planning."
         text="A table, a private dinner or a full celebration—your Sky Beach moment starts here."
-        image="/images/client-gallery/b4-36.jpg"
+        image="/images/hero-celebrate-v2.png"
       />
 
       <section className="section reservation-section">

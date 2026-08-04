@@ -16,7 +16,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="We would love to hear what you are planning."
         text="Reach out about dining, venue bookings, catering, events or a general question."
-        image="/images/client-gallery/b1-01.jpg"
+        image="/images/hero-escape-v2.png"
       />
 
       <section className="section contact-section">
