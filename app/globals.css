@@ -1509,13 +1509,14 @@ p {
 
 .hut-selector {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 14px;
 }
 
 .hut-selector-card {
   position: relative;
-  min-height: 210px;
+  min-height: 0;
+  aspect-ratio: 4 / 5;
   padding: 0;
   overflow: hidden;
   border: 0;
@@ -1524,6 +1525,7 @@ p {
   color: white;
   cursor: pointer;
   text-align: left;
+  isolation: isolate;
 }
 
 .hut-selector-card::after {
@@ -1534,31 +1536,42 @@ p {
 }
 
 .hut-selector-card img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 350ms ease, opacity 350ms ease;
 }
 
-.hut-selector-card span,
-.hut-selector-card strong {
+.hut-card-action,
+.hut-card-name {
   position: absolute;
   z-index: 1;
   right: 18px;
-  bottom: 18px;
   left: 18px;
 }
 
-.hut-selector-card span {
-  bottom: 48px;
-  color: var(--sun);
-  font-size: .65rem;
+.hut-card-action {
+  bottom: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: fit-content;
+  max-width: calc(100% - 36px);
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--ink-deep);
+  font-size: .58rem;
   font-weight: 800;
-  letter-spacing: .12em;
+  letter-spacing: .08em;
   text-transform: uppercase;
 }
 
-.hut-selector-card strong {
+.hut-card-name {
+  bottom: 18px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.35rem;
   font-weight: 500;
@@ -1574,6 +1587,10 @@ p {
   outline-offset: -4px;
 }
 
+.hut-selector-card.is-active .hut-card-action {
+  background: white;
+}
+
 .hut-selector-card:focus-visible {
   outline: 3px solid var(--sea-bright);
   outline-offset: 3px;
@@ -1587,6 +1604,13 @@ p {
   border-radius: 28px;
   background: var(--paper);
   box-shadow: 0 20px 60px rgba(10, 40, 39, .1);
+  scroll-margin-top: 110px;
+  animation: hut-reveal 300ms ease both;
+}
+
+@keyframes hut-reveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .hut-feature-gallery {
@@ -1672,37 +1696,6 @@ p {
 .hut-details dd {
   margin: 5px 0 0;
   color: var(--ink);
-}
-
-.hut-name-trail {
-  padding: 24px 28px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, .48);
-}
-
-.hut-name-trail p {
-  margin: 0 0 13px;
-  color: var(--muted);
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-.hut-name-trail div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.hut-name-trail span {
-  padding: 8px 13px;
-  border-radius: 999px;
-  background: white;
-  color: var(--sea);
-  font-size: .82rem;
-  font-weight: 800;
 }
 
 .hut-story-grid {
@@ -1947,6 +1940,7 @@ p {
   .experience-card { min-height: 520px; }
   .venue-row { gap: 30px; }
   .services-layout { gap: 55px; }
+  .hut-selector { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .footer-grid { grid-template-columns: 1.1fr 0.7fr 1fr; }
   .footer-grid > div:last-child { grid-column: 1 / -1; }
 }
@@ -2118,10 +2112,16 @@ p {
   .hut-story-grid { grid-template-columns: 1fr; }
   .hut-story-card { min-height: 480px; }
   .hut-selector { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .hut-selector-card { min-height: 175px; }
-  .hut-selector-card span,
-  .hut-selector-card strong { right: 13px; left: 13px; }
-  .hut-selector-card strong { font-size: 1.08rem; }
+  .hut-selector-card { min-height: 0; }
+  .hut-card-action,
+  .hut-card-name { right: 13px; left: 13px; }
+  .hut-card-action {
+    bottom: 51px;
+    max-width: calc(100% - 26px);
+    padding: 6px 8px;
+    font-size: .52rem;
+  }
+  .hut-card-name { font-size: 1.08rem; }
   .hut-feature { border-radius: 20px; }
   .hut-feature-gallery { min-height: 440px; }
   .hut-feature-copy { padding: 36px 24px 42px; }
