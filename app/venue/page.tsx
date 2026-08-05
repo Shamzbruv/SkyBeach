@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HutExplorer } from "@/components/HutExplorer";
 import { PageHero } from "@/components/PageHero";
 import { venueSpaces } from "@/lib/site-data";
 
@@ -8,6 +9,10 @@ export const metadata: Metadata = {
   description:
     "Discover private huts, gardens, terraces, banquet areas and flexible event spaces at Sky Beach Jamaica.",
 };
+
+function enquiryHref(venue: string) {
+  return `/reservations?request=Venue%20booking&venue=${encodeURIComponent(venue)}#booking-form`;
+}
 
 export default function VenuePage() {
   return (
@@ -26,14 +31,15 @@ export default function VenuePage() {
             <h2>Spaces with their own rhythm.</h2>
           </div>
           <p>
-            Every corner of Sky Beach offers a different feeling—intimate,
-            garden-soft, lively, formal or completely open to the coastline.
+            Select any space to open a detailed event form. The Sky Beach team
+            will receive the purpose, timing, guest count, setup and service
+            requirements in one organised WhatsApp message.
           </p>
         </div>
 
         <div className="venue-list">
           {venueSpaces.map((space, index) => (
-            <article className="venue-row" key={space.title}>
+            <Link className="venue-row" href={enquiryHref(space.title)} key={space.title}>
               <div className="venue-number">0{index + 1}</div>
               <div className="venue-photo">
                 <img src={space.image} alt={space.title} />
@@ -41,40 +47,27 @@ export default function VenuePage() {
               <div className="venue-copy">
                 <h3>{space.title}</h3>
                 <p>{space.description}</p>
-                <Link href="/reservations" className="text-link">
-                  Enquire about this space →
-                </Link>
+                <span className="text-link">Build a detailed venue request →</span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="section hut-story">
+      <section className="section hut-story" id="hut-stories">
         <div className="container">
           <div className="section-heading split-heading">
             <div>
-              <p className="eyebrow">A map of Hanover</p>
-              <h2>Every hut carries a place name.</h2>
+              <p className="eyebrow">A walk through Hanover</p>
+              <h2>Every hut carries a local story.</h2>
             </div>
             <p>
-              The thatched huts are named for real communities across Hanover,
-              turning a walk through the grounds into a small journey through
-              the parish Sky Beach calls home.
+              The names across the grounds draw from Hanover communities,
+              districts and coastal places. Choose a hut to see its photographs,
+              atmosphere and the kind of gathering it suits.
             </p>
           </div>
-          <div className="hut-story-grid">
-            {[
-              ["Orchard Hut", "/images/client-gallery/b1-24.jpg"],
-              ["Lookout Hut", "/images/client-gallery/b1-25.jpg"],
-              ["Green Island Hut", "/images/client-gallery/b1-26.jpg"],
-            ].map(([name, image]) => (
-              <figure className="hut-story-card" key={name}>
-                <img src={image} alt={`${name}, named for a Hanover community`} />
-                <figcaption><span>Hanover, Jamaica</span><h3>{name}</h3></figcaption>
-              </figure>
-            ))}
-          </div>
+          <HutExplorer />
         </div>
       </section>
 
@@ -86,7 +79,10 @@ export default function VenuePage() {
             Catering and customised menu options are available to help shape
             the event around your guests.
           </p>
-          <Link href="/reservations" className="button button-sun">
+          <Link
+            href="/reservations?request=Venue%20booking#booking-form"
+            className="button button-sun"
+          >
             Reserve the venue
           </Link>
         </div>

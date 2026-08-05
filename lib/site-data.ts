@@ -47,6 +47,68 @@ export const venueSpaces = [
   },
 ];
 
+export const hutStories = [
+  {
+    name: "McQuarrie Hut",
+    placeNote: "A tucked-away Hanover-inspired retreat",
+    story:
+      "Wrapped in hand-laid thatch and tropical foliage, McQuarrie feels like a small hideaway discovered along a country road. It is a quiet, character-rich choice for guests who want privacy and an unmistakably Jamaican setting.",
+    atmosphere: "Rustic, shaded and intimate",
+    bestFor: "Quiet lunches, small celebrations and private conversations",
+    images: [
+      "/images/huts/mcquarrie-01.jpg",
+      "/images/huts/mcquarrie-02.jpg",
+    ],
+  },
+  {
+    name: "Orchard Hut",
+    placeNote: "Garden-side and grounded in Hanover's green interior",
+    story:
+      "Orchard sits among palms and layered planting, with a traditional thatched roof that makes the space feel naturally cool and unhurried. Its name brings the parish's fertile inland landscape into the seaside grounds.",
+    atmosphere: "Leafy, relaxed and naturally private",
+    bestFor: "Family meals, birthday moments and easy afternoon gatherings",
+    images: [
+      "/images/huts/orchard-03.jpg",
+      "/images/huts/orchard-02.jpg",
+      "/images/huts/orchard-01.jpg",
+      "/images/client-gallery/b1-24.jpg",
+    ],
+  },
+  {
+    name: "Lookout Hut",
+    placeNote: "A front-row perch at the water's edge",
+    story:
+      "Lookout is all about the horizon. Positioned close to the sea, it carries the feeling of Hanover's coves and coastal viewpoints into a private place to dine, talk and watch the light change.",
+    atmosphere: "Breezy, scenic and close to the sea",
+    bestFor: "Sunset dining, date nights and memorable proposals",
+    images: [
+      "/images/client-gallery/b1-25.jpg",
+      "/images/client-gallery/b1-23.jpg",
+    ],
+  },
+  {
+    name: "Green Island Hut",
+    placeNote: "Named for Hanover's west-coast town",
+    story:
+      "Green Island is a real Hanover community between Lucea and Negril. The hut borrows that west-coast energy: open, social and connected to the sea, with enough room for a group to settle in and make the table their own.",
+    atmosphere: "Social, coastal and full of local character",
+    bestFor: "Group dining, reunions and shared celebrations",
+    images: [
+      "/images/client-gallery/b1-26.jpg",
+      "/images/client-gallery/b1-01.jpg",
+    ],
+  },
+];
+
+export const hanoverHutNames = [
+  "Askenish",
+  "Blenheim",
+  "Cold Spring",
+  "Maryland",
+  "Pon Piece",
+  "Seaview",
+];
+
 export const foodSelections = [
   {
     category: "From the Sea",

@@ -49,8 +49,9 @@ export const metadata: Metadata = {
     "codex-preview": "development",
   },
   icons: {
-    icon: "/images/logo.webp",
-    shortcut: "/images/logo.webp",
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/images/logo.webp",
   },
 };
 

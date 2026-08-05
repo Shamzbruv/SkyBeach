@@ -23,10 +23,12 @@ export default function ReservationsPage() {
         <div className="container reservation-grid">
           <aside className="reservation-aside">
             <p className="eyebrow">Make an enquiry</p>
-            <h2>Start with the essentials. We will help with the rest.</h2>
+            <h2>Give the team a clear picture from the very first message.</h2>
             <p>
-              Submit your request through WhatsApp and a member of the Sky Beach
-              team can follow up to confirm availability and details.
+              The form changes to match your reservation, venue, wedding,
+              meeting or catering request. Your answers are organised into a
+              detailed WhatsApp brief so the team can respond with fewer
+              follow-up questions.
             </p>
             <div className="direct-contact">
               <span>Prefer to reach out directly?</span>
