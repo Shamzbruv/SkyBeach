@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { hutStories } from "@/lib/site-data";
@@ -36,7 +37,13 @@ export function HutExplorer() {
             aria-expanded={index === activeIndex}
             aria-controls="hut-explorer-detail"
           >
-            <img src={hut.images[0]} alt="" />
+            <Image
+              src={hut.images[0]}
+              alt=""
+              fill
+              sizes="(max-width: 430px) calc(100vw - 24px), (max-width: 900px) 48vw, (max-width: 1120px) 31vw, 230px"
+              unoptimized
+            />
             <span className="hut-card-action">
               View photos &amp; story <span aria-hidden="true">&rarr;</span>
             </span>
@@ -48,10 +55,13 @@ export function HutExplorer() {
       {activeHut && (
         <article className="hut-feature" id="hut-explorer-detail" ref={detailRef}>
           <div className="hut-feature-gallery">
-            <img
+            <Image
               className="hut-feature-main"
               src={activeHut.images[photoIndex]}
               alt={`${activeHut.name} at Sky Beach Jamaica`}
+              fill
+              sizes="(max-width: 900px) calc(100vw - 32px), 60vw"
+              unoptimized
             />
             {activeHut.images.length > 1 && (
               <div className="hut-thumbnails" aria-label={`${activeHut.name} photographs`}>
@@ -63,7 +73,7 @@ export function HutExplorer() {
                     key={image}
                     aria-label={`View ${activeHut.name} photo ${index + 1}`}
                   >
-                    <img src={image} alt="" />
+                    <Image src={image} alt="" fill sizes="74px" unoptimized />
                   </button>
                 ))}
               </div>

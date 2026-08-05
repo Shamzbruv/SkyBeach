@@ -25,25 +25,25 @@ export const venueSpaces = [
     title: "Private Seaside Huts",
     description:
       "Laid-back, intimate dining spaces tucked into the tropical landscape and made for unhurried moments.",
-    image: "/images/client-gallery/b1-01.jpg",
+    image: "/images/client-gallery/b1-01.webp",
   },
   {
     title: "Garden & Gazebo Spaces",
     description:
       "Lush open-air settings for celebrations, private dining, small gatherings and beautiful photo moments.",
-    image: "/images/client-gallery/b4-03.jpg",
+    image: "/images/client-gallery/b4-03.webp",
   },
   {
     title: "Banquet & Event Areas",
     description:
       "Flexible indoor and outdoor spaces for weddings, parties, meetings, expos, stage shows and special functions.",
-    image: "/images/client-gallery/b2-11.jpg",
+    image: "/images/client-gallery/b2-11.webp",
   },
   {
     title: "Terrace by the Water",
     description:
       "A scenic coastal setting that moves effortlessly from daytime dining to a glowing evening atmosphere.",
-    image: "/images/client-gallery/b2-32.jpg",
+    image: "/images/client-gallery/b2-32.webp",
   },
 ];
 
@@ -56,10 +56,10 @@ export const hutStories = [
     atmosphere: "Rustic, shaded and intimate",
     bestFor: "Quiet lunches, small celebrations and private conversations",
     images: [
-      "/images/huts/mcquarrie-01.jpg",
-      "/images/huts/mcquarrie-02.jpg",
-      "/images/huts/mcquarrie-03.jpg",
-      "/images/huts/mcquarrie-04.jpg",
+      "/images/huts/mcquarrie-01.webp",
+      "/images/huts/mcquarrie-02.webp",
+      "/images/huts/mcquarrie-03.webp",
+      "/images/huts/mcquarrie-04.webp",
     ],
   },
   {
@@ -69,7 +69,7 @@ export const hutStories = [
       "Orchard sits among palms and layered planting, with a traditional thatched roof that makes the space feel naturally cool and unhurried. Its name brings the parish's fertile inland landscape into the seaside grounds.",
     atmosphere: "Leafy, relaxed and naturally private",
     bestFor: "Family meals, birthday moments and easy afternoon gatherings",
-    images: ["/images/huts/orchard-01.jpg"],
+    images: ["/images/huts/orchard-01.webp"],
   },
   {
     name: "Maryland Hut",
@@ -78,7 +78,7 @@ export const hutStories = [
       "Maryland brings a little more enclosure to the hut collection. White walls, generous windows and a proper door give it the feeling of a tiny garden cottage while still keeping the surrounding greenery close.",
     atmosphere: "Bright, sheltered and quietly charming",
     bestFor: "Private meals, small meetings and intimate celebrations",
-    images: ["/images/huts/maryland-01.jpg"],
+    images: ["/images/huts/maryland-01.webp"],
   },
   {
     name: "Pon Piece Hut",
@@ -87,7 +87,7 @@ export const hutStories = [
       "Pon Piece is open to the breeze and arranged around a comfortable corner bench. The compact layout keeps everyone part of the same conversation and feels especially inviting beneath the shade of the trees.",
     atmosphere: "Casual, social and shaded",
     bestFor: "Lunch with friends, family catch-ups and relaxed drinks",
-    images: ["/images/huts/pon-piece-01.jpg"],
+    images: ["/images/huts/pon-piece-01.webp"],
   },
   {
     name: "Green Island Hut",
@@ -96,7 +96,7 @@ export const hutStories = [
       "Green Island is built for sharing. Its sheltered, open-fronted room centres a long table and hand-painted artwork, creating a grounded space where a group can linger over food and conversation.",
     atmosphere: "Communal, sheltered and full of character",
     bestFor: "Group dining, reunions and shared celebrations",
-    images: ["/images/huts/green-island-01.jpg"],
+    images: ["/images/huts/green-island-01.webp"],
   },
   {
     name: "Lookout Hut",
@@ -106,8 +106,8 @@ export const hutStories = [
     atmosphere: "Breezy, scenic and close to the sea",
     bestFor: "Sunset dining, date nights and memorable proposals",
     images: [
-      "/images/huts/lookout-01.jpg",
-      "/images/huts/lookout-02.jpg",
+      "/images/huts/lookout-01.webp",
+      "/images/huts/lookout-02.webp",
     ],
   },
   {
@@ -117,7 +117,7 @@ export const hutStories = [
       "Seaview pairs clean timber lines with an open dining table and a clear connection to the tropical grounds. It feels simple and unforced: a comfortable base for enjoying the coastal air at an easy pace.",
     atmosphere: "Open, warm and naturally breezy",
     bestFor: "Long lunches, casual dinners and small groups",
-    images: ["/images/huts/seaview-01.jpg"],
+    images: ["/images/huts/seaview-01.webp"],
   },
   {
     name: "Blenheim Hut",
@@ -127,10 +127,10 @@ export const hutStories = [
     atmosphere: "Spacious, polished and waterfront",
     bestFor: "Milestone dinners, group celebrations and sunset gatherings",
     images: [
-      "/images/huts/blenheim-01.jpg",
-      "/images/huts/blenheim-02.jpg",
-      "/images/huts/blenheim-03.jpg",
-      "/images/huts/blenheim-04.jpg",
+      "/images/huts/blenheim-01.webp",
+      "/images/huts/blenheim-02.webp",
+      "/images/huts/blenheim-03.webp",
+      "/images/huts/blenheim-04.webp",
     ],
   },
   {
@@ -140,7 +140,7 @@ export const hutStories = [
       "Cold Spring offers the cover of an enclosed hut without feeling cut off from the coast. Windows frame the blue water nearby, making it a practical, comfortable choice when a group wants privacy and a view.",
     atmosphere: "Sheltered, peaceful and coastal",
     bestFor: "Private dining, family gatherings and quieter occasions",
-    images: ["/images/huts/cold-spring-01.jpg"],
+    images: ["/images/huts/cold-spring-01.webp"],
   },
   {
     name: "Askenish Hut",
@@ -150,8 +150,8 @@ export const hutStories = [
     atmosphere: "Garden-side, open and relaxed",
     bestFor: "Family meals, games, conversations and casual celebrations",
     images: [
-      "/images/huts/askenish-01.jpg",
-      "/images/huts/askenish-02.jpg",
+      "/images/huts/askenish-01.webp",
+      "/images/huts/askenish-02.webp",
     ],
   },
 ];

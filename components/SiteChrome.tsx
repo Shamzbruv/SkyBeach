@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,12 +18,31 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [menuOpen]);
+
   return (
     <>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <header
+        className={`site-header ${scrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-is-open" : ""}`}
+      >
         <div className="nav-shell">
           <Link
             href="/"
@@ -30,12 +50,20 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             aria-label="Sky Beach home"
             onClick={() => setMenuOpen(false)}
           >
-            <img src="/images/logo.webp" alt="Sky Beach Restaurant and Bar" />
+            <Image
+              src="/images/logo.webp"
+              alt="Sky Beach Restaurant and Bar"
+              width={320}
+              height={180}
+              decoding="async"
+              unoptimized
+            />
           </Link>
 
           <button
             className="menu-toggle"
             type="button"
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={menuOpen}
             aria-controls="primary-nav"
             onClick={() => setMenuOpen((open) => !open)}
@@ -82,7 +110,15 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         <div className="footer-wave" aria-hidden="true" />
         <div className="container footer-grid">
           <div className="footer-brand">
-            <img src="/images/logo.webp" alt="Sky Beach Restaurant and Bar" />
+            <Image
+              src="/images/logo.webp"
+              alt="Sky Beach Restaurant and Bar"
+              width={320}
+              height={180}
+              loading="lazy"
+              decoding="async"
+              unoptimized
+            />
             <p>
               Authentic Jamaican seafood, tropical dining and unforgettable
               celebrations by the sea.

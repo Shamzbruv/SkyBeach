@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { MenuExplorer } from "@/components/MenuExplorer";
 import { PageHero } from "@/components/PageHero";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Menu",
+export const metadata: Metadata = pageMetadata({
+  title: "Jamaican Seafood, Food & Drinks",
   description:
-    "Explore Jamaican seafood, island favourites, tropical cocktails and catered menu options at Sky Beach Restaurant & Bar.",
-};
+    "Explore Jamaican seafood, island favourites, tropical cocktails and customised catering menus at Sky Beach Restaurant & Bar in Hopewell.",
+  path: "/menu",
+  keywords: ["Jamaican seafood menu", "seafood restaurant Hopewell", "tropical cocktails Jamaica", "Jamaican catering menu"],
+});
 
 export default function MenuPage() {
   return (
@@ -16,7 +20,7 @@ export default function MenuPage() {
         eyebrow="Food & drinks"
         title="Jamaican flavour, served with a sea breeze."
         text="Fresh seafood, familiar island favourites and drinks made for slow afternoons."
-        image="/images/hero-dine-v2.png"
+        image="/images/hero-dine-v2.webp"
       />
 
       <section className="section menu-section">
@@ -47,7 +51,14 @@ export default function MenuPage() {
           </Link>
         </div>
         <div className="menu-feature-image">
-          <img src="/images/client-gallery/b3-10.jpg" alt="Colourful Sky Beach cocktails" />
+          <Image
+            src="/images/client-gallery/b3-10.webp"
+            alt="Colourful Sky Beach cocktails"
+            width={1200}
+            height={1600}
+            sizes="(max-width: 900px) 100vw, 50vw"
+            unoptimized
+          />
         </div>
       </section>
 

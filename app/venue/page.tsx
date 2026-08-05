@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { HutExplorer } from "@/components/HutExplorer";
 import { PageHero } from "@/components/PageHero";
+import { pageMetadata } from "@/lib/seo";
 import { venueSpaces } from "@/lib/site-data";
 
-export const metadata: Metadata = {
-  title: "Venue & Event Spaces",
+export const metadata: Metadata = pageMetadata({
+  title: "Seaside Venue, Private Huts & Event Spaces",
   description:
-    "Discover private huts, gardens, terraces, banquet areas and flexible event spaces at Sky Beach Jamaica.",
-};
+    "Discover private seaside huts, gardens, terraces, wedding spaces and flexible event venues at Sky Beach in Hopewell, Hanover.",
+  path: "/venue",
+  keywords: ["event venue Hanover Jamaica", "Jamaica wedding venue", "private huts Hopewell", "seaside event space Jamaica"],
+});
 
 function enquiryHref(venue: string) {
   return `/reservations?request=Venue%20booking&venue=${encodeURIComponent(venue)}#booking-form`;
@@ -21,7 +25,7 @@ export default function VenuePage() {
         eyebrow="The venue"
         title="A tropical setting for every kind of gathering."
         text="From a table for two to a full celebration, find your space by the sea."
-        image="/images/hero-celebrate-v2.png"
+        image="/images/hero-celebrate-v2.webp"
       />
 
       <section className="section">
@@ -42,7 +46,14 @@ export default function VenuePage() {
             <Link className="venue-row" href={enquiryHref(space.title)} key={space.title}>
               <div className="venue-number">0{index + 1}</div>
               <div className="venue-photo">
-                <img src={space.image} alt={space.title} />
+                <Image
+                  src={space.image}
+                  alt={space.title}
+                  width={1200}
+                  height={1600}
+                  sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 900px) 34vw, 36vw"
+                  unoptimized
+                />
               </div>
               <div className="venue-copy">
                 <h3>{space.title}</h3>

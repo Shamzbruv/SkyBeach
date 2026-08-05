@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = pageMetadata({
+  title: "Dining, Catering & Event Services",
   description:
-    "Dining, catering, weddings, private functions, meetings and event services at Sky Beach Jamaica.",
-};
+    "Explore dining, catering, weddings, private functions, meetings, expos and event-planning services at Sky Beach Jamaica.",
+  path: "/services",
+  keywords: ["catering Hanover Jamaica", "wedding services Jamaica", "private dining Hopewell", "event planning Hanover"],
+});
 
 const services = [
   {
@@ -48,7 +51,7 @@ export default function ServicesPage() {
         eyebrow="Services & facilities"
         title="From a good meal to the whole occasion."
         text="Dining, catering and flexible event support—all with the warmth of Sky Beach."
-        image="/images/hero-celebrate-v2.png"
+        image="/images/hero-celebrate-v2.webp"
       />
 
       <section className="section">

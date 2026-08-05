@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us",
+export const metadata: Metadata = pageMetadata({
+  title: "About Sky Beach",
   description:
-    "Discover the Jamaican story, coastal setting and warm island hospitality behind Sky Beach Restaurant & Bar.",
-};
+    "Discover the story, coastal setting and warm Jamaican hospitality behind Sky Beach Restaurant & Bar in Hopewell, Hanover.",
+  path: "/about",
+  keywords: ["Sky Beach Hopewell", "Jamaican restaurant Hanover", "coastal dining Jamaica"],
+});
 
 export default function AboutPage() {
   return (
@@ -15,7 +19,7 @@ export default function AboutPage() {
         eyebrow="Our story"
         title="Rooted in Jamaica. Made for connection."
         text="A restaurant, a landscape and a gathering place shaped by island culture."
-        image="/images/hero-escape-v2.png"
+        image="/images/hero-escape-v2.webp"
       />
 
       <section className="section">
@@ -48,7 +52,14 @@ export default function AboutPage() {
 
       <section className="culture-panel">
         <div className="culture-image">
-          <img src="/images/client-gallery/b1-24.jpg" alt="Orchard Hut in the Sky Beach garden" />
+          <Image
+            src="/images/client-gallery/b1-24.webp"
+            alt="Orchard Hut in the Sky Beach garden"
+            width={1200}
+            height={1600}
+            sizes="(max-width: 900px) 100vw, 50vw"
+            unoptimized
+          />
         </div>
         <div className="culture-copy">
           <p className="eyebrow">The feeling behind the place</p>

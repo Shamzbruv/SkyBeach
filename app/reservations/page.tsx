@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
+import { pageMetadata } from "@/lib/seo";
 import { contact } from "@/lib/site-data";
 
-export const metadata: Metadata = {
-  title: "Events & Reservations",
+export const metadata: Metadata = pageMetadata({
+  title: "Reservations, Events & Catering",
   description:
-    "Request a table, venue booking, event, catering service or private dining experience at Sky Beach Jamaica.",
-};
+    "Request a table, private hut, wedding venue, event space, catering service or private dining experience at Sky Beach Jamaica.",
+  path: "/reservations",
+  keywords: ["Sky Beach reservations", "book restaurant Hopewell", "Jamaica wedding venue booking", "Hanover catering enquiry"],
+});
 
 export default function ReservationsPage() {
   return (
@@ -16,7 +19,7 @@ export default function ReservationsPage() {
         eyebrow="Events & reservations"
         title="Tell us what you are planning."
         text="A table, a private dinner or a full celebration—your Sky Beach moment starts here."
-        image="/images/hero-celebrate-v2.png"
+        image="/images/hero-celebrate-v2.webp"
       />
 
       <section className="section reservation-section">

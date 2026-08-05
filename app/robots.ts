@@ -1,8 +1,13 @@
 import type { MetadataRoute } from "next";
+import { siteOrigin } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://skybeachjamaica.com/sitemap.xml",
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    host: siteOrigin,
+    sitemap: `${siteOrigin}/sitemap.xml`,
   };
 }

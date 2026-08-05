@@ -1,6 +1,24 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { HeroTabs } from "@/components/HeroTabs";
+import { pageMetadata } from "@/lib/seo";
 import { venueSpaces } from "@/lib/site-data";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Sky Beach Restaurant & Bar | Hopewell, Hanover",
+  description:
+    "Dine by the sea at Sky Beach in Hopewell, Hanover. Discover Jamaican seafood, tropical drinks, private huts, weddings, catering and event spaces.",
+  path: "/",
+  absoluteTitle: true,
+  keywords: [
+    "Sky Beach Jamaica",
+    "restaurant in Hopewell Jamaica",
+    "seafood restaurant Hanover Jamaica",
+    "beach restaurant Jamaica",
+    "event venue Hanover Jamaica",
+  ],
+});
 
 export default function Home() {
   return (
@@ -30,10 +48,22 @@ export default function Home() {
 
           <div className="photo-composition" aria-label="Sky Beach scenes">
             <figure className="photo-main">
-              <img src="/images/client-gallery/b1-01.jpg" alt="A table set beside the sea at Sky Beach" />
+              <Image
+                src="/images/client-gallery/b1-01.webp"
+                alt="A table set beside the sea at Sky Beach"
+                fill
+                sizes="(max-width: 900px) 90vw, 50vw"
+                unoptimized
+              />
             </figure>
             <figure className="photo-float">
-              <img src="/images/client-gallery/b1-18.jpg" alt="A golden sunset over the water" />
+              <Image
+                src="/images/client-gallery/b1-18.webp"
+                alt="A golden sunset over the water"
+                fill
+                sizes="(max-width: 680px) 46vw, 28vw"
+                unoptimized
+              />
             </figure>
             <div className="sun-stamp" aria-hidden="true">
               <span>Feel</span>
@@ -59,7 +89,13 @@ export default function Home() {
           <div className="experience-grid">
             {venueSpaces.slice(0, 3).map((space, index) => (
               <Link href="/venue" className="experience-card" key={space.title}>
-                <img src={space.image} alt="" />
+                <Image
+                  src={space.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 900px) 50vw, 33vw"
+                  unoptimized
+                />
                 <div className="experience-overlay" />
                 <div className="experience-content">
                   <span>0{index + 1}</span>
@@ -75,7 +111,14 @@ export default function Home() {
 
       <section className="flavour-band">
         <div className="flavour-image">
-          <img src="/images/client-gallery/b5-06.jpg" alt="A Jamaican meal prepared at Sky Beach" />
+          <Image
+            src="/images/client-gallery/b5-06.webp"
+            alt="A Jamaican meal prepared at Sky Beach"
+            width={1536}
+            height={1025}
+            sizes="(max-width: 900px) 100vw, 50vw"
+            unoptimized
+          />
         </div>
         <div className="flavour-copy">
           <p className="eyebrow light">Fresh from Jamaica</p>
@@ -128,7 +171,13 @@ export default function Home() {
       </section>
 
       <section className="image-cta">
-        <img src="/images/client-gallery/b2-04.jpg" alt="A seaside celebration glowing at night" />
+        <Image
+          src="/images/client-gallery/b2-04.webp"
+          alt="A seaside celebration glowing at night"
+          fill
+          sizes="100vw"
+          unoptimized
+        />
         <div className="image-cta-scrim" />
         <div className="container image-cta-content">
           <p className="eyebrow light">Bring your people</p>

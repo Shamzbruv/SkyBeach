@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Gallery",
+export const metadata: Metadata = pageMetadata({
+  title: "Restaurant, Venue & Hut Gallery",
   description:
-    "See the seaside tables, named Hanover huts, gardens, food, event spaces and evening atmosphere at Sky Beach Jamaica.",
-};
+    "Explore photos of Sky Beach Jamaica: seaside dining, private Hanover huts, gardens, Jamaican food, weddings and event spaces.",
+  path: "/gallery",
+  keywords: ["Sky Beach Jamaica photos", "Jamaica seaside restaurant gallery", "Hanover event venue photos"],
+});
 
 type PhotoShape = "wide" | "portrait" | "standard";
 
@@ -37,7 +41,7 @@ function photo(id: string, chapterTitle: string) {
       : "standard";
 
   return {
-    src: `/images/client-gallery/${id}.jpg`,
+    src: `/images/client-gallery/${id}.webp`,
     alt: photoCaptions[id] ?? `${chapterTitle} at Sky Beach Jamaica`,
     shape,
   };
@@ -94,7 +98,7 @@ export default function GalleryPage() {
         eyebrow="Gallery"
         title="One seaside story, from daylight to celebration."
         text="A carefully selected Sky Beach collection: Hanover huts, sea views, island plates, gatherings and glowing nights."
-        image="/images/hero-escape-v2.png"
+        image="/images/hero-escape-v2.webp"
       />
 
       <section className="section gallery-intro">
@@ -130,10 +134,13 @@ export default function GalleryPage() {
               <div className="gallery-grid">
                 {chapter.photos.map((item, photoIndex) => (
                   <figure className={`gallery-item gallery-item--${item.shape}`} key={item.src}>
-                    <img
+                    <Image
                       src={item.src}
                       alt={item.alt}
+                      fill
+                      sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 900px) 50vw, 25vw"
                       loading={chapterIndex === 0 && photoIndex < 4 ? "eager" : "lazy"}
+                      unoptimized
                     />
                     <figcaption>{item.alt}</figcaption>
                   </figure>
