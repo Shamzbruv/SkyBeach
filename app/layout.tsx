@@ -13,8 +13,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteOrigin = process.env.NEXT_PUBLIC_SITE_URL
+  ?? (process.env.RAILWAY_PUBLIC_DOMAIN
+    ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
+    : "https://skybeach-production.up.railway.app");
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://skybeachjamaica.com"),
+  metadataBase: new URL(siteOrigin),
   title: {
     default: "Sky Beach Restaurant & Bar | Hopewell, Hanover",
     template: "%s | Sky Beach Jamaica",
@@ -48,11 +53,6 @@ export const metadata: Metadata = {
   other: {
     "codex-preview": "development",
   },
-  icons: {
-    icon: [{ url: "/favicon-ai.png", type: "image/png", sizes: "1024x1024" }],
-    shortcut: "/favicon-ai.png",
-    apple: "/favicon-ai.png",
-  },
 };
 
 export default function RootLayout({
@@ -62,6 +62,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SiteChrome>{children}</SiteChrome>
       </body>
