@@ -45,6 +45,12 @@ export const venueSpaces = [
       "A scenic coastal setting that moves effortlessly from daytime dining to a glowing evening atmosphere.",
     image: "/images/client-gallery/b2-32.webp",
   },
+  {
+    title: "Intimate Seaside Deck",
+    description:
+      "A private table for two on a sun-warmed wooden deck at the water's edge—made for proposals, anniversaries and unhurried conversations.",
+    image: "/images/intimate-deck.webp",
+  },
 ];
 
 export const hutStories = [

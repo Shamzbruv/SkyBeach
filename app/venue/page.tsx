@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HutExplorer } from "@/components/HutExplorer";
+import { IntimateBookingForm } from "@/components/IntimateBookingForm";
 import { PageHero } from "@/components/PageHero";
 import { pageMetadata } from "@/lib/seo";
 import { venueSpaces } from "@/lib/site-data";
@@ -79,6 +80,75 @@ export default function VenuePage() {
             </p>
           </div>
           <HutExplorer />
+        </div>
+      </section>
+
+      {/* ── Intimate Seaside Deck spotlight ── */}
+      <section className="intimate-section" id="intimate-deck">
+        <div className="intimate-hero">
+          <Image
+            src="/images/intimate-deck.webp"
+            alt="A private table for two on a wooden deck overlooking the turquoise Caribbean sea"
+            width={1200}
+            height={800}
+            sizes="100vw"
+            unoptimized
+            priority
+          />
+          <div className="intimate-hero-scrim" />
+          <div className="intimate-hero-content">
+            <p className="eyebrow light">Private dining for two</p>
+            <h2>An evening made only for the two of you.</h2>
+            <p>
+              A sun-warmed wooden deck at the water&apos;s edge, dressed for an intimate
+              meal with the sound of the sea and the glow of the Jamaican coast.
+              Perfect for proposals, anniversaries and moments that deserve their
+              own quiet place in the world.
+            </p>
+            <a href="#intimate-booking-form" className="button button-sun">
+              Reserve this space
+            </a>
+          </div>
+        </div>
+
+        <div className="intimate-details">
+          <div className="container">
+            <div className="intimate-features">
+              <div className="intimate-feature">
+                <span className="intimate-feature-icon">🌅</span>
+                <h3>Sunset setting</h3>
+                <p>Watch the sky change colour from your private deck, just steps from the sea.</p>
+              </div>
+              <div className="intimate-feature">
+                <span className="intimate-feature-icon">🥂</span>
+                <h3>Tailored service</h3>
+                <p>A dedicated server, personalised menu and timing set entirely around you.</p>
+              </div>
+              <div className="intimate-feature">
+                <span className="intimate-feature-icon">🌺</span>
+                <h3>Special touches</h3>
+                <p>Flowers, candles, a welcome drink or a hidden ring box—just let us know.</p>
+              </div>
+              <div className="intimate-feature">
+                <span className="intimate-feature-icon">📸</span>
+                <h3>Capture the moment</h3>
+                <p>Ask about photography to preserve the evening forever.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="container intimate-form-section">
+          <aside className="intimate-form-aside">
+            <p className="eyebrow">Request this experience</p>
+            <h2>Let us set the scene for you.</h2>
+            <p>
+              Tell us about the occasion, the date and any special details.
+              The team will follow up to confirm availability, menu options
+              and pricing.
+            </p>
+          </aside>
+          <IntimateBookingForm />
         </div>
       </section>
 

@@ -993,6 +993,126 @@ p {
   color: var(--muted);
 }
 
+/* Intimate Seaside Deck */
+.intimate-section {
+  overflow: hidden;
+}
+
+.intimate-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: flex-end;
+}
+
+.intimate-hero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intimate-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 31, 30, 0.92) 0%,
+    rgba(5, 31, 30, 0.55) 40%,
+    rgba(5, 31, 30, 0.12) 100%
+  );
+}
+
+.intimate-hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(780px, calc(100% - 48px));
+  margin-inline: auto;
+  padding: 0 0 80px;
+  color: white;
+  text-align: center;
+}
+
+.intimate-hero-content h2 {
+  font-size: clamp(2.6rem, 6vw, 5.5rem);
+  margin-bottom: 20px;
+}
+
+.intimate-hero-content p {
+  max-width: 580px;
+  margin: 0 auto 32px;
+  font-size: 1.08rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.intimate-hero-content .eyebrow {
+  justify-content: center;
+}
+
+.intimate-details {
+  padding: 80px 0;
+  background: var(--ink-deep);
+}
+
+.intimate-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.intimate-feature {
+  padding: 38px 28px;
+  border-radius: 24px;
+  background: rgba(117, 216, 214, 0.07);
+  border: 1px solid rgba(117, 216, 214, 0.12);
+  text-align: center;
+  color: white;
+  transition: transform 300ms ease, background 300ms ease;
+}
+
+.intimate-feature:hover {
+  transform: translateY(-6px);
+  background: rgba(117, 216, 214, 0.13);
+}
+
+.intimate-feature-icon {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 2rem;
+}
+
+.intimate-feature h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.intimate-feature p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.intimate-form-section {
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+  padding: 110px 0;
+}
+
+.intimate-form-aside {
+  position: sticky;
+  top: 140px;
+}
+
+.intimate-form-aside p:not(.eyebrow) {
+  color: var(--muted);
+}
+
 .occasion-strip {
   position: relative;
   padding: 115px 0;
@@ -2047,6 +2167,12 @@ p {
   .hut-selector { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hut-feature { grid-template-columns: 1fr; }
   .hut-feature-gallery { min-height: 560px; }
+  .intimate-features { grid-template-columns: 1fr 1fr; }
+  .intimate-form-section {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .intimate-form-aside { position: static; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid > div:last-child { grid-column: auto; }
 }
@@ -2169,6 +2295,11 @@ p {
   .photo-composition { min-height: 410px; }
   .experience-card,
   .experience-card:last-child { min-height: 440px; }
+  .intimate-hero { min-height: 70vh; }
+  .intimate-hero-content { padding: 0 0 55px; }
+  .intimate-features { grid-template-columns: 1fr; }
+  .intimate-details { padding: 55px 0; }
+  .intimate-form-section { padding: 76px 0; }
   .venue-photo { height: 300px; }
   .gallery-item { height: 280px; }
   .gallery-chapter-copy h2 { font-size: 2rem; }
