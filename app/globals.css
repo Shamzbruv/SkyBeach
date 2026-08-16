@@ -1318,6 +1318,368 @@ p {
   background: var(--sun);
 }
 
+/* ── Premium Menu Explorer ── */
+@keyframes mx-fadeUp {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes mx-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes mx-cornerPulse {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 0.7; }
+}
+
+.menu-section {
+  background: linear-gradient(175deg, #0a1c1b 0%, #0f2b29 35%, #0d2220 70%, #091a18 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-section .section-heading h2,
+.menu-section .section-heading .eyebrow,
+.menu-section .section-heading p {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.menu-section .section-heading > p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.menu-section .section-heading .eyebrow::before {
+  background: var(--sun);
+}
+
+.mx-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ambient glow behind menu */
+.mx-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 900px 600px at 20% 10%, rgba(248, 182, 66, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 700px 500px at 80% 85%, rgba(0, 127, 131, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 400px at 50% 50%, rgba(117, 216, 214, 0.04) 0%, transparent 70%);
+}
+
+/* ── Main Food / Drinks Toggle ── */
+.mx-main-toggle {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  padding: 5px;
+  margin: 0 auto 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.mx-toggle-slider {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(50% - 5px);
+  height: calc(100% - 10px);
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--sea), #18aeb0);
+  box-shadow: 0 4px 24px rgba(0, 127, 131, 0.35);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.mx-main-toggle button {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 155px;
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
+  justify-content: center;
+}
+
+.mx-main-toggle button.is-active {
+  color: white;
+}
+
+.mx-main-toggle button:not(.is-active):hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mx-toggle-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* ── Sub-category pills ── */
+.mx-sub-tabs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.mx-sub-tabs button {
+  padding: 10px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+}
+
+.mx-sub-tabs button:hover {
+  border-color: rgba(248, 182, 66, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(248, 182, 66, 0.08);
+}
+
+.mx-sub-tabs button.is-active {
+  border-color: var(--sun);
+  background: linear-gradient(135deg, rgba(248, 182, 66, 0.18), rgba(248, 182, 66, 0.08));
+  color: var(--sun);
+  box-shadow: 0 0 20px rgba(248, 182, 66, 0.12);
+}
+
+/* ── Decorative divider ── */
+.mx-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 8px 0 16px;
+  color: rgba(248, 182, 66, 0.4);
+}
+
+.mx-divider span {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(248, 182, 66, 0.3), transparent);
+}
+
+/* ── Currency note ── */
+.mx-note {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.82rem;
+  margin-bottom: 40px;
+  font-style: italic;
+  letter-spacing: 0.03em;
+}
+
+/* ── Menu Card Grid ── */
+.mx-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ── Individual Menu Card ── */
+.mx-card {
+  position: relative;
+  padding: 36px 32px 30px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  animation: mx-fadeUp 0.5s ease both;
+  overflow: hidden;
+}
+
+.mx-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(248, 182, 66, 0.03) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.mx-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(248, 182, 66, 0.06);
+  border-color: rgba(248, 182, 66, 0.15);
+}
+
+/* Decorative corner accents */
+.mx-card-corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  animation: mx-cornerPulse 4s ease-in-out infinite;
+}
+
+.mx-card-corner-tl {
+  top: 10px; left: 10px;
+  border-top: 1.5px solid rgba(248, 182, 66, 0.3);
+  border-left: 1.5px solid rgba(248, 182, 66, 0.3);
+}
+.mx-card-corner-tr {
+  top: 10px; right: 10px;
+  border-top: 1.5px solid rgba(248, 182, 66, 0.3);
+  border-right: 1.5px solid rgba(248, 182, 66, 0.3);
+  animation-delay: 1s;
+}
+.mx-card-corner-bl {
+  bottom: 10px; left: 10px;
+  border-bottom: 1.5px solid rgba(248, 182, 66, 0.3);
+  border-left: 1.5px solid rgba(248, 182, 66, 0.3);
+  animation-delay: 2s;
+}
+.mx-card-corner-br {
+  bottom: 10px; right: 10px;
+  border-bottom: 1.5px solid rgba(248, 182, 66, 0.3);
+  border-right: 1.5px solid rgba(248, 182, 66, 0.3);
+  animation-delay: 3s;
+}
+
+/* Card header with flanking lines */
+.mx-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.mx-card-header h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--sun);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-shadow: 0 0 30px rgba(248, 182, 66, 0.2);
+}
+
+.mx-card-header-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(248, 182, 66, 0.25), transparent);
+}
+
+.mx-card-header-line:first-child {
+  background: linear-gradient(90deg, transparent, rgba(248, 182, 66, 0.25));
+}
+
+.mx-card-note {
+  margin: -12px 0 16px;
+  font-size: 0.78rem;
+  color: rgba(117, 216, 214, 0.7);
+  font-weight: 600;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Item list */
+.mx-card ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.mx-card li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.2s ease;
+}
+
+.mx-card li:last-child {
+  border-bottom: none;
+}
+
+.mx-card li:hover {
+  background: rgba(255, 255, 255, 0.02);
+  margin: 0 -12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 6px;
+}
+
+.mx-item-left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mx-item-name {
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.35;
+}
+
+.mx-item-note {
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* Dot leaders between name and price */
+.mx-item-dots {
+  flex: 1;
+  min-width: 20px;
+  border-bottom: 1px dotted rgba(248, 182, 66, 0.2);
+  margin-bottom: 4px;
+}
+
+.mx-item-price {
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--sun);
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-shadow: 0 0 18px rgba(248, 182, 66, 0.2);
+}
+
+/* Card alternating accent glows */
+.mx-card:nth-child(3n + 2)::before {
+  background: linear-gradient(180deg, rgba(0, 127, 131, 0.05) 0%, transparent 40%);
+}
+
+.mx-card:nth-child(3n + 3)::before {
+  background: linear-gradient(180deg, rgba(235, 91, 63, 0.04) 0%, transparent 40%);
+}
+
+/* Center the last card when there's an odd number (including single-card views) */
+.mx-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: 700px;
+  width: 100%;
+  justify-self: center;
+}
+
 .menu-feature-copy {
   background: var(--coral);
 }
@@ -2159,6 +2521,7 @@ p {
   .services-grid { grid-template-columns: 1fr 1fr; }
   .venue-row { grid-template-columns: 45px 0.8fr 1.2fr; }
   .menu-grid { grid-template-columns: 1fr; max-width: 670px; margin-inline: auto; }
+  .mx-grid { grid-template-columns: 1fr; max-width: 700px; margin-inline: auto; }
   .menu-card { min-height: 0; border-radius: 70px 70px 16px 16px; }
   .menu-card .eyebrow { margin-top: 15px; }
   .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -2312,6 +2675,13 @@ p {
   .menu-tabs { width: 100%; }
   .menu-tabs button { min-width: 0; flex: 1; }
   .menu-card { padding: 30px 24px; border-radius: 52px 52px 16px 16px; }
+  .mx-sub-tabs { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 6px; gap: 8px; }
+  .mx-sub-tabs::-webkit-scrollbar { display: none; }
+  .mx-sub-tabs button { font-size: 0.8rem; padding: 8px 16px; }
+  .mx-card { padding: 28px 22px 24px; }
+  .mx-card-header h3 { font-size: 1.1rem; }
+  .mx-card-corner { width: 14px; height: 14px; }
+  .mx-main-toggle button { min-width: 120px; padding: 12px 20px; font-size: 0.95rem; }
 }
 
 @media (max-height: 650px) and (orientation: landscape) and (max-width: 900px) {

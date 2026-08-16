@@ -162,52 +162,381 @@ export const hutStories = [
   },
 ];
 
-export const foodSelections = [
-  {
-    category: "From the Sea",
-    items: ["Fresh catch of the day", "Shrimp", "Conch", "Fried calamari"],
-  },
-  {
-    category: "Jamaican Favourites",
-    items: ["Fish tea", "Conch soup", "Saltfish fritters", "Fish balls"],
-  },
-  {
-    category: "Lighter Bites",
-    items: ["Shrimp cocktail", "Garden salad", "Conch salad", "Seasoned wings"],
-  },
-];
+export interface MenuItem {
+  name: string;
+  note?: string;
+  price?: string;
+}
 
-export const drinkSelections = [
+export interface MenuCategory {
+  category: string;
+  note?: string;
+  items: MenuItem[];
+}
+
+export const foodMenu: MenuCategory[] = [
   {
-    category: "Sky Beach Cocktails",
+    category: "Soups",
     items: [
-      "Sky Beach Temptation",
-      "Sex on the Beach",
-      "Rum Punch",
-      "Planter's Punch",
-      "Blue Lagoon",
-      "Hurricane",
+      { name: "Fish Tea", price: "$500" },
+      { name: "Conch Soup", note: "Seasonal", price: "$600" },
     ],
   },
   {
-    category: "Frozen & Tropical",
+    category: "Appetizers",
     items: [
-      "Humming Bird",
-      "Purple Rain",
-      "Piña Colada",
-      "Strawberry Daiquiri",
-      "Dirty Banana",
-      "Mango Shake",
+      { name: "Salt Fish Fritters", price: "$600" },
+      { name: "Conch Fritters", price: "$700" },
+      { name: "Fish Balls", price: "$700" },
+      { name: "Patties", note: "2 per serving", price: "$700" },
+      { name: "Mozzarella Sticks", note: "3 per serving", price: "$750" },
+      { name: "Fried Calamari", price: "$1,400" },
+      { name: "Wings (5 pcs)", note: "Fried, Jerk, Hot & Spicy, BBQ", price: "$1,700" },
+      { name: "Wings (10 pcs)", note: "Fried, Jerk, Hot & Spicy, BBQ", price: "$3,200" },
+      { name: "Shrimp Cocktails", price: "$1,800" },
+      { name: "Ackee & Saltfish", note: "Served with crackers", price: "$1,900" },
+    ],
+  },
+  {
+    category: "Salads",
+    items: [
+      { name: "Garden Salad", price: "$1,500" },
+      { name: "Garden Salad with Shrimp", price: "$1,900" },
+      { name: "Garden Salad with Conch", price: "$1,900" },
+    ],
+  },
+  {
+    category: "Seafood",
+    items: [
+      { name: "Fish (Whole)", note: "Escovitched / Jerked / Grilled / Fried / Roasted / Curry Coconut / Brown Stewed / Curried / Steam / Foil", price: "$2,600/lb" },
+      { name: "Fish Fillet", note: "Served with fries", price: "$3,000" },
+      { name: "Salmon", note: "Any style, served with Mash Potato / Sweet Mash / Rice & Peas", price: "$3,500" },
+      { name: "Shrimp", note: "Curried, Curry Coconut, Garlic, Sweet & Sour, Grilled, Sky Fried", price: "$3,000" },
+      { name: "Lobster Tail / Meat", note: "Seasonal — Curried, Coconut, Garlic, Foil Roasted, Grilled, Broiled", price: "$4,500/lb" },
+      { name: "Crab", note: "Curried or Garlic, served with Rice & Peas", price: "$2,500/lb" },
+      { name: "Conch", note: "Seasonal — Curried, Garlic, Coconut, Jerked, Cracked & more", price: "$3,000" },
+      { name: "Sea Cat (Octopus)", note: "Curried, Coconut, Garlic, Sweet & Sour, Brown Stewed", price: "$3,400" },
+      { name: "Seafood Boil", note: "Shrimp, Egg, Corn, Potato, Crab, Sausage", price: "$8,000" },
+    ],
+  },
+  {
+    category: "Meats",
+    items: [
+      { name: "Chicken Breast", note: "Served with Mashed Potatoes", price: "$2,000" },
+      { name: "Jerked Chicken", note: "Served with 2 Festivals", price: "$2,000" },
+      { name: "Curried Chicken", note: "Served with White Rice, Rice & Peas or Bulga", price: "$2,000" },
+      { name: "Fried Chicken", note: "Served with Fries / Rice & Peas", price: "$2,000" },
+      { name: "Stew Peas", note: "Served with White Rice", price: "$2,200" },
+      { name: "Curried Goat", note: "Served with White Rice / Rice & Peas", price: "$2,200" },
+      { name: "Oxtail", note: "Served with Rice & Peas", price: "$3,500" },
+    ],
+  },
+  {
+    category: "Pasta",
+    note: "Rasta Pasta — choose your protein",
+    items: [
+      { name: "Rasta Pasta — Chicken", price: "$2,000" },
+      { name: "Rasta Pasta — Veggie", price: "$2,200" },
+      { name: "Rasta Pasta — Fish", price: "$2,600" },
+      { name: "Rasta Pasta — Shrimp", price: "$3,000" },
+      { name: "Rasta Pasta — Lobster", note: "Seasonal", price: "$4,200/lb" },
+    ],
+  },
+  {
+    category: "Pizza",
+    items: [
+      { name: "Cheese (Only)", price: "$2,000" },
+      { name: "Vegetarian", price: "$2,500" },
+      { name: "Mixed", price: "$2,800" },
+      { name: "Seafood", note: "Fish, Shrimp, Crab, Conch, Lobster", price: "$3,500" },
+      { name: "Extra Topping (Whole)", price: "$250" },
+    ],
+  },
+  {
+    category: "Burgers & Panini",
+    items: [
+      { name: "Fish Burger", price: "$1,500" },
+      { name: "Beef Burger", price: "$1,500" },
+      { name: "Chicken Burger", price: "$1,500" },
+      { name: "Panini", note: "Chicken / Fish / Veggie", price: "$1,500" },
+    ],
+  },
+  {
+    category: "Side Orders",
+    items: [
+      { name: "Bammy", note: "Fried / Steamed", price: "$500" },
+      { name: "Festival", price: "$200" },
+      { name: "Rice", note: "Pumpkin / Garlic / Seasoned / Rice & Peas", price: "$450" },
+      { name: "Fried Plantain", note: "Ripe / Green", price: "$350" },
+      { name: "Sweet Potato", note: "Roasted / Fried / Mashed", price: "$500" },
+      { name: "Irish Potato", note: "Boiled / Mashed", price: "$550" },
+      { name: "Potato Wedges", price: "$500" },
+      { name: "French Fries", price: "$450" },
+      { name: "Seasoned / Jerk Fries", price: "$500" },
+      { name: "Sweet Potato Fries", price: "$500" },
+      { name: "Vegetable", note: "Steamed / Raw", price: "$800" },
+      { name: "Callaloo", note: "Steamed", price: "$800" },
+      { name: "Roast Breadfruit", note: "3 slices per serving", price: "$300" },
+      { name: "Boiled Corn", price: "$350" },
+      { name: "Boiled Food", note: "Choose three: Yam, Sweet Potato, Pumpkin, Dumpling", price: "$300" },
+      { name: "Fried Dumplin", note: "2 per serving", price: "$200" },
+    ],
+  },
+  {
+    category: "Vegan Cuisine",
+    note: "All Vegetarian Meals — $1,800",
+    items: [
+      { name: "Tofu", note: "Fried, Jerked, Curry-Coconut, Curried Garlic", price: "$1,800" },
+      { name: "Veggie Mince", note: "Sweet & Sour, Curry-Coconut, Curried Garlic", price: "$1,800" },
+      { name: "Veggie Chunks", note: "Jerked, Curry-Coconut, Curried Garlic", price: "$1,800" },
+      { name: "Ackee", note: "Sautéed with or without Veggie Mince / Tofu", price: "$1,800" },
+      { name: "Veggie Fried Rice", note: "Curry-Coconut, Curried Garlic", price: "$1,800" },
+    ],
+  },
+  {
+    category: "Kids Menu",
+    items: [
+      { name: "Chicken Nuggets", note: "Served with Fries", price: "$1,800" },
+      { name: "Chicken Fingers", note: "Served with Fries", price: "$1,800" },
+      { name: "Chicken Drumsticks", note: "Served with Fries", price: "$1,800" },
+    ],
+  },
+  {
+    category: "Desserts",
+    items: [
+      { name: "Fruit Cup", price: "$500" },
+      { name: "Jamaican Fruit Cake", price: "$650" },
+      { name: "Rum Cake", price: "$650" },
+      { name: "Carrot Cake", price: "$650" },
+      { name: "Sky Beach Potato Pudding", price: "$600" },
+      { name: "Ice Cream Sundae", price: "$650" },
+      { name: "Ice Cream Cake", price: "$650" },
+      { name: "Ice Cream Cone", price: "$500" },
+      { name: "Cheese Cake", price: "$1,000" },
+    ],
+  },
+];
+
+export const drinkMenu: MenuCategory[] = [
+  {
+    category: "Cocktails",
+    items: [
+      { name: "Sky Beach Temptation" },
+      { name: "Sex on The Beach" },
+      { name: "Rum Punch" },
+      { name: "Planter's Punch" },
+      { name: "Zombi" },
+      { name: "Brandy Alexander" },
+      { name: "Black Russian" },
+      { name: "White Russian" },
+      { name: "Mai Tai" },
+      { name: "Hurricane" },
+      { name: "Blue Lagoon" },
+    ],
+  },
+  {
+    category: "Frozen Drinks",
+    items: [
+      { name: "Humming Bird" },
+      { name: "Purple Rain" },
+      { name: "Governor House" },
+      { name: "Miami Vice" },
+      { name: "Blended Fruit Punch" },
+      { name: "Natural Juice" },
+      { name: "Bush Wacker" },
+      { name: "Piña Colada (Virgin)" },
+      { name: "Strawberry Daiquiri (Virgin)" },
+      { name: "Mudslide" },
+      { name: "Margarita" },
+      { name: "Dirty Banana" },
+      { name: "Power Punch" },
+      { name: '"Bill Back"' },
+      { name: "Milk Shake" },
+      { name: "Banana Shake" },
+      { name: "Strawberry Shake" },
+      { name: "Mango Shake" },
+      { name: "Guava Shake" },
+      { name: "Papaya Shake" },
     ],
   },
   {
     category: "Martinis",
     items: [
-      "Apple Martini",
-      "Lemon Drop Martini",
-      "Chocolate Martini",
-      "Cosmopolitan",
-      "Bikini Martini",
+      { name: "Apple Martini" },
+      { name: "Lemon Drop Martini" },
+      { name: "Chocolate Martini" },
+      { name: "Cosmopolitan" },
+      { name: "Bikini Martini" },
+    ],
+  },
+  {
+    category: "Shots",
+    items: [
+      { name: "Bob Marley" },
+      { name: "Alien Brain" },
+      { name: "Blow Job" },
+      { name: "Pink P***y" },
+      { name: "Lemonade Drop" },
+    ],
+  },
+  {
+    category: "Brandys",
+    items: [
+      { name: "Beehive Napoleon Brandy (Shot)" },
+      { name: "Jamaica Brandy (Shot)" },
+      { name: "Jamaica Brandy (Flask)" },
+    ],
+  },
+  {
+    category: "Gins",
+    items: [
+      { name: "Gordon's" },
+      { name: "Old Tom" },
+      { name: "Tanqueray" },
+    ],
+  },
+  {
+    category: "Rums",
+    items: [
+      { name: "Appleton VX (Shot)" },
+      { name: "Appleton VX (Flask)" },
+      { name: "Appleton Special (Shot)" },
+      { name: "Appleton Special (Flask)" },
+      { name: "Appleton Genesis (Shot)" },
+      { name: "Appleton Genesis (Flask)" },
+      { name: "Coconut Rum (Shot)" },
+      { name: "Wray & Nephew White Overproof Rum (Shot)" },
+      { name: "Wray & Nephew White Overproof Rum (Flask)" },
+      { name: "Trelawney JB White Rum (Shot)" },
+      { name: "Trelawney JB White Rum (Flask)" },
+      { name: "Myers Rum (Shot)" },
+    ],
+  },
+  {
+    category: "Whiskeys (Shot)",
+    items: [
+      { name: "Dewars" },
+      { name: "Teacher's" },
+      { name: "Canadian Club" },
+      { name: "Johnnie Walker Black" },
+      { name: "Johnnie Walker Red" },
+      { name: "Jim Beam" },
+      { name: "Jack Daniel's" },
+      { name: "Crown Royal" },
+    ],
+  },
+  {
+    category: "Tequilas (Shot)",
+    items: [
+      { name: "Jose Cuervo Gold" },
+      { name: "Pepe López" },
+      { name: "Patron" },
+      { name: "Don Julio" },
+    ],
+  },
+  {
+    category: "Cognacs",
+    items: [
+      { name: "Hennessy (Shot)" },
+      { name: "Hennessy (Flask)" },
+    ],
+  },
+  {
+    category: "Vodkas",
+    items: [
+      { name: "Absolut" },
+      { name: "Cranberry Vodka" },
+      { name: "Passion Vodka" },
+      { name: "SKYY Vodka" },
+      { name: "Smirnoff" },
+      { name: "Smirnoff Apple" },
+      { name: "Smirnoff Vanilla" },
+      { name: "Ciroc" },
+      { name: "Grey Goose" },
+    ],
+  },
+  {
+    category: "Beers",
+    items: [
+      { name: "Guinness" },
+      { name: "Heineken" },
+      { name: "Dragon" },
+      { name: "Red Stripe" },
+      { name: "Red Stripe Light" },
+      { name: "Red Stripe (Flavored)" },
+      { name: "Smirnoff Ice" },
+    ],
+  },
+  {
+    category: "Wines (Glass)",
+    items: [
+      { name: "Red Wine" },
+      { name: "White Wine" },
+      { name: "Blush Wine" },
+    ],
+  },
+  {
+    category: "Juices",
+    items: [
+      { name: "Tropical Punch" },
+      { name: "Tropical Rhythm" },
+      { name: "Cranberry Juice" },
+      { name: "Cranberry Juice (Bottle)" },
+      { name: "Pineapple Juice" },
+      { name: "Orange Juice" },
+      { name: "Sorrel Juice" },
+    ],
+  },
+  {
+    category: "Sodas",
+    items: [
+      { name: "Pepsi" },
+      { name: "Ting" },
+      { name: "Ginger Beer" },
+      { name: "Ginger Ale" },
+      { name: "Sprite" },
+      { name: "Grape Soda" },
+    ],
+  },
+  {
+    category: "Energy Boosters",
+    items: [
+      { name: "Redbull" },
+      { name: "Nitro" },
+      { name: "Magnum" },
+      { name: "Malta" },
+      { name: "Lucozade" },
+      { name: "Gatorade" },
+      { name: "Boom" },
+    ],
+  },
+  {
+    category: "Elixers",
+    items: [
+      { name: "Colbeck Ginger Wine (Glass)" },
+      { name: "Colbeck Ginger Wine (Flask)" },
+    ],
+  },
+  {
+    category: "Waters",
+    items: [
+      { name: "Evian (Bottle)" },
+      { name: "Evian (Litre)" },
+      { name: "Water" },
+      { name: "Soda Water" },
+      { name: "Tonic Water" },
+      { name: "Cranberry Water" },
+      { name: "Coconut Water" },
     ],
   },
 ];
+
+/* Backward-compatible aliases for any other imports */
+export const foodSelections = foodMenu.map((g) => ({
+  category: g.category,
+  items: g.items.map((i) => i.name),
+}));
+export const drinkSelections = drinkMenu.map((g) => ({
+  category: g.category,
+  items: g.items.map((i) => i.name),
+}));
