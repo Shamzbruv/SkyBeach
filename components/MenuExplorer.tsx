@@ -6,14 +6,14 @@ import { foodMenu, drinkMenu, type MenuCategory } from "@/lib/site-data";
 /* ── Background image mapping ── */
 const categoryBg: Record<string, string> = {
   // Food
-  Soups: "/images/menu/menu_bg_sides.jpg",
+  Soups: "/images/menu/menu_bg_soup.jpg",
   Appetizers: "/images/menu/menu_bg_appetizers.jpg",
-  Salads: "/images/menu/menu_bg_vegan.jpg",
+  Salads: "/images/menu/menu_bg_salads.jpg",
   Seafood: "/images/menu/menu_bg_seafood.jpg",
   Meats: "/images/menu/menu_bg_meats.jpg",
   Pasta: "/images/menu/menu_bg_pasta.jpg",
-  Pizza: "/images/menu/menu_bg_pasta.jpg",
-  "Burgers & Panini": "/images/menu/menu_bg_appetizers.jpg",
+  Pizza: "/images/menu/menu_bg_pizza.jpg",
+  "Burgers & Panini": "/images/menu/menu_bg_burgers.jpg",
   "Side Orders": "/images/menu/menu_bg_sides.jpg",
   "Vegan Cuisine": "/images/menu/menu_bg_vegan.jpg",
   "Kids Menu": "/images/menu/menu_bg_appetizers.jpg",
