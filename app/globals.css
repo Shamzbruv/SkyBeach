@@ -1828,7 +1828,7 @@ p {
 }
 
 .mx-light .mx-card::before {
-  background: linear-gradient(180deg, rgba(248, 182, 66, 0.04) 0%, transparent 40%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.75) 100%);
 }
 
 .mx-light .mx-card:hover {
@@ -1854,7 +1854,7 @@ p {
 
 .mx-light .mx-card-header h3 {
   color: var(--sea);
-  text-shadow: none;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.9);
 }
 
 .mx-light .mx-card-header-line {
@@ -1867,6 +1867,7 @@ p {
 
 .mx-light .mx-card-note {
   color: var(--sea);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
 }
 
 .mx-light .mx-card li {
@@ -1879,10 +1880,13 @@ p {
 
 .mx-light .mx-item-name {
   color: var(--ink);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.9);
 }
 
 .mx-light .mx-item-note {
-  color: var(--muted);
+  color: #444;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
 }
 
 .mx-light .mx-item-dots {
@@ -1891,7 +1895,7 @@ p {
 
 .mx-light .mx-item-price {
   color: var(--sea);
-  text-shadow: none;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.9);
 }
 
 /* Light theme alternating card accents */
