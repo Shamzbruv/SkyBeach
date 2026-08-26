@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { GalleryExplorer } from "@/components/GalleryExplorer";
 import { PageHero } from "@/components/PageHero";
 import { pageMetadata } from "@/lib/seo";
 
@@ -114,42 +114,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <div className="gallery-collection" id="gallery-collection">
-        {chapterData.map((chapter, chapterIndex) => (
-          <details
-            className={`gallery-chapter gallery-chapter-${chapterIndex + 1}`}
-            key={chapter.title}
-            open={chapterIndex === 0}
-          >
-            <summary className="container gallery-chapter-heading">
-              <span className="gallery-chapter-number">0{chapterIndex + 1}</span>
-              <div className="gallery-chapter-copy">
-                <h2>{chapter.title}</h2>
-                <p>{chapter.text}</p>
-              </div>
-              <span className="gallery-photo-count">{chapter.photos.length} photos</span>
-              <span className="gallery-toggle" aria-hidden="true" />
-            </summary>
-            <div className="container gallery-chapter-content">
-              <div className="gallery-grid">
-                {chapter.photos.map((item, photoIndex) => (
-                  <figure className={`gallery-item gallery-item--${item.shape}`} key={item.src}>
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 900px) 50vw, 25vw"
-                      loading={chapterIndex === 0 && photoIndex < 4 ? "eager" : "lazy"}
-                      unoptimized
-                    />
-                    <figcaption>{item.alt}</figcaption>
-                  </figure>
-                ))}
-              </div>
-            </div>
-          </details>
-        ))}
-      </div>
+      <GalleryExplorer chapters={chapterData} />
 
       <section className="section centered-cta coral-cta">
         <div className="container narrow">

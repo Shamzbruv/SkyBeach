@@ -29,6 +29,29 @@ export default function VenuePage() {
         image="/images/hero-celebrate-v2.webp"
       />
 
+      <details className="floor-plan-note">
+        <summary>
+          <span className="floor-plan-note-icon" aria-hidden="true">🗺️</span>
+          <span>View the dining floor plan</span>
+          <span className="floor-plan-note-chevron" aria-hidden="true" />
+        </summary>
+        <div className="floor-plan-note-panel">
+          <div className="container narrow">
+            <Image
+              src="/images/venue-floor-plan.jpg"
+              alt="Sky Beach dining floor plan showing the Mandy's Garden and Adlin's Deck huts, the main bar, waterfall, games area and other venue features"
+              width={1264}
+              height={844}
+              sizes="(max-width: 680px) calc(100vw - 32px), 820px"
+              unoptimized
+            />
+            <p className="floor-plan-note-caption">
+              A rough guide to the grounds—your event coordinator will confirm the exact hut or space for your booking.
+            </p>
+          </div>
+        </div>
+      </details>
+
       <section className="section">
         <div className="container split-heading section-heading">
           <div>

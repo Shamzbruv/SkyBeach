@@ -2098,6 +2098,21 @@ p {
   transition: transform 500ms ease;
 }
 
+.gallery-item-btn {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.gallery-item-btn:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: -3px;
+}
+
 .gallery-item figcaption {
   position: absolute;
   right: 0;
@@ -2117,6 +2132,110 @@ p {
 .gallery-item--wide { grid-column: span 2; grid-row: span 2; }
 .gallery-item--portrait { grid-column: span 1; grid-row: span 2; }
 .gallery-item--standard { grid-column: span 1; grid-row: span 1; }
+
+/* ── Gallery lightbox ── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 90px;
+  background: rgba(5, 31, 30, 0.92);
+  backdrop-filter: blur(6px);
+  animation: lightbox-fade 200ms ease both;
+}
+
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.lightbox-frame {
+  position: relative;
+  width: min(90vw, 1100px);
+  height: min(72vh, 850px);
+}
+
+.lightbox-frame img {
+  border-radius: 10px;
+}
+
+.lightbox-caption {
+  margin: 18px 0 0;
+  max-width: 700px;
+  color: white;
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.lightbox-count {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: var(--sun);
+  border-color: var(--sun);
+  color: var(--ink-deep);
+}
+
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+}
+
+.lightbox-close {
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  font-size: 1.1rem;
+}
+
+.lightbox-nav {
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  font-size: 1.6rem;
+  transform: translateY(-50%);
+}
+
+.lightbox-nav:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
 
 .gallery-intro { padding-bottom: 55px; }
 
@@ -2209,6 +2328,87 @@ p {
 
 .gallery-chapter-content {
   padding-bottom: 80px;
+}
+
+/* ── Discreet floor plan disclosure (Venue page) ── */
+.floor-plan-note {
+  border-bottom: 1px solid var(--line);
+}
+
+.floor-plan-note summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 24px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  list-style: none;
+  transition: color 180ms ease;
+}
+
+.floor-plan-note summary::-webkit-details-marker {
+  display: none;
+}
+
+.floor-plan-note summary:hover {
+  color: var(--sea);
+}
+
+.floor-plan-note-icon {
+  font-size: 0.95rem;
+}
+
+.floor-plan-note-chevron {
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+
+.floor-plan-note-chevron::before,
+.floor-plan-note-chevron::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 1.5px;
+  background: currentColor;
+  content: "";
+  transform: translate(-50%, -50%);
+  transition: transform 200ms ease;
+}
+
+.floor-plan-note-chevron::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.floor-plan-note[open] .floor-plan-note-chevron::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.floor-plan-note-panel {
+  padding: 8px 0 48px;
+  animation: floor-plan-reveal 220ms ease both;
+}
+
+@keyframes floor-plan-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.floor-plan-note-panel img {
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.floor-plan-note-caption {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
 }
 
 .hut-story {
@@ -2837,6 +3037,13 @@ p {
   }
   .gallery-chapter-number { grid-column: 1 / -1; }
   .gallery-chapter-content { padding-bottom: 50px; }
+  .lightbox { padding: 90px 16px 24px; }
+  .lightbox-frame { width: min(94vw, 1100px); height: min(52vh, 850px); }
+  .lightbox-close { top: 16px; right: 16px; width: 38px; height: 38px; font-size: 1rem; }
+  .lightbox-nav { width: 42px; height: 42px; font-size: 1.3rem; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+  .lightbox-caption { font-size: 0.82rem; }
   .hut-story-grid { grid-template-columns: 1fr; }
   .hut-story-card { min-height: 480px; }
   .hut-selector { grid-template-columns: 1fr 1fr; gap: 10px; }
