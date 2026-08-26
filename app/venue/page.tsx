@@ -40,8 +40,8 @@ export default function VenuePage() {
             <Image
               src="/images/venue-floor-plan.jpg"
               alt="Sky Beach dining floor plan showing the Mandy's Garden and Adlin's Deck huts, the main bar, waterfall, games area and other venue features"
-              width={1264}
-              height={844}
+              width={1280}
+              height={720}
               sizes="(max-width: 680px) calc(100vw - 32px), 820px"
               unoptimized
             />
