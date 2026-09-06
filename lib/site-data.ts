@@ -1,11 +1,13 @@
 export const contact = {
-  email: "skybeach24@gmail.com",
+  email: "skybeachrestaurant@skybeachja.com",
+  emailAlt: "skybeach24@gmail.com",
+  emailAltLabel: "Emergency contact",
   landline: "(876) 956-5006",
   mobile: "(876) 547-3971",
   mobileHref: "+18765473971",
   whatsapp: "https://wa.me/18765473971",
   address: "Hopewell, Hanover, Jamaica",
-  website: "skybeachjamaica.com",
+  website: "www.skybeachja.com",
 };
 
 export const navigation = [
@@ -84,7 +86,7 @@ export const hutStories = [
       "Maryland brings a little more enclosure to the hut collection. White walls, generous windows and a proper door give it the feeling of a tiny garden cottage while still keeping the surrounding greenery close.",
     atmosphere: "Bright, sheltered and quietly charming",
     bestFor: "Private meals, small meetings and intimate celebrations",
-    images: ["/images/huts/maryland-01.webp"],
+    images: ["/images/huts/maryland-01.webp", "/images/huts/maryland-02.webp"],
   },
   {
     name: "Pon Piece Hut",
@@ -140,6 +142,15 @@ export const hutStories = [
     ],
   },
   {
+    name: "Lucea Hut",
+    placeNote: "The grandest gathering space on the grounds",
+    story:
+      "Named for Hanover's parish capital, Lucea is Sky Beach's largest venue—shown here dressed with chandeliers, flowing drapes and long banquet tables for a full wedding reception. When an occasion calls for scale without losing the room's warmth, this is the space that delivers.",
+    atmosphere: "Grand, dressed-up and full of celebration",
+    bestFor: "Weddings, large receptions and milestone celebrations up to 80 guests",
+    images: ["/images/huts/lucea-01.webp"],
+  },
+  {
     name: "Cold Spring Hut",
     placeNote: "A sheltered room with the shoreline just outside",
     story:
@@ -149,16 +160,31 @@ export const hutStories = [
     images: ["/images/huts/cold-spring-01.webp"],
   },
   {
+    name: "Seaside Terrace",
+    placeNote: "An open deck strung along the water's edge",
+    story:
+      "Seaside Terrace runs along the shoreline on Adlin's Deck, its simple wood rail and string lights framing an open view of the sea. Unenclosed and flexible, it moves easily from a few candlelit tables to a full dinner setup as the sun goes down.",
+    atmosphere: "Open-air, breezy and right on the water",
+    bestFor: "Sunset dinners, flexible seating and guests who want to be closest to the sea",
+    images: ["/images/huts/seaside-terrace-01.webp"],
+  },
+  {
     name: "Askenish Hut",
     placeNote: "A garden gazebo with room around the table",
     story:
       "Askenish is a straightforward open-air gazebo framed by bright posts and tropical planting. Its central table keeps the layout social, while the garden setting gives the space a tucked-away feel.",
     atmosphere: "Garden-side, open and relaxed",
     bestFor: "Family meals, games, conversations and casual celebrations",
-    images: [
-      "/images/huts/askenish-01.webp",
-      "/images/huts/askenish-02.webp",
-    ],
+    images: ["/images/huts/askenish-01.webp"],
+  },
+  {
+    name: "Bamboo Hut",
+    placeNote: "A wild, garden-wrapped gazebo in Mandy's Garden",
+    story:
+      "Tucked beneath overgrown vines and flowering shrubs, Bamboo feels like a secret garden find. Bright yellow posts and open rail sides keep the space casual and shaded, a step further into the greenery than its garden neighbours.",
+    atmosphere: "Wild, shaded and tucked away",
+    bestFor: "Small gatherings, casual lunches and guests who love a garden hideaway",
+    images: ["/images/huts/bamboo-01.webp"],
   },
 ];
 

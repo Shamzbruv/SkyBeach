@@ -98,7 +98,7 @@ export const restaurantJsonLd = {
   description:
     "Authentic Jamaican seafood, tropical dining, private huts, catering and event spaces in Hopewell, Hanover, Jamaica.",
   telephone: "+1-876-547-3971",
-  email: "skybeach24@gmail.com",
+  email: "skybeachrestaurant@skybeachja.com",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Hopewell",

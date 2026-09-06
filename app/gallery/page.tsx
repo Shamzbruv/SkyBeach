@@ -31,6 +31,9 @@ const photoCaptions: Record<string, string> = {
   "b1-24": "Orchard Hut, one of the named Hanover spaces",
   "b1-25": "Lookout Hut beside the shoreline",
   "b1-26": "Green Island Hut, named for Hanover's west-coast town",
+  "b4-05": "A banquet dinner set inside Maryland Hut",
+  "b5-01": "Lucea Hut dressed for a wedding reception",
+  "b5-04": "Seaside Terrace at dusk, right on the water",
 };
 
 function photo(id: string, chapterTitle: string) {

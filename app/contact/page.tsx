@@ -33,6 +33,7 @@ export default function ContactPage() {
               <div><dt>Landline</dt><dd><a href={`tel:${contact.landline}`}>{contact.landline}</a></dd></div>
               <div><dt>Mobile / WhatsApp</dt><dd><a href={`tel:${contact.mobileHref}`}>{contact.mobile}</a></dd></div>
               <div><dt>Email</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
+              <div><dt>{contact.emailAltLabel}</dt><dd><a href={`mailto:${contact.emailAlt}`}>{contact.emailAlt}</a></dd></div>
               <div><dt>Website</dt><dd>{contact.website}</dd></div>
             </dl>
             <p className="contact-note">
