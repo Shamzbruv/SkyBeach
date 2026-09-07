@@ -137,7 +137,8 @@ export const hutStories = [
     bestFor: "Milestone dinners, group celebrations and sunset gatherings",
     images: [
       "/images/huts/blenheim-04.webp",
-      "/images/huts/blenheim-02.webp",
+      "/images/huts/blenheim-05.webp",
+      "/images/huts/blenheim-06.webp",
       "/images/huts/blenheim-03.webp",
     ],
   },
@@ -148,7 +149,7 @@ export const hutStories = [
       "Named for Hanover's parish capital, Lucea is Sky Beach's largest venue—shown here dressed with chandeliers, flowing drapes and long banquet tables for a full wedding reception. When an occasion calls for scale without losing the room's warmth, this is the space that delivers.",
     atmosphere: "Grand, dressed-up and full of celebration",
     bestFor: "Weddings, large receptions and milestone celebrations up to 80 guests",
-    images: ["/images/huts/lucea-01.webp"],
+    images: ["/images/huts/lucea-01.webp", "/images/huts/lucea-02.webp"],
   },
   {
     name: "Cold Spring Hut",
