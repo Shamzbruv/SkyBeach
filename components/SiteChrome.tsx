@@ -127,10 +127,13 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           <div>
             <p className="footer-title">Explore</p>
             <div className="footer-links">
+              <Link href="/about">About</Link>
               <Link href="/venue">The venue</Link>
+              <Link href="/services">Services</Link>
               <Link href="/menu">Food & drinks</Link>
               <Link href="/gallery">Gallery</Link>
               <Link href="/careers">Careers</Link>
+              <Link href="/contact">Contact</Link>
             </div>
           </div>
           <div>

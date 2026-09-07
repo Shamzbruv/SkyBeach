@@ -32,7 +32,7 @@ const categoryBg: Record<string, string> = {
   Vodkas: "/images/menu/menu_bg_spirits.jpg",
   Beers: "/images/menu/menu_bg_beer.jpg",
   "Wines (Glass)": "/images/menu/menu_bg_beer.jpg",
-  Elixers: "/images/menu/menu_bg_beer.jpg",
+  Elixirs: "/images/menu/menu_bg_beer.jpg",
   Juices: "/images/menu/menu_bg_refreshments.jpg",
   Sodas: "/images/menu/menu_bg_refreshments.jpg",
   "Energy Boosters": "/images/menu/menu_bg_refreshments.jpg",
@@ -100,7 +100,7 @@ function getDrinkCategories(subTab: string): MenuCategory[] {
       );
     case "beer-wine":
       return drinkMenu.filter((c) =>
-        ["Beers", "Wines (Glass)", "Elixers"].includes(c.category)
+        ["Beers", "Wines (Glass)", "Elixirs"].includes(c.category)
       );
     case "non-alcoholic":
       return drinkMenu.filter((c) =>

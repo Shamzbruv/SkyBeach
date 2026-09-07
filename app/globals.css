@@ -15,6 +15,7 @@
   --muted: #657572;
   --line: rgba(21, 54, 50, 0.15);
   --shadow: 0 24px 70px rgba(10, 40, 39, 0.14);
+  --font-heading: Georgia, "Times New Roman", serif;
 }
 
 * {
@@ -427,7 +428,8 @@ p {
 }
 
 .hero-actions,
-.flavour-actions {
+.flavour-actions,
+.career-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 13px;
@@ -1485,7 +1487,7 @@ p {
 /* ── Currency note ── */
 .mx-note {
   text-align: center;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 0.82rem;
   margin-bottom: 40px;
   font-style: italic;

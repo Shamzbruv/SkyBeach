@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type PhotoShape = "wide" | "portrait" | "standard";
 
@@ -20,12 +20,16 @@ type Chapter = {
 export function GalleryExplorer({ chapters }: { chapters: Chapter[] }) {
   const allPhotos = useMemo(() => chapters.flatMap((chapter) => chapter.photos), [chapters]);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const isOpen = lightboxIndex !== null;
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (lightboxIndex === null) return;
+    if (!isOpen) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
 
     function handleKey(event: KeyboardEvent) {
       if (event.key === "Escape") setLightboxIndex(null);
@@ -37,6 +41,20 @@ export function GalleryExplorer({ chapters }: { chapters: Chapter[] }) {
           current === null ? current : (current - 1 + allPhotos.length) % allPhotos.length
         );
       }
+      if (event.key === "Tab") {
+        const dialog = document.querySelector('.lightbox[role="dialog"]');
+        const focusable = dialog?.querySelectorAll<HTMLElement>("button");
+        if (!focusable || focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     }
 
     window.addEventListener("keydown", handleKey);
@@ -44,17 +62,29 @@ export function GalleryExplorer({ chapters }: { chapters: Chapter[] }) {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKey);
     };
-  }, [lightboxIndex, allPhotos.length]);
+  }, [isOpen, allPhotos.length]);
+
+  useEffect(() => {
+    if (isOpen) return;
+    triggerRef.current?.focus();
+  }, [isOpen]);
 
   const current = lightboxIndex === null ? null : allPhotos[lightboxIndex];
-  let runningIndex = 0;
+  const chapterStartIndices = useMemo(() => {
+    const indices: number[] = [];
+    let total = 0;
+    for (const chapter of chapters) {
+      indices.push(total);
+      total += chapter.photos.length;
+    }
+    return indices;
+  }, [chapters]);
 
   return (
     <>
       <div className="gallery-collection" id="gallery-collection">
         {chapters.map((chapter, chapterIndex) => {
-          const startIndex = runningIndex;
-          runningIndex += chapter.photos.length;
+          const startIndex = chapterStartIndices[chapterIndex];
 
           return (
             <details
@@ -78,7 +108,10 @@ export function GalleryExplorer({ chapters }: { chapters: Chapter[] }) {
                       <button
                         type="button"
                         className="gallery-item-btn"
-                        onClick={() => setLightboxIndex(startIndex + photoIndex)}
+                        onClick={(event) => {
+                          triggerRef.current = event.currentTarget;
+                          setLightboxIndex(startIndex + photoIndex);
+                        }}
                         aria-label={`View larger photo: ${item.alt}`}
                       >
                         <Image
@@ -110,6 +143,7 @@ export function GalleryExplorer({ chapters }: { chapters: Chapter[] }) {
         >
           <button
             type="button"
+            ref={closeButtonRef}
             className="lightbox-close"
             onClick={() => setLightboxIndex(null)}
             aria-label="Close photo"

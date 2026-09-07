@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const slides = [
   {
@@ -34,17 +34,28 @@ const slides = [
   },
 ];
 
+function startHeroAutoplay(onTick: () => void): number | null {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return null;
+  return window.setInterval(onTick, 7000);
+}
+
 export function HeroTabs() {
   const [active, setActive] = useState(0);
+  const timerRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(
-      () => setActive((current) => (current + 1) % slides.length),
-      7000
-    );
-    return () => window.clearInterval(timer);
+    timerRef.current = startHeroAutoplay(() => setActive((current) => (current + 1) % slides.length));
+    return () => {
+      if (timerRef.current !== null) window.clearInterval(timerRef.current);
+    };
   }, []);
+
+  function handleTabSelect(index: number) {
+    setActive(index);
+    // A manual choice shouldn't be silently overridden by the next auto-advance tick.
+    if (timerRef.current !== null) window.clearInterval(timerRef.current);
+    timerRef.current = startHeroAutoplay(() => setActive((current) => (current + 1) % slides.length));
+  }
 
   const slide = slides[active];
 
@@ -93,7 +104,7 @@ export function HeroTabs() {
               aria-selected={active === index}
               key={item.tab}
               className={active === index ? "is-active" : ""}
-              onClick={() => setActive(index)}
+              onClick={() => handleTabSelect(index)}
             >
               <span>0{index + 1}</span>
               {item.tab}

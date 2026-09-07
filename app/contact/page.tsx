@@ -30,7 +30,7 @@ export default function ContactPage() {
             <h2>Sky Beach Restaurant & Bar</h2>
             <dl className="contact-list">
               <div><dt>Location</dt><dd>{contact.address}</dd></div>
-              <div><dt>Landline</dt><dd><a href={`tel:${contact.landline}`}>{contact.landline}</a></dd></div>
+              <div><dt>Landline</dt><dd><a href={`tel:${contact.landlineHref}`}>{contact.landline}</a></dd></div>
               <div><dt>Mobile / WhatsApp</dt><dd><a href={`tel:${contact.mobileHref}`}>{contact.mobile}</a></dd></div>
               <div><dt>Email</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
               <div><dt>{contact.emailAltLabel}</dt><dd><a href={`mailto:${contact.emailAlt}`}>{contact.emailAlt}</a></dd></div>

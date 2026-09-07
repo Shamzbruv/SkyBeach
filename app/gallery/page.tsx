@@ -36,7 +36,7 @@ const photoCaptions: Record<string, string> = {
   "b5-04": "Seaside Terrace at dusk, right on the water",
 };
 
-function photo(id: string, chapterTitle: string) {
+function photo(id: string, chapterTitle: string, position: number) {
   const shape: PhotoShape = widePhotos.has(id)
     ? "wide"
     : portraitPhotos.has(id)
@@ -45,7 +45,7 @@ function photo(id: string, chapterTitle: string) {
 
   return {
     src: `/images/client-gallery/${id}.webp`,
-    alt: photoCaptions[id] ?? `${chapterTitle} at Sky Beach Jamaica`,
+    alt: photoCaptions[id] ?? `${chapterTitle} at Sky Beach Jamaica — photo ${position}`,
     shape,
   };
 }
@@ -91,7 +91,7 @@ const chapterData = [
   },
 ].map((chapter) => ({
   ...chapter,
-  photos: chapter.ids.map((id) => photo(id, chapter.title)),
+  photos: chapter.ids.map((id, index) => photo(id, chapter.title, index + 1)),
 }));
 
 export default function GalleryPage() {

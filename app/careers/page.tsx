@@ -16,6 +16,9 @@ export default function CareersPage() {
   const body = encodeURIComponent(
     "Hello Sky Beach,\n\nI would like to express my interest in joining the team.\n\nName:\nPhone:\nArea of interest:\nExperience:\n\nThank you."
   );
+  const whatsappMessage = encodeURIComponent(
+    "Hi Sky Beach, I would like to express interest in joining the team.\n\nName:\nArea of interest:\nExperience:"
+  );
 
   return (
     <>
@@ -53,15 +56,26 @@ export default function CareersPage() {
             </div>
             <h3>How to reach us</h3>
             <p>
-              Email a brief introduction and your résumé, if available. Please
-              include your phone number and preferred area of work.
+              Email a brief introduction and your résumé, if available, or
+              reach out on WhatsApp. Please include your phone number and
+              preferred area of work.
             </p>
-            <a
-              className="button button-coral"
-              href={`mailto:${contact.email}?subject=${subject}&body=${body}`}
-            >
-              Email your interest
-            </a>
+            <div className="career-actions">
+              <a
+                className="button button-coral"
+                href={`mailto:${contact.email}?subject=${subject}&body=${body}`}
+              >
+                Email your interest
+              </a>
+              <a
+                className="button button-sea"
+                href={`${contact.whatsapp}?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                WhatsApp your interest
+              </a>
+            </div>
           </div>
         </div>
       </section>

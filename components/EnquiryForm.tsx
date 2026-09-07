@@ -25,14 +25,25 @@ function getValue(data: FormData, name: string, fallback = "Not specified") {
   return typeof value === "string" && value.trim() ? value.trim() : fallback;
 }
 
+// A readable date/time stamp rather than a raw millisecond slice — this has
+// no backend to dedupe against, so it should read as "when", not pretend to
+// be a unique lookup id.
+function referenceStamp() {
+  const now = new Date();
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+}
+
 function subscribeToUrl() {
   return () => undefined;
 }
 
 export function EnquiryForm({ compact = false }: { compact?: boolean }) {
   const [status, setStatus] = useState("");
+  const [fallbackUrl, setFallbackUrl] = useState<string | null>(null);
   const [requestOverride, setRequestOverride] = useState<RequestType | null>(null);
   const [venueOverride, setVenueOverride] = useState<string | null>(null);
+  const [preferredContact, setPreferredContact] = useState("WhatsApp");
   const urlSearch = useSyncExternalStore(
     subscribeToUrl,
     () => window.location.search,
@@ -54,8 +65,7 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const reference = `SB-${Date.now().toString().slice(-8)}`;
-    const preferredContact = getValue(data, "preferredContact", "WhatsApp");
+    const reference = `SB-${referenceStamp()}`;
 
     const lines = [
       "*SKY BEACH BOOKING REQUEST*",
@@ -126,12 +136,18 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
       "Please confirm availability, pricing, deposit requirements and the next steps. Thank you.",
     ];
 
-    setStatus(`Request ${reference} is ready. WhatsApp is opening in a new tab.`);
-    window.open(
-      `${contact.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
+    const whatsappUrl = `${contact.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
+    const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    if (opened) {
+      setFallbackUrl(null);
+      setStatus(`Request ${reference} is ready. WhatsApp is opening in a new tab.`);
+    } else {
+      setFallbackUrl(whatsappUrl);
+      setStatus(
+        `Request ${reference} is ready, but your browser blocked the WhatsApp tab. Tap "Open WhatsApp" below to send it.`
+      );
+    }
   }
 
   return (
@@ -153,11 +169,20 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
           </label>
           <label>
             Email address
-            <input name="email" type="email" autoComplete="email" />
+            <input
+              name="email"
+              type="email"
+              autoComplete="email"
+              required={preferredContact === "Email"}
+            />
           </label>
           <label>
             Best way to reply
-            <select name="preferredContact" defaultValue="WhatsApp">
+            <select
+              name="preferredContact"
+              value={preferredContact}
+              onChange={(event) => setPreferredContact(event.target.value)}
+            >
               <option>WhatsApp</option>
               <option>Phone call</option>
               <option>Email</option>
@@ -399,8 +424,26 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
           Your answers are formatted into a detailed WhatsApp request. You can
           review and edit it before sending; no payment is taken here.
         </p>
+        <p className="form-note">
+          Having trouble? Reach us directly on{" "}
+          <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
+            WhatsApp
+          </a>
+          , by phone at <a href={`tel:${contact.mobileHref}`}>{contact.mobile}</a>, or by
+          email at <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+        </p>
       </div>
       <p className="form-status" aria-live="polite">{status}</p>
+      {fallbackUrl && (
+        <a
+          className="button button-coral"
+          href={fallbackUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open WhatsApp
+        </a>
+      )}
     </form>
   );
 }

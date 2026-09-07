@@ -3,6 +3,7 @@ export const contact = {
   emailAlt: "skybeach24@gmail.com",
   emailAltLabel: "Emergency contact",
   landline: "(876) 956-5006",
+  landlineHref: "+18769565006",
   mobile: "(876) 547-3971",
   mobileHref: "+18765473971",
   whatsapp: "https://wa.me/18765473971",
@@ -86,7 +87,7 @@ export const hutStories = [
       "Maryland brings a little more enclosure to the hut collection. White walls, generous windows and a proper door give it the feeling of a tiny garden cottage while still keeping the surrounding greenery close.",
     atmosphere: "Bright, sheltered and quietly charming",
     bestFor: "Private meals, small meetings and intimate celebrations",
-    images: ["/images/huts/maryland-01.webp", "/images/huts/maryland-02.webp"],
+    images: ["/images/huts/maryland-02.webp", "/images/huts/maryland-01.webp"],
   },
   {
     name: "Pon Piece Hut",
@@ -135,10 +136,9 @@ export const hutStories = [
     atmosphere: "Spacious, polished and waterfront",
     bestFor: "Milestone dinners, group celebrations and sunset gatherings",
     images: [
-      "/images/huts/blenheim-01.webp",
+      "/images/huts/blenheim-04.webp",
       "/images/huts/blenheim-02.webp",
       "/images/huts/blenheim-03.webp",
-      "/images/huts/blenheim-04.webp",
     ],
   },
   {
@@ -537,7 +537,7 @@ export const drinkMenu: MenuCategory[] = [
     ],
   },
   {
-    category: "Elixers",
+    category: "Elixirs",
     items: [
       { name: "Colbeck Ginger Wine (Glass)" },
       { name: "Colbeck Ginger Wine (Flask)" },
@@ -556,13 +556,3 @@ export const drinkMenu: MenuCategory[] = [
     ],
   },
 ];
-
-/* Backward-compatible aliases for any other imports */
-export const foodSelections = foodMenu.map((g) => ({
-  category: g.category,
-  items: g.items.map((i) => i.name),
-}));
-export const drinkSelections = drinkMenu.map((g) => ({
-  category: g.category,
-  items: g.items.map((i) => i.name),
-}));
