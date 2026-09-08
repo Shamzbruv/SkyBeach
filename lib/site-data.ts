@@ -84,10 +84,10 @@ export const hutStories = [
     name: "Maryland Hut",
     placeNote: "A bright cottage-style room under the trees",
     story:
-      "Maryland brings a little more enclosure to the hut collection. White walls, generous windows and a proper door give it the feeling of a tiny garden cottage while still keeping the surrounding greenery close.",
+      "Maryland brings a little more enclosure to the hut collection. Dressed here with a balloon arch overlooking the sea or laid out for a banquet indoors, it flexes easily from a romantic backdrop to a full private dining room.",
     atmosphere: "Bright, sheltered and quietly charming",
     bestFor: "Private meals, small meetings and intimate celebrations",
-    images: ["/images/huts/maryland-02.webp", "/images/huts/maryland-01.webp"],
+    images: ["/images/huts/maryland-03.webp", "/images/huts/maryland-02.webp"],
   },
   {
     name: "Pon Piece Hut",
@@ -132,14 +132,13 @@ export const hutStories = [
     name: "Blenheim Hut",
     placeNote: "A spacious waterfront gazebo for lingering",
     story:
-      "Blenheim opens onto a broad timber deck with deep lounge seating and the sea beyond. Decorative ceiling panels add a crafted touch, while the generous footprint gives guests room to gather without losing the intimacy of a private hut.",
+      "Blenheim opens onto a broad timber deck overlooking the sea, equally suited to a full birthday celebration under string lights or a quiet lantern-lit dinner for two once the sun goes down.",
     atmosphere: "Spacious, polished and waterfront",
     bestFor: "Milestone dinners, group celebrations and sunset gatherings",
     images: [
-      "/images/huts/blenheim-04.webp",
+      "/images/huts/blenheim-07.webp",
       "/images/huts/blenheim-05.webp",
       "/images/huts/blenheim-06.webp",
-      "/images/huts/blenheim-03.webp",
     ],
   },
   {
@@ -149,7 +148,11 @@ export const hutStories = [
       "Named for Hanover's parish capital, Lucea is Sky Beach's largest venue—shown here dressed with chandeliers, flowing drapes and long banquet tables for a full wedding reception. When an occasion calls for scale without losing the room's warmth, this is the space that delivers.",
     atmosphere: "Grand, dressed-up and full of celebration",
     bestFor: "Weddings, large receptions and milestone celebrations up to 80 guests",
-    images: ["/images/huts/lucea-01.webp", "/images/huts/lucea-02.webp"],
+    images: [
+      "/images/huts/lucea-01.webp",
+      "/images/huts/lucea-02.webp",
+      "/images/huts/lucea-03.webp",
+    ],
   },
   {
     name: "Cold Spring Hut",
@@ -167,7 +170,7 @@ export const hutStories = [
       "Seaside Terrace runs along the shoreline on Adlin's Deck, its simple wood rail and string lights framing an open view of the sea. Unenclosed and flexible, it moves easily from a few candlelit tables to a full dinner setup as the sun goes down.",
     atmosphere: "Open-air, breezy and right on the water",
     bestFor: "Sunset dinners, flexible seating and guests who want to be closest to the sea",
-    images: ["/images/huts/seaside-terrace-01.webp"],
+    images: ["/images/huts/seaside-terrace-01.webp", "/images/huts/seaside-terrace-02.webp"],
   },
   {
     name: "Askenish Hut",
