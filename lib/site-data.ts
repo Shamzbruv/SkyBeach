@@ -139,6 +139,9 @@ export const hutStories = [
       "/images/huts/blenheim-04.webp",
       "/images/huts/blenheim-05.webp",
       "/images/huts/blenheim-08.webp",
+      "/images/huts/blenheim-09.webp",
+      "/images/huts/blenheim-10.webp",
+      "/images/huts/blenheim-11.webp",
     ],
   },
   {
