@@ -132,13 +132,13 @@ export const hutStories = [
     name: "Blenheim Hut",
     placeNote: "A spacious waterfront gazebo for lingering",
     story:
-      "Blenheim opens onto a broad timber deck overlooking the sea, equally suited to a full birthday celebration under string lights or a quiet lantern-lit dinner for two once the sun goes down.",
+      "Blenheim opens onto a broad timber deck overlooking the sea, with deep lounge seating for lingering by day and a quiet lantern-lit table for two once the sun goes down.",
     atmosphere: "Spacious, polished and waterfront",
     bestFor: "Milestone dinners, group celebrations and sunset gatherings",
     images: [
-      "/images/huts/blenheim-07.webp",
+      "/images/huts/blenheim-04.webp",
       "/images/huts/blenheim-05.webp",
-      "/images/huts/blenheim-06.webp",
+      "/images/huts/blenheim-08.webp",
     ],
   },
   {
@@ -152,6 +152,7 @@ export const hutStories = [
       "/images/huts/lucea-01.webp",
       "/images/huts/lucea-02.webp",
       "/images/huts/lucea-03.webp",
+      "/images/huts/lucea-04.webp",
     ],
   },
   {
@@ -170,7 +171,11 @@ export const hutStories = [
       "Seaside Terrace runs along the shoreline on Adlin's Deck, its simple wood rail and string lights framing an open view of the sea. Unenclosed and flexible, it moves easily from a few candlelit tables to a full dinner setup as the sun goes down.",
     atmosphere: "Open-air, breezy and right on the water",
     bestFor: "Sunset dinners, flexible seating and guests who want to be closest to the sea",
-    images: ["/images/huts/seaside-terrace-01.webp", "/images/huts/seaside-terrace-02.webp"],
+    images: [
+      "/images/huts/seaside-terrace-01.webp",
+      "/images/huts/seaside-terrace-02.webp",
+      "/images/huts/seaside-terrace-03.webp",
+    ],
   },
   {
     name: "Askenish Hut",
