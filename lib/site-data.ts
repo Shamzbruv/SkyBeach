@@ -87,7 +87,11 @@ export const hutStories = [
       "Maryland brings a little more enclosure to the hut collection. Dressed here with a balloon arch overlooking the sea or laid out for a banquet indoors, it flexes easily from a romantic backdrop to a full private dining room.",
     atmosphere: "Bright, sheltered and quietly charming",
     bestFor: "Private meals, small meetings and intimate celebrations",
-    images: ["/images/huts/maryland-03.webp", "/images/huts/maryland-02.webp"],
+    images: [
+      "/images/huts/maryland-03.webp",
+      "/images/huts/maryland-02.webp",
+      "/images/huts/maryland-04.webp",
+    ],
   },
   {
     name: "Pon Piece Hut",
