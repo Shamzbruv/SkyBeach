@@ -139,7 +139,6 @@ export const hutStories = [
       "/images/huts/blenheim-04.webp",
       "/images/huts/blenheim-05.webp",
       "/images/huts/blenheim-09.webp",
-      "/images/huts/blenheim-10.webp",
       "/images/huts/blenheim-11.webp",
     ],
   },
@@ -152,7 +151,6 @@ export const hutStories = [
     bestFor: "Weddings, large receptions and milestone celebrations up to 80 guests",
     images: [
       "/images/huts/lucea-01.webp",
-      "/images/huts/lucea-02.webp",
       "/images/huts/lucea-03.webp",
       "/images/huts/lucea-04.webp",
     ],
@@ -177,6 +175,7 @@ export const hutStories = [
       "/images/huts/seaside-terrace-01.webp",
       "/images/huts/seaside-terrace-02.webp",
       "/images/huts/seaside-terrace-03.webp",
+      "/images/huts/seaside-terrace-04.webp",
     ],
   },
   {
