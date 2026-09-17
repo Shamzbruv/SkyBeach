@@ -25,6 +25,7 @@ const portraitPhotos = new Set([
   "b3-09", "b3-10", "b3-11", "b4-02", "b4-05", "b4-11", "b4-16",
   "b4-17", "b4-20", "b4-24", "b4-25", "b4-26", "b4-27", "b4-28",
   "b4-29", "b4-30", "b4-32", "b4-34", "b4-35", "b5-01",
+  "s2-01", "staff-01", "staff-02", "staff-03", "staff-04", "staff-05",
 ]);
 
 const photoCaptions: Record<string, string> = {
@@ -34,6 +35,18 @@ const photoCaptions: Record<string, string> = {
   "b4-05": "A banquet dinner set inside Maryland Hut",
   "b5-01": "Lucea Hut dressed for a wedding reception",
   "b5-04": "Seaside Terrace at dusk, right on the water",
+  "s2-01": "A lantern-lit table inside Bamboo Hut after dark",
+  "staff-01": "Setting the table at Askenish Hut",
+  "staff-02": "Setting the table at Askenish Hut",
+  "staff-03": "Setting the table at Seaside Terrace, just before dusk",
+  "staff-04": "The Sky Beach team after a Seaside Terrace setup",
+  "staff-05": "The Sky Beach team after a Seaside Terrace setup",
+};
+
+// Folders holding each id prefix — defaults to the main client-gallery corpus;
+// "staff-*" ids live in their own folder for the "Staff in action" chapter.
+const idFolders: Record<string, string> = {
+  staff: "staff",
 };
 
 function photo(id: string, chapterTitle: string, position: number) {
@@ -42,9 +55,11 @@ function photo(id: string, chapterTitle: string, position: number) {
     : portraitPhotos.has(id)
       ? "portrait"
       : "standard";
+  const prefix = id.split("-")[0];
+  const folder = idFolders[prefix] ?? "client-gallery";
 
   return {
-    src: `/images/client-gallery/${id}.webp`,
+    src: `/images/${folder}/${id}.webp`,
     alt: photoCaptions[id] ?? `${chapterTitle} at Sky Beach Jamaica — photo ${position}`,
     shape,
   };
@@ -82,12 +97,18 @@ const chapterData = [
       "b4-00", "b4-02", "b4-03", "b4-05", "b4-06", "b4-07", "b4-11",
       "b4-17", "b4-20", "b4-21", "b4-24", "b4-25", "b4-26",
       "b4-27", "b4-28", "b4-29", "b4-30", "b4-32", "b4-34", "b4-35",
+      "s2-01",
     ],
   },
   {
     title: "The latest chapter",
     text: "New celebrations and another sunset over the original Sky Beach in Hopewell.",
     ids: ["b5-01", "b5-04", "b5-05", "b5-06"],
+  },
+  {
+    title: "Staff in action",
+    text: "The people who complete the Sky Beach experience—setting the table, dressing the space and staying long after the last guest leaves.",
+    ids: ["staff-01", "staff-02", "staff-03", "staff-04", "staff-05"],
   },
 ].map((chapter) => ({
   ...chapter,

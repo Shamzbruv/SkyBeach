@@ -40,3 +40,8 @@ next-env.d.ts
 /.sites-runtime/
 /outputs/
 /work/
+
+# raw client-supplied source photo dumps (not part of the site; processed
+# copies live under public/images/)
+/batch1skybeachrestaurantimagesphase1b/
+/b2skybeachrestaurantnewimages/

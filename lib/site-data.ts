@@ -69,6 +69,7 @@ export const hutStories = [
       "/images/huts/mcquarrie-02.webp",
       "/images/huts/mcquarrie-03.webp",
       "/images/huts/mcquarrie-04.webp",
+      "/images/huts/mcquarrie-05.webp",
     ],
   },
   {
@@ -78,7 +79,11 @@ export const hutStories = [
       "Orchard sits among palms and layered planting, with a traditional thatched roof that makes the space feel naturally cool and unhurried. Its name brings the parish's fertile inland landscape into the seaside grounds.",
     atmosphere: "Leafy, relaxed and naturally private",
     bestFor: "Family meals, birthday moments and easy afternoon gatherings",
-    images: ["/images/huts/orchard-01.webp"],
+    images: [
+      "/images/huts/orchard-01.webp",
+      "/images/huts/orchard-02.webp",
+      "/images/huts/orchard-03.webp",
+    ],
   },
   {
     name: "Maryland Hut",
@@ -180,6 +185,7 @@ export const hutStories = [
       "/images/huts/seaside-terrace-02.webp",
       "/images/huts/seaside-terrace-03.webp",
       "/images/huts/seaside-terrace-04.webp",
+      "/images/huts/seaside-terrace-05.webp",
     ],
   },
   {
@@ -189,7 +195,7 @@ export const hutStories = [
       "Askenish is a straightforward open-air gazebo framed by bright posts and tropical planting. Its central table keeps the layout social, while the garden setting gives the space a tucked-away feel.",
     atmosphere: "Garden-side, open and relaxed",
     bestFor: "Family meals, games, conversations and casual celebrations",
-    images: ["/images/huts/askenish-01.webp"],
+    images: ["/images/huts/askenish-01.webp", "/images/huts/askenish-03.webp"],
   },
   {
     name: "Bamboo Hut",
@@ -198,7 +204,11 @@ export const hutStories = [
       "Tucked beneath overgrown vines and flowering shrubs, Bamboo feels like a secret garden find. Bright yellow posts and open rail sides keep the space casual and shaded, a step further into the greenery than its garden neighbours.",
     atmosphere: "Wild, shaded and tucked away",
     bestFor: "Small gatherings, casual lunches and guests who love a garden hideaway",
-    images: ["/images/huts/bamboo-01.webp"],
+    images: [
+      "/images/huts/bamboo-02.webp",
+      "/images/huts/bamboo-03.webp",
+      "/images/huts/bamboo-04.webp",
+    ],
   },
 ];
 
