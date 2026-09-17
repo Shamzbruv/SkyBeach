@@ -25,7 +25,7 @@ const portraitPhotos = new Set([
   "b3-09", "b3-10", "b3-11", "b4-02", "b4-05", "b4-11", "b4-16",
   "b4-17", "b4-20", "b4-24", "b4-25", "b4-26", "b4-27", "b4-28",
   "b4-29", "b4-30", "b4-32", "b4-34", "b4-35", "b5-01",
-  "s2-01", "staff-01", "staff-02", "staff-03", "staff-04", "staff-05",
+  "s2-01", "staff-01", "staff-02", "staff-03", "staff-05",
 ]);
 
 const photoCaptions: Record<string, string> = {
@@ -39,7 +39,6 @@ const photoCaptions: Record<string, string> = {
   "staff-01": "Setting the table at Askenish Hut",
   "staff-02": "Setting the table at Askenish Hut",
   "staff-03": "Setting the table at Seaside Terrace, just before dusk",
-  "staff-04": "The Sky Beach team after a Seaside Terrace setup",
   "staff-05": "The Sky Beach team after a Seaside Terrace setup",
 };
 
@@ -108,7 +107,7 @@ const chapterData = [
   {
     title: "Staff in action",
     text: "The people who complete the Sky Beach experience—setting the table, dressing the space and staying long after the last guest leaves.",
-    ids: ["staff-01", "staff-02", "staff-03", "staff-04", "staff-05"],
+    ids: ["staff-01", "staff-02", "staff-03", "staff-05"],
   },
 ].map((chapter) => ({
   ...chapter,
