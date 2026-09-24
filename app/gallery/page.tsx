@@ -2,15 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { GalleryExplorer } from "@/components/GalleryExplorer";
 import { PageHero } from "@/components/PageHero";
-import { pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { definePage, socialImages } from "@/lib/seo";
 
-export const metadata: Metadata = pageMetadata({
+const page = definePage({
   title: "Restaurant, Venue & Hut Gallery",
   description:
     "Explore photos of Sky Beach Jamaica: seaside dining, private Hanover huts, gardens, Jamaican food, weddings and event spaces.",
   path: "/gallery",
   keywords: ["Sky Beach Jamaica photos", "Jamaica seaside restaurant gallery", "Hanover event venue photos"],
+  image: socialImages.escape,
+  schemaType: "CollectionPage",
 });
+
+export const metadata: Metadata = page.metadata;
 
 type PhotoShape = "wide" | "portrait" | "standard";
 
@@ -117,6 +122,8 @@ const chapterData = [
 export default function GalleryPage() {
   return (
     <>
+      <StructuredData data={page.jsonLd} />
+
       <PageHero
         eyebrow="Gallery"
         title="One seaside story, from daylight to celebration."

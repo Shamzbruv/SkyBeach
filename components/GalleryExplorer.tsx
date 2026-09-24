@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 type PhotoShape = "wide" | "portrait" | "standard";
 
@@ -111,6 +112,10 @@ export function GalleryExplorer({ chapters }: { chapters: Chapter[] }) {
                         onClick={(event) => {
                           triggerRef.current = event.currentTarget;
                           setLightboxIndex(startIndex + photoIndex);
+                          trackEvent("gallery_photo_open", {
+                            photo_index: startIndex + photoIndex + 1,
+                            photo_caption: item.alt,
+                          });
                         }}
                         aria-label={`View larger photo: ${item.alt}`}
                       >

@@ -1,15 +1,24 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
+import { ConsentBanner } from "@/components/ConsentBanner";
 import { SiteChrome } from "@/components/SiteChrome";
 import { StructuredData } from "@/components/StructuredData";
+import { GA_MEASUREMENT_ID, analyticsBootstrapScript } from "@/lib/analytics";
 import {
   defaultSocialImage,
   restaurantJsonLd,
+  siteLocale,
   siteName,
   siteOrigin,
   websiteJsonLd,
 } from "@/lib/seo";
 import "./globals.css";
+
+// Optional Search Console / Bing Webmaster ownership tokens (set in the host's
+// environment). Omitted from the page entirely when not configured.
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,27 +58,24 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    locale: "en_JM",
+    locale: siteLocale,
     siteName,
     url: "/",
     title: "Sky Beach Restaurant & Bar",
     description:
       "Come for the food. Stay for the feeling. Discover coastal dining, private events and island hospitality in Hopewell, Hanover.",
-    images: [
-      {
-        url: defaultSocialImage,
-        width: 1280,
-        height: 718,
-        alt: "A celebration beside the sea at Sky Beach Jamaica",
-      },
-    ],
+    images: [defaultSocialImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sky Beach Restaurant & Bar",
     description:
       "Authentic Jamaican seafood and unforgettable celebrations by the sea.",
-    images: [defaultSocialImage],
+    images: [{ url: defaultSocialImage.url, alt: defaultSocialImage.alt }],
+  },
+  verification: {
+    ...(googleVerification ? { google: googleVerification } : {}),
+    ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
   },
   other: {
     "codex-preview": "development",
@@ -100,9 +106,16 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=2" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
         <StructuredData data={[websiteJsonLd, restaurantJsonLd]} />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        {/* Google tag (GA4) — consent defaults are set before gtag.js loads. */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+        <script dangerouslySetInnerHTML={{ __html: analyticsBootstrapScript() }} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SiteChrome>{children}</SiteChrome>
+        <Analytics />
+        <ConsentBanner />
       </body>
     </html>
   );

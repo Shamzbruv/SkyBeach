@@ -1,20 +1,26 @@
 import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
-import { pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { definePage, socialImages } from "@/lib/seo";
 import { contact } from "@/lib/site-data";
 
-export const metadata: Metadata = pageMetadata({
+const page = definePage({
   title: "Reservations, Events & Catering",
   description:
     "Request a table, private hut, wedding venue, event space, catering service or private dining experience at Sky Beach Jamaica.",
   path: "/reservations",
   keywords: ["Sky Beach reservations", "book restaurant Hopewell", "Jamaica wedding venue booking", "Hanover catering enquiry"],
+  image: socialImages.celebrate,
 });
+
+export const metadata: Metadata = page.metadata;
 
 export default function ReservationsPage() {
   return (
     <>
+      <StructuredData data={page.jsonLd} />
+
       <PageHero
         eyebrow="Events & reservations"
         title="Tell us what you are planning."

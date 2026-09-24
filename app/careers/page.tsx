@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
-import { pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { definePage, socialImages } from "@/lib/seo";
 import { contact } from "@/lib/site-data";
 
-export const metadata: Metadata = pageMetadata({
+const page = definePage({
   title: "Hospitality Careers",
   description:
     "Express your interest in restaurant, bar, kitchen, events and guest-experience careers with Sky Beach in Hopewell, Hanover.",
   path: "/careers",
   keywords: ["hospitality jobs Hanover Jamaica", "restaurant careers Jamaica", "Sky Beach careers"],
+  image: socialImages.escape,
 });
+
+export const metadata: Metadata = page.metadata;
 
 export default function CareersPage() {
   const subject = encodeURIComponent("Career Interest — Sky Beach");
@@ -22,6 +26,8 @@ export default function CareersPage() {
 
   return (
     <>
+      <StructuredData data={page.jsonLd} />
+
       <PageHero
         eyebrow="Careers"
         title="Bring your energy to the Sky Beach team."

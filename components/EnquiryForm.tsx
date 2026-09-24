@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState, useSyncExternalStore } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { contact, hutStories, venueSpaces } from "@/lib/site-data";
 
 const requestTypes = [
@@ -138,6 +139,15 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
 
     const whatsappUrl = `${contact.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
     const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    // Conversion: a completed enquiry, whether or not the browser allowed the WhatsApp tab.
+    trackEvent("generate_lead", {
+      form_id: compact ? "contact_quick_enquiry" : "reservation_enquiry",
+      request_type: getValue(data, "request", requestType),
+      venue: isEvent ? getValue(data, "venue", "") : undefined,
+      contact_method: preferredContact,
+      whatsapp_opened: Boolean(opened),
+    });
 
     if (opened) {
       setFallbackUrl(null);

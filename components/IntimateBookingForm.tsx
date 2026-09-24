@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { contact } from "@/lib/site-data";
 
 function getValue(data: FormData, name: string, fallback = "Not specified") {
@@ -62,6 +63,15 @@ export function IntimateBookingForm() {
 
     const whatsappUrl = `${contact.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
     const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    // Conversion: a completed enquiry, whether or not the browser allowed the WhatsApp tab.
+    trackEvent("generate_lead", {
+      form_id: "intimate_deck_request",
+      request_type: "Private dining for two",
+      venue: "Intimate Seaside Deck",
+      occasion: getValue(data, "occasion", ""),
+      whatsapp_opened: Boolean(opened),
+    });
 
     if (opened) {
       setFallbackUrl(null);

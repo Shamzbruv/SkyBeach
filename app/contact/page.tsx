@@ -2,20 +2,27 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
-import { pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { definePage, socialImages } from "@/lib/seo";
 import { contact } from "@/lib/site-data";
 
-export const metadata: Metadata = pageMetadata({
+const page = definePage({
   title: "Contact & Directions",
   description:
     "Contact Sky Beach Restaurant & Bar in Hopewell, Hanover for reservations, directions, venue hire, events and catering enquiries.",
   path: "/contact",
   keywords: ["contact Sky Beach Jamaica", "Sky Beach Hopewell phone", "Hopewell restaurant directions"],
+  image: socialImages.escape,
+  schemaType: "ContactPage",
 });
+
+export const metadata: Metadata = page.metadata;
 
 export default function ContactPage() {
   return (
     <>
+      <StructuredData data={page.jsonLd} />
+
       <PageHero
         eyebrow="Contact"
         title="We would love to hear what you are planning."

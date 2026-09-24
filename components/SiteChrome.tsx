@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CookiePreferencesButton } from "@/components/ConsentBanner";
 import { contact, navigation } from "@/lib/site-data";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
@@ -154,6 +155,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         </div>
         <div className="container footer-bottom">
           <span>© {new Date().getFullYear()} Sky Beach Restaurant & Bar</span>
+          <CookiePreferencesButton />
           <span>Made with island spirit in Jamaica.</span>
         </div>
       </footer>

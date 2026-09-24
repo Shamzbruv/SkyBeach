@@ -3,19 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { MenuExplorer } from "@/components/MenuExplorer";
 import { PageHero } from "@/components/PageHero";
-import { pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { definePage, socialImages, menuJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = pageMetadata({
+const page = definePage({
   title: "Jamaican Seafood, Food & Drinks",
   description:
     "Explore Jamaican seafood, island favourites, tropical cocktails and customised catering menus at Sky Beach Restaurant & Bar in Hopewell.",
   path: "/menu",
   keywords: ["Jamaican seafood menu", "seafood restaurant Hopewell", "tropical cocktails Jamaica", "Jamaican catering menu"],
+  image: socialImages.dine,
 });
+
+export const metadata: Metadata = page.metadata;
 
 export default function MenuPage() {
   return (
     <>
+      <StructuredData data={[...page.jsonLd, menuJsonLd()]} />
+
       <PageHero
         eyebrow="Food & drinks"
         title="Jamaican flavour, served with a sea breeze."

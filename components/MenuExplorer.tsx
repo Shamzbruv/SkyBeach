@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { foodMenu, drinkMenu, type MenuCategory } from "@/lib/site-data";
 
 /* ── Background image mapping ── */
@@ -182,11 +183,13 @@ export function MenuExplorer() {
       : getDrinkCategories(drinkSubTab);
 
   function handleMainTab(tab: "food" | "drinks") {
+    if (tab !== mainTab) trackEvent("menu_tab_select", { menu_type: tab, tab_key: "main" });
     setMainTab(tab);
     setAnimKey((k) => k + 1);
   }
 
   function handleSubTab(key: string) {
+    if (key !== currentSubTab) trackEvent("menu_tab_select", { menu_type: mainTab, tab_key: key });
     setSubTab(key);
     setAnimKey((k) => k + 1);
   }

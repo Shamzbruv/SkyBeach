@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroTabs } from "@/components/HeroTabs";
-import { pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { definePage, socialImages } from "@/lib/seo";
 import { venueSpaces } from "@/lib/site-data";
 
-export const metadata: Metadata = pageMetadata({
+const page = definePage({
   title: "Sky Beach Restaurant & Bar | Hopewell, Hanover",
   description:
     "Dine by the sea at Sky Beach in Hopewell, Hanover. Discover Jamaican seafood, tropical drinks, private huts, weddings, catering and event spaces.",
@@ -18,11 +19,16 @@ export const metadata: Metadata = pageMetadata({
     "beach restaurant Jamaica",
     "event venue Hanover Jamaica",
   ],
+  image: socialImages.dine,
 });
+
+export const metadata: Metadata = page.metadata;
 
 export default function Home() {
   return (
     <>
+      <StructuredData data={page.jsonLd} />
+
       <HeroTabs />
 
       <section className="section intro-section">

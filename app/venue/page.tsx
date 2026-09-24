@@ -4,16 +4,20 @@ import Link from "next/link";
 import { HutExplorer } from "@/components/HutExplorer";
 import { IntimateBookingForm } from "@/components/IntimateBookingForm";
 import { PageHero } from "@/components/PageHero";
-import { pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { definePage, socialImages, venueJsonLd } from "@/lib/seo";
 import { venueSpaces } from "@/lib/site-data";
 
-export const metadata: Metadata = pageMetadata({
+const page = definePage({
   title: "Seaside Venue, Private Huts & Event Spaces",
   description:
     "Discover private seaside huts, gardens, terraces, wedding spaces and flexible event venues at Sky Beach in Hopewell, Hanover.",
   path: "/venue",
   keywords: ["event venue Hanover Jamaica", "Jamaica wedding venue", "private huts Hopewell", "seaside event space Jamaica"],
+  image: socialImages.celebrate,
 });
+
+export const metadata: Metadata = page.metadata;
 
 function enquiryHref(venue: string) {
   return `/reservations?request=Venue%20booking&venue=${encodeURIComponent(venue)}#booking-form`;
@@ -22,6 +26,8 @@ function enquiryHref(venue: string) {
 export default function VenuePage() {
   return (
     <>
+      <StructuredData data={[...page.jsonLd, venueJsonLd()]} />
+
       <PageHero
         eyebrow="The venue"
         title="A tropical setting for every kind of gathering."

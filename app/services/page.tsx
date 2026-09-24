@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
-import { pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { definePage, socialImages } from "@/lib/seo";
 
-export const metadata: Metadata = pageMetadata({
+const page = definePage({
   title: "Dining, Catering & Event Services",
   description:
     "Explore dining, catering, weddings, private functions, meetings, expos and event-planning services at Sky Beach Jamaica.",
   path: "/services",
   keywords: ["catering Hanover Jamaica", "wedding services Jamaica", "private dining Hopewell", "event planning Hanover"],
+  image: socialImages.celebrate,
 });
+
+export const metadata: Metadata = page.metadata;
 
 const services = [
   {
@@ -47,6 +51,8 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
+      <StructuredData data={page.jsonLd} />
+
       <PageHero
         eyebrow="Services & facilities"
         title="From a good meal to the whole occasion."

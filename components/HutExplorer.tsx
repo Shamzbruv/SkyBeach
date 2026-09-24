@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { hutStories } from "@/lib/site-data";
 
 export function HutExplorer() {
@@ -21,6 +22,10 @@ export function HutExplorer() {
   }, [activeIndex]);
 
   function selectHut(index: number) {
+    // Count opening a hut, not closing it again.
+    if (activeIndex !== index) {
+      trackEvent("select_content", { content_type: "hut", content_id: hutStories[index].name });
+    }
     setPhotoIndex(0);
     setActiveIndex((currentIndex) => currentIndex === index ? null : index);
   }
