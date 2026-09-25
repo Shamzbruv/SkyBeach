@@ -11,6 +11,11 @@ const MAX_ERRORS_PER_PAGE = 5;
 const TOGGLE_GESTURE_WINDOW_MS = 1500;
 
 const WHATSAPP_URL = /^https?:\/\/(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)\//i;
+const SOCIAL_NETWORKS: Record<string, string> = {
+  "facebook.com": "facebook",
+  "instagram.com": "instagram",
+  "tiktok.com": "tiktok",
+};
 
 const tidy = (text: string | null | undefined) => (text ?? "").replace(/\s+/g, " ").trim().slice(0, 80);
 
@@ -28,6 +33,7 @@ function handleClick(event: MouseEvent) {
   const href = link.getAttribute("href") ?? "";
   const linkText = tidy(link.textContent) || link.getAttribute("aria-label") || undefined;
   const location = linkLocation(link);
+  const socialNetwork = SOCIAL_NETWORKS[link.hostname.replace(/^(www|web|m)\./, "")];
 
   if (href.startsWith("tel:")) {
     trackEvent("phone_click", { phone_number: href.slice(4), link_text: linkText, link_location: location });
@@ -43,6 +49,8 @@ function handleClick(event: MouseEvent) {
       link_location: location,
       prefilled_message: href.includes("text="),
     });
+  } else if (socialNetwork) {
+    trackEvent("social_click", { social_network: socialNetwork, link_url: href, link_location: location });
   } else if (link.classList.contains("venue-row")) {
     trackEvent("venue_enquiry_click", { venue: tidy(link.querySelector("h3")?.textContent) });
   } else if (link.matches(".button, .nav-cta, .text-link")) {

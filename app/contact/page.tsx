@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
+import { SocialLinks } from "@/components/SocialLinks";
 import { StructuredData } from "@/components/StructuredData";
 import { definePage, socialImages } from "@/lib/seo";
 import { contact } from "@/lib/site-data";
@@ -42,6 +43,7 @@ export default function ContactPage() {
               <div><dt>Email</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
               <div><dt>{contact.emailAltLabel}</dt><dd><a href={`mailto:${contact.emailAlt}`}>{contact.emailAlt}</a></dd></div>
               <div><dt>Website</dt><dd>{contact.website}</dd></div>
+              <div><dt>Follow us</dt><dd><SocialLinks variant="list" /></dd></div>
             </dl>
             <p className="contact-note">
               For the fastest response, send your request through WhatsApp with

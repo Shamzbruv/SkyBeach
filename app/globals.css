@@ -2710,7 +2710,7 @@ p {
 
 .contact-list > div {
   display: grid;
-  grid-template-columns: 135px 1fr;
+  grid-template-columns: 165px 1fr;
   padding: 16px 0;
   border-top: 1px solid var(--line);
 }
@@ -2814,6 +2814,87 @@ p {
 .footer-links a:hover,
 .footer-grid address a:hover {
   color: var(--sun);
+}
+
+/* ── Social links ── */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.social-links a:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+}
+
+/* Footer: round icon buttons on the dark background */
+.social-links--icons a {
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  color: white;
+}
+
+.social-links--icons a:hover {
+  border-color: var(--sun);
+  background: var(--sun);
+  color: var(--ink-deep);
+  transform: translateY(-2px);
+}
+
+.footer-social {
+  margin-top: 26px;
+}
+
+.footer-social .footer-title {
+  margin-bottom: 12px;
+}
+
+/* Contact page: icon + account name rows */
+.social-links--list {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-links--list a {
+  gap: 12px;
+}
+
+.social-links--list svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--sea);
+  transition: color 180ms ease;
+}
+
+.social-links--list span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.social-links--list small {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.social-links--list a:hover,
+.social-links--list a:hover svg {
+  color: var(--coral);
 }
 
 .footer-bottom {

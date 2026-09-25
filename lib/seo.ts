@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { contact, drinkMenu, foodMenu, hutStories } from "@/lib/site-data";
+import { contact, drinkMenu, foodMenu, hutStories, socials } from "@/lib/site-data";
 
 /**
  * Canonical origin for every absolute URL the site emits (canonicals, Open
@@ -136,6 +136,7 @@ export const restaurantJsonLd = {
     "Authentic Jamaican seafood, tropical dining, private huts, catering and event spaces in Hopewell, Hanover, Jamaica.",
   telephone: contact.mobileHref,
   email: contact.email,
+  sameAs: socials.map((social) => social.href),
   address: {
     "@type": "PostalAddress",
     addressLocality: "Hopewell",

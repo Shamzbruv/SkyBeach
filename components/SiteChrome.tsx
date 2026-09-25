@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CookiePreferencesButton } from "@/components/ConsentBanner";
+import { SocialLinks } from "@/components/SocialLinks";
 import { contact, navigation } from "@/lib/site-data";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
@@ -144,6 +145,10 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
               <a href={`tel:${contact.mobileHref}`}>{contact.mobile}</a>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
             </address>
+            <div className="footer-social">
+              <p className="footer-title">Follow along</p>
+              <SocialLinks />
+            </div>
           </div>
           <div>
             <p className="footer-title">Ready to escape?</p>

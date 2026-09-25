@@ -12,6 +12,7 @@
  *   whatsapp_click       link_text, link_location, prefilled_message
  *   phone_click          phone_number, link_text, link_location
  *   email_click          email_address, link_text, link_location
+ *   social_click         social_network (facebook | instagram | tiktok), link_url, link_location
  *   cta_click            link_text, link_url, link_location
  *   venue_enquiry_click  venue
  *   select_content       content_type (hut | menu_category), content_id

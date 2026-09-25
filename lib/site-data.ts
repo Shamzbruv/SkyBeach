@@ -11,6 +11,36 @@ export const contact = {
   website: "www.skybeachja.com",
 };
 
+export type Social = {
+  id: "facebook" | "instagram" | "tiktok";
+  name: string;
+  /** How the account is displayed next to its icon. */
+  handle: string;
+  href: string;
+};
+
+/**
+ * Official accounts, as supplied by the client. Rendered in the footer of every
+ * page, on the Contact page and in the site's structured data (sameAs).
+ */
+export const socials: Social[] = [
+  {
+    id: "facebook",
+    name: "Facebook",
+    handle: "Sky Beach",
+    href: "https://www.facebook.com/sky.beach.9",
+  },
+  {
+    id: "instagram",
+    name: "Instagram",
+    handle: "@sky.beach",
+    href: "https://www.instagram.com/sky.beach/",
+  },
+  // TikTok — account "Sky Beach Bar and Seafood". Add the entry here once the
+  // client's profile link is confirmed and it will appear everywhere at once:
+  // { id: "tiktok", name: "TikTok", handle: "Sky Beach Bar and Seafood", href: "https://www.tiktok.com/@…" },
+];
+
 export const navigation = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
