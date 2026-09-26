@@ -2837,21 +2837,27 @@ p {
   outline-offset: 3px;
 }
 
-/* Footer: round icon buttons on the dark background */
-.social-links--icons a {
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-  color: white;
+/* Footer: stacked icon + name links on the dark background */
+.social-links--compact {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
 }
 
-.social-links--icons a:hover {
-  border-color: var(--sun);
-  background: var(--sun);
-  color: var(--ink-deep);
-  transform: translateY(-2px);
+.social-links--compact a {
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.88rem;
+}
+
+.social-links--compact svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.social-links--compact a:hover {
+  color: var(--sun);
 }
 
 .footer-social {

@@ -1,4 +1,4 @@
-import { type Social, socials } from "@/lib/site-data";
+import { type SocialNetwork, socials } from "@/lib/site-data";
 
 const iconProps = {
   width: 20,
@@ -13,7 +13,7 @@ const iconProps = {
   focusable: false,
 } as const;
 
-const icons: Record<Social["id"], React.ReactNode> = {
+const icons: Record<SocialNetwork, React.ReactNode> = {
   facebook: (
     <svg {...iconProps}>
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
@@ -34,12 +34,15 @@ const icons: Record<Social["id"], React.ReactNode> = {
 };
 
 type SocialLinksProps = {
-  /** "icons": compact round buttons (footer). "list": icon + account name (contact page). */
-  variant?: "icons" | "list";
+  /**
+   * "compact": icon + account name (footer).
+   * "list": icon + account name with the handle beneath (contact page).
+   */
+  variant?: "compact" | "list";
   className?: string;
 };
 
-export function SocialLinks({ variant = "icons", className = "" }: SocialLinksProps) {
+export function SocialLinks({ variant = "compact", className = "" }: SocialLinksProps) {
   if (socials.length === 0) return null;
 
   return (
@@ -50,16 +53,16 @@ export function SocialLinks({ variant = "icons", className = "" }: SocialLinksPr
             href={social.href}
             target="_blank"
             rel="noopener noreferrer me"
-            aria-label={`Sky Beach on ${social.name} (opens in a new tab)`}
+            aria-label={`Sky Beach on ${social.name}: ${social.handle} (opens in a new tab)`}
           >
-            {icons[social.id]}
+            {icons[social.network]}
             {variant === "list" ? (
               <span>
                 <strong>{social.name}</strong>
                 <small>{social.handle}</small>
               </span>
             ) : (
-              <span className="sr-only">{social.name}</span>
+              <span>{social.name}</span>
             )}
           </a>
         </li>

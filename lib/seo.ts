@@ -136,7 +136,7 @@ export const restaurantJsonLd = {
     "Authentic Jamaican seafood, tropical dining, private huts, catering and event spaces in Hopewell, Hanover, Jamaica.",
   telephone: contact.mobileHref,
   email: contact.email,
-  sameAs: socials.map((social) => social.href),
+  sameAs: socials.filter((social) => social.isProfile !== false).map((social) => social.href),
   address: {
     "@type": "PostalAddress",
     addressLocality: "Hopewell",

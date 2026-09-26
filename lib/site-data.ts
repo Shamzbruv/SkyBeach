@@ -11,34 +11,59 @@ export const contact = {
   website: "www.skybeachja.com",
 };
 
+export type SocialNetwork = "facebook" | "instagram" | "tiktok";
+
 export type Social = {
-  id: "facebook" | "instagram" | "tiktok";
+  id: string;
+  /** Decides the icon and the analytics network. */
+  network: SocialNetwork;
   name: string;
   /** How the account is displayed next to its icon. */
   handle: string;
   href: string;
+  /**
+   * Set to false when href is not a real profile URL (e.g. a search link) so it
+   * is kept out of the structured data, which should only list profiles.
+   */
+  isProfile?: boolean;
 };
 
 /**
  * Official accounts, as supplied by the client. Rendered in the footer of every
- * page, on the Contact page and in the site's structured data (sameAs).
+ * page, on the Contact page and (profiles only) in the site's structured data.
  */
 export const socials: Social[] = [
   {
-    id: "facebook",
-    name: "Facebook",
+    id: "facebook-page",
+    network: "facebook",
+    name: "Facebook Page",
+    handle: "Sky Beach Bar & Seafood Grill",
+    href: "https://www.facebook.com/Skybeachbarandseafoodgrill",
+  },
+  {
+    id: "facebook-account",
+    network: "facebook",
+    name: "Facebook Account",
     handle: "Sky Beach",
     href: "https://www.facebook.com/sky.beach.9",
   },
   {
     id: "instagram",
+    network: "instagram",
     name: "Instagram",
     handle: "@sky.beach",
     href: "https://www.instagram.com/sky.beach/",
   },
-  // TikTok — account "Sky Beach Bar and Seafood". Add the entry here once the
-  // client's profile link is confirmed and it will appear everywhere at once:
-  // { id: "tiktok", name: "TikTok", handle: "Sky Beach Bar and Seafood", href: "https://www.tiktok.com/@…" },
+  {
+    id: "tiktok",
+    network: "tiktok",
+    name: "TikTok",
+    handle: "Sky Beach Bar and Seafood",
+    // A TikTok search for the restaurant, as supplied — replace with the direct
+    // profile link (https://www.tiktok.com/@…) when the client confirms the handle.
+    href: "https://www.tiktok.com/search?q=sky%20beach%20restaurant",
+    isProfile: false,
+  },
 ];
 
 export const navigation = [
