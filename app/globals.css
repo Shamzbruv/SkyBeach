@@ -2919,6 +2919,14 @@ p {
   z-index: 90;
   right: max(20px, env(safe-area-inset-right));
   bottom: max(20px, env(safe-area-inset-bottom));
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+/* Tucked away while the page scrolls; see FloatingContact. */
+.floating-dock[data-scrolling="true"] {
+  opacity: 0;
+  transform: translateX(28px);
+  pointer-events: none;
 }
 
 .floating-dock ul {

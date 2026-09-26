@@ -1,6 +1,11 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { type CSSProperties, useEffect, useRef } from "react";
 import { SocialIcon } from "@/components/SocialLinks";
 import { contact, socials } from "@/lib/site-data";
+
+/** How long scrolling must pause before the dock comes back. */
+const SCROLL_IDLE_MS = 250;
 
 const whatsappHref = `${contact.whatsapp}?text=${encodeURIComponent(
   "Hi Sky Beach, I would like to make an enquiry."
@@ -33,13 +38,44 @@ function WhatsAppIcon() {
  * Icon-only floating contact dock, fixed to the right edge of every page:
  * the client's social accounts stacked above a WhatsApp button. Each button
  * bobs gently, out of phase with its neighbours (disabled automatically for
- * visitors who prefer reduced motion).
+ * visitors who prefer reduced motion). The dock slides away while the page is
+ * scrolling and returns as soon as scrolling pauses.
  */
 export function FloatingContact() {
   const dockSocials = socials.filter((social) => social.inDock);
+  const dockRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const dock = dockRef.current;
+    if (!dock) return;
+    let idleTimer: number | undefined;
+
+    // Never hide a button while someone is keyboard-focused on it.
+    const keyboardFocusInside = () => {
+      try {
+        return dock.querySelector(":focus-visible") !== null;
+      } catch {
+        return dock.contains(document.activeElement); // browsers without :focus-visible
+      }
+    };
+
+    // Toggles an attribute directly so scrolling never triggers a React render.
+    const onScroll = () => {
+      if (keyboardFocusInside()) return;
+      dock.setAttribute("data-scrolling", "true");
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => dock.removeAttribute("data-scrolling"), SCROLL_IDLE_MS);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(idleTimer);
+    };
+  }, []);
 
   return (
-    <nav className="floating-dock" aria-label="Chat and social media">
+    <nav ref={dockRef} className="floating-dock" aria-label="Chat and social media">
       <ul>
         {dockSocials.map((social, index) => (
           <li key={social.id} style={{ "--float-delay": `${index * -0.7}s` } as CSSProperties}>
