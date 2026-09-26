@@ -20,7 +20,7 @@ const SOCIAL_NETWORKS: Record<string, string> = {
 const tidy = (text: string | null | undefined) => (text ?? "").replace(/\s+/g, " ").trim().slice(0, 80);
 
 function linkLocation(element: Element) {
-  if (element.closest(".whatsapp-float")) return "floating_button";
+  if (element.closest(".floating-dock")) return "floating_button";
   if (element.closest("header")) return "header";
   if (element.closest("footer")) return "footer";
   return "content";

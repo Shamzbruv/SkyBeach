@@ -33,6 +33,10 @@ const icons: Record<SocialNetwork, React.ReactNode> = {
   ),
 };
 
+export function SocialIcon({ network }: { network: SocialNetwork }) {
+  return icons[network];
+}
+
 type SocialLinksProps = {
   /**
    * "compact": icon + account name (footer).

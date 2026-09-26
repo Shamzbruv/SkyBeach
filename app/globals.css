@@ -164,7 +164,7 @@ p {
 .text-link:focus-visible,
 .primary-nav a:focus-visible,
 .menu-toggle:focus-visible,
-.whatsapp-float:focus-visible {
+.dock-button:focus-visible {
   outline: 3px solid var(--sun);
   outline-offset: 4px;
 }
@@ -2913,27 +2913,83 @@ p {
   font-size: 0.72rem;
 }
 
-.whatsapp-float {
+/* ── Floating contact dock: social buttons stacked above WhatsApp ── */
+.floating-dock {
   position: fixed;
   z-index: 90;
-  right: 22px;
-  bottom: 22px;
-  display: inline-flex;
-  min-height: 49px;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 18px;
-  border: 2px solid white;
-  border-radius: 999px;
-  background: #1e9e57;
-  box-shadow: 0 12px 32px rgba(10, 40, 39, 0.2);
-  color: white;
-  font-size: 0.77rem;
-  font-weight: 800;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
 }
 
-.whatsapp-float > span:first-child {
-  font-size: 1.2rem;
+.floating-dock ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.floating-dock li {
+  animation: dock-float 3.4s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+/* Hold still while someone is aiming at a button. */
+.floating-dock li:hover,
+.floating-dock li:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes dock-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+.dock-button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 10px 26px rgba(10, 40, 39, 0.22);
+  color: white;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.dock-button:hover {
+  transform: scale(1.12);
+  box-shadow: 0 14px 32px rgba(10, 40, 39, 0.3);
+}
+
+.dock-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.dock-button--whatsapp {
+  width: 56px;
+  height: 56px;
+  background: #1e9e57;
+}
+
+.dock-button--whatsapp svg {
+  width: 28px;
+  height: 28px;
+}
+
+.dock-button--facebook {
+  background: #1877f2;
+}
+
+.dock-button--instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+
+.dock-button--tiktok {
+  background: #111;
 }
 
 /* ── Analytics consent notice ── */
@@ -3003,8 +3059,8 @@ p {
 
 @media (max-width: 680px) {
   .consent-banner {
-    right: 12px;
-    bottom: 84px;
+    right: 72px;
+    bottom: 14px;
     left: 12px;
     max-width: none;
   }
@@ -3236,15 +3292,15 @@ p {
   .footer-grid { grid-template-columns: 1fr; gap: 38px; }
   .footer-grid > div:last-child { grid-column: auto; }
   .footer-bottom { flex-direction: column; gap: 7px; }
-  .whatsapp-float {
-    right: max(14px, env(safe-area-inset-right));
+  .floating-dock {
+    right: max(12px, env(safe-area-inset-right));
     bottom: max(14px, env(safe-area-inset-bottom));
-    width: 50px;
-    min-height: 50px;
-    justify-content: center;
-    padding: 10px;
   }
-  .whatsapp-float > span:last-child { display: none; }
+  .floating-dock ul { gap: 10px; }
+  .dock-button { width: 42px; height: 42px; }
+  .dock-button svg { width: 20px; height: 20px; }
+  .dock-button--whatsapp { width: 52px; height: 52px; }
+  .dock-button--whatsapp svg { width: 26px; height: 26px; }
 }
 
 @media (max-width: 430px) {

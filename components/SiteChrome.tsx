@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CookiePreferencesButton } from "@/components/ConsentBanner";
+import { FloatingContact } from "@/components/FloatingContact";
 import { SocialLinks } from "@/components/SocialLinks";
 import { contact, navigation } from "@/lib/site-data";
 
@@ -165,18 +166,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         </div>
       </footer>
 
-      <a
-        className="whatsapp-float"
-        href={`${contact.whatsapp}?text=${encodeURIComponent(
-          "Hi Sky Beach, I would like to make an enquiry."
-        )}`}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Chat with Sky Beach on WhatsApp"
-      >
-        <span aria-hidden="true">✦</span>
-        <span>WhatsApp</span>
-      </a>
+      <FloatingContact />
     </>
   );
 }

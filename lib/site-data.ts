@@ -26,6 +26,8 @@ export type Social = {
    * is kept out of the structured data, which should only list profiles.
    */
   isProfile?: boolean;
+  /** Show as an icon button in the floating contact dock on every page. */
+  inDock?: boolean;
 };
 
 /**
@@ -39,6 +41,7 @@ export const socials: Social[] = [
     name: "Facebook Page",
     handle: "Sky Beach Bar & Seafood Grill",
     href: "https://www.facebook.com/Skybeachbarandseafoodgrill",
+    inDock: true,
   },
   {
     id: "facebook-account",
@@ -53,6 +56,7 @@ export const socials: Social[] = [
     name: "Instagram",
     handle: "@sky.beach",
     href: "https://www.instagram.com/sky.beach/",
+    inDock: true,
   },
   {
     id: "tiktok",
@@ -63,6 +67,7 @@ export const socials: Social[] = [
     // profile link (https://www.tiktok.com/@…) when the client confirms the handle.
     href: "https://www.tiktok.com/search?q=sky%20beach%20restaurant",
     isProfile: false,
+    inDock: true,
   },
 ];
 
