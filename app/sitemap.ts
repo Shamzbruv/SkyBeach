@@ -1,8 +1,24 @@
 import type { MetadataRoute } from "next";
+import { liveVideos } from "@/lib/live-data";
 import { siteOrigin, socialImages } from "@/lib/seo";
 import { hutStories } from "@/lib/site-data";
 
 const absolute = (path: string) => `${siteOrigin}${path}`;
+
+type SitemapEntry = MetadataRoute.Sitemap[number];
+
+// Video sitemap entries for the /live page: YouTube films point at their
+// player, the clips hosted on this site at the file itself.
+const liveVideoEntries: NonNullable<SitemapEntry["videos"]> = liveVideos.map((video) => ({
+  title: video.title,
+  description: video.story,
+  thumbnail_loc: absolute(video.poster),
+  duration: video.durationSeconds,
+  ...(video.source.kind === "youtube"
+    ? { player_loc: `https://www.youtube.com/embed/${video.source.id}` }
+    : { content_loc: absolute(video.source.src) }),
+  ...(video.publishedAt ? { publication_date: video.publishedAt } : {}),
+}));
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: Array<{
@@ -10,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly" | "monthly";
     priority: number;
     images?: string[];
+    videos?: NonNullable<SitemapEntry["videos"]>;
   }> = [
     { path: "/", changeFrequency: "weekly", priority: 1, images: [absolute(socialImages.dine.url)] },
     { path: "/menu", changeFrequency: "weekly", priority: 0.9 },
@@ -21,6 +38,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: hutStories.flatMap((hut) => hut.images.map(absolute)),
     },
     { path: "/gallery", changeFrequency: "monthly", priority: 0.8 },
+    {
+      path: "/live",
+      changeFrequency: "monthly",
+      priority: 0.75,
+      images: [absolute(socialImages.live.url)],
+      videos: liveVideoEntries,
+    },
     { path: "/services", changeFrequency: "monthly", priority: 0.75 },
     { path: "/about", changeFrequency: "monthly", priority: 0.7 },
     { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
@@ -32,5 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: route.changeFrequency,
     priority: route.priority,
     ...(route.images ? { images: route.images } : {}),
+    ...(route.videos ? { videos: route.videos } : {}),
   }));
 }

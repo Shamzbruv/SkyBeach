@@ -20,6 +20,12 @@
  *   gallery_photo_open   photo_index, photo_caption
  *   gallery_chapter_open chapter_title
  *   floor_plan_open      —
+ *   live_video_open      video_id, video_title, video_provider (youtube | self), video_duration
+ *   live_video_close     video_id, video_title, seconds_open
+ *   video_start | video_progress | video_complete
+ *                        video_title, video_url, video_provider, video_duration, video_percent
+ *                        (25 | 50 | 75 | 100), video_current_time. Sent for the clips hosted on
+ *                        this site; YouTube films report their own via GA4 enhanced measurement.
  *   scroll_depth         percent_scrolled (25 | 50 | 75 | 100)
  *   web_vitals           metric_name, metric_value, metric_rating, navigation_type, page_load_id
  *   exception            description, fatal

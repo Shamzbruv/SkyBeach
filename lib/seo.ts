@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { isoDuration, liveVideos } from "@/lib/live-data";
 import { contact, drinkMenu, foodMenu, hutStories, socials } from "@/lib/site-data";
 
 /**
@@ -44,6 +45,12 @@ export const socialImages = {
     width: 1200,
     height: 630,
     alt: "A candlelit banquet table on the seaside deck at Sky Beach in Hopewell, Jamaica",
+  },
+  live: {
+    url: "/images/og/live.jpg",
+    width: 1200,
+    height: 630,
+    alt: "A singer in a blue cap with one arm outstretched, a full band behind him, performing on the Sky Beach stage at night",
   },
 } satisfies Record<string, SocialImage>;
 
@@ -300,6 +307,36 @@ export function menuJsonLd() {
       { "@type": "MenuSection", name: "Drinks", hasMenuSection: menuSectionsJsonLd(drinkMenu) },
     ],
   };
+}
+
+/* ── Live performances ── */
+
+/**
+ * One VideoObject per YouTube performance. Only those are described: they are
+ * the videos with a real upload date, which Google requires. The clips hosted
+ * on this site have no verified date, so none is invented for them.
+ */
+export function liveVideosJsonLd() {
+  return liveVideos.flatMap((video) => {
+    const { source } = video;
+    if (source.kind !== "youtube" || !video.publishedAt) return [];
+
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "@id": absolute(`/live#${video.id}`),
+        name: video.title,
+        description: video.story,
+        thumbnailUrl: [absolute(video.poster)],
+        uploadDate: video.publishedAt,
+        duration: isoDuration(video.durationSeconds),
+        embedUrl: `https://www.youtube.com/embed/${source.id}`,
+        inLanguage: "en-JM",
+        contentLocation: { "@id": restaurantId },
+      },
+    ];
+  });
 }
 
 /* ── Venue ── */

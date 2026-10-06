@@ -135,6 +135,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
               <Link href="/services">Services</Link>
               <Link href="/menu">Food & drinks</Link>
               <Link href="/gallery">Gallery</Link>
+              <Link href="/live">Live performances</Link>
               <Link href="/careers">Careers</Link>
               <Link href="/contact">Contact</Link>
             </div>

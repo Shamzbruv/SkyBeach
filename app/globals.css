@@ -3074,6 +3074,588 @@ p {
   }
 }
 
+/* ── Live performances ── */
+.live-intro {
+  padding-bottom: 76px;
+}
+
+.live-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 64px;
+  padding: 28px 0;
+  margin: 0 0 24px;
+  border-block: 1px solid var(--line);
+}
+
+.live-stats > div {
+  display: flex;
+  flex-direction: column-reverse; /* the figure reads first, its label second */
+}
+
+.live-stats dt {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.live-stats dd {
+  margin: 0;
+  color: var(--sea);
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 4vw, 3.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.live-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.live-hint-hover {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .live-hint-hover { display: inline; }
+}
+
+.live-section {
+  position: relative;
+}
+
+.live-section--cream { background: var(--cream); }
+.live-section--paper { background: var(--paper); }
+
+.live-section--dark {
+  overflow: hidden;
+  background: var(--ink-deep);
+  color: white;
+}
+
+.live-section--dark::before {
+  position: absolute;
+  top: -120px;
+  right: -90px;
+  width: 300px;
+  aspect-ratio: 1;
+  border: 60px solid rgba(117, 216, 214, 0.08);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.live-section--dark .container {
+  position: relative;
+}
+
+.live-section--dark .split-heading > p {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.live-grid {
+  display: grid;
+  gap: clamp(32px, 4vw, 56px);
+}
+
+.live-grid--pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.live-grid--features {
+  gap: clamp(64px, 8vw, 112px);
+}
+
+.live-grid--stage {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.live-grid--stage .live-card--landscape { grid-column: span 2; }
+
+.live-card {
+  min-width: 0;
+}
+
+.live-media {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  background: var(--ink-deep);
+  box-shadow: 0 22px 50px rgba(10, 40, 39, 0.18);
+}
+
+/* Clips shot upright on a phone get the venue's arched-window shape. */
+.live-card--portrait .live-media {
+  aspect-ratio: 4 / 5;
+  border-radius: 50% 50% 16px 16px / 32% 32% 16px 16px;
+}
+
+.live-poster {
+  z-index: 0;
+  object-fit: cover;
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.live-media:hover .live-poster {
+  transform: scale(1.04);
+}
+
+/* Silent preview that fades in over the poster while the pointer rests on a card. */
+.live-preview {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--ink-deep);
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 350ms ease;
+}
+
+.live-preview.is-ready {
+  opacity: 1;
+}
+
+/*
+ * Even with its controls off, YouTube draws a title bar, a "More videos" strip,
+ * its logo and captions along the edges of the player box for the first moments.
+ * The box is made taller than the card and clipped by it, so those edges fall
+ * outside while the 16:9 picture still fills the card exactly.
+ */
+iframe.live-preview {
+  inset: -25% 0;
+  height: 150%;
+}
+
+.live-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 31, 30, 0.62) 0%, rgba(5, 31, 30, 0) 42%);
+  pointer-events: none;
+}
+
+.live-play {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 248, 236, 0.93);
+  box-shadow: 0 10px 30px rgba(5, 31, 30, 0.38);
+  color: var(--ink-deep);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 220ms ease, opacity 220ms ease, background 220ms ease;
+}
+
+.live-play svg {
+  width: 26px;
+  height: 26px;
+  margin-left: 3px;
+}
+
+.live-card--feature .live-play {
+  width: 84px;
+  height: 84px;
+}
+
+.live-card--feature .live-play svg {
+  width: 32px;
+  height: 32px;
+}
+
+.live-media:hover .live-play {
+  background: var(--sun);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.live-media.is-previewing .live-play {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* While a preview is on its way, the badge pulses so the hover feels acknowledged. */
+.live-media.is-loading .live-play {
+  animation: live-play-pulse 1.2s ease-out infinite;
+}
+
+@keyframes live-play-pulse {
+  from { box-shadow: 0 10px 30px rgba(5, 31, 30, 0.38), 0 0 0 0 rgba(248, 182, 66, 0.6); }
+  to { box-shadow: 0 10px 30px rgba(5, 31, 30, 0.38), 0 0 0 22px rgba(248, 182, 66, 0); }
+}
+
+/* YouTube's own pause glyph sits dead centre for its first few seconds; keep our badge over it until it has gone. */
+[data-provider="youtube"] .live-media.is-previewing .live-play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(0.8);
+  animation: live-play-release 400ms ease 4.5s forwards;
+}
+
+@keyframes live-play-release {
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+}
+
+.live-duration,
+.live-chip {
+  position: absolute;
+  z-index: 2;
+  bottom: 14px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(5, 31, 30, 0.78);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.live-duration {
+  right: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-chip {
+  left: 14px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.live-media.is-previewing .live-chip {
+  opacity: 1;
+  transform: none;
+}
+
+/* The whole picture is one big button; the preview layers never take pointer events. */
+.live-hit {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.live-hit:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: -7px;
+}
+
+.live-copy {
+  padding-top: 24px;
+}
+
+.live-kicker {
+  margin: 0 0 8px;
+  color: var(--sea);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.live-copy h3 {
+  margin-bottom: 14px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.4vw, 2.15rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+}
+
+.live-story {
+  margin-bottom: 16px;
+  color: var(--muted);
+}
+
+.live-quote {
+  margin: 0 0 18px;
+  padding-left: 18px;
+  border-left: 3px solid var(--sun);
+}
+
+.live-quote blockquote {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.live-quote figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.live-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0 0 16px;
+  list-style: none;
+}
+
+.live-tags li {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.live-credit {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.live-credit a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.live-credit a:hover {
+  color: var(--coral);
+}
+
+.live-credit a:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+}
+
+.live-section--dark .live-media { box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45); }
+.live-section--dark .live-kicker { color: var(--sun); }
+.live-section--dark .live-copy h3 { color: white; }
+.live-section--dark .live-story { color: rgba(255, 255, 255, 0.76); }
+.live-section--dark .live-tags li { border-color: rgba(255, 255, 255, 0.24); color: rgba(255, 255, 255, 0.88); }
+.live-section--dark .live-credit { color: rgba(255, 255, 255, 0.62); }
+.live-section--dark .live-credit a:hover { color: var(--sun); }
+
+/* Full-length concerts: a large picture with its story beside it. */
+.live-card--feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  align-items: center;
+  gap: clamp(28px, 4.5vw, 72px);
+}
+
+.live-card--feature.is-flipped {
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+}
+
+.live-card--feature.is-flipped .live-media {
+  order: 2;
+}
+
+.live-card--feature .live-copy {
+  padding-top: 0;
+}
+
+.live-card--feature .live-copy h3 {
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+}
+
+.live-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* Beside a 16:9 card two columns wide, an upright card is as tall as the wide one, so their captions line up. */
+@media (min-width: 1024px) {
+  .live-grid--stage .live-card--portrait .live-media { aspect-ratio: 0.845; }
+}
+
+@media (max-width: 1120px) {
+  .live-grid--stage { gap: 22px; }
+}
+
+/* Below 1024px the shared .container is no wider than 768px, too narrow for the side-by-side layouts. */
+@media (max-width: 1023px) {
+  .live-grid--stage { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .live-grid--stage .live-card--landscape { grid-column: 1 / -1; }
+  .live-card--feature,
+  .live-card--feature.is-flipped {
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+  .live-card--feature.is-flipped .live-media { order: 0; }
+  .live-card--feature .live-copy { padding-top: 24px; }
+}
+
+@media (max-width: 900px) {
+  .live-intro { padding-bottom: 56px; }
+  .live-grid--pair {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .live-stats { gap: 16px 36px; }
+  .live-grid--stage { grid-template-columns: 1fr; }
+  .live-grid--stage .live-card--landscape { grid-column: auto; }
+  .live-play { width: 60px; height: 60px; }
+  .live-card--feature .live-play { width: 68px; height: 68px; }
+  .live-cta-actions .button { width: 100%; }
+}
+
+/* ── Blackout video player ── */
+.video-lightbox {
+  --chrome: 200px; /* height reserved above and below the picture */
+  position: fixed;
+  z-index: 300;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px 20px;
+  overscroll-behavior: contain;
+  background: #000;
+  animation: lightbox-fade 220ms ease both;
+}
+
+.video-lightbox .lightbox-close {
+  z-index: 2;
+}
+
+.video-lightbox-stage {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.video-lightbox-frame {
+  position: relative;
+  /* As wide as the screen, the clip's own pixels (see --max-w) and the room above the caption allow. */
+  width: min(100%, var(--max-w), calc((100vh - var(--chrome)) * var(--ratio-num)));
+  width: min(100%, var(--max-w), calc((100dvh - var(--chrome)) * var(--ratio-num)));
+  aspect-ratio: var(--ratio-num);
+  overflow: hidden;
+  border-radius: 10px;
+  background: #000;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7);
+  animation: video-lightbox-rise 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.video-lightbox-frame video,
+.video-lightbox-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+  object-fit: contain;
+}
+
+.video-lightbox-caption {
+  display: flex;
+  max-width: min(100%, 760px);
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 16px;
+  color: white;
+  text-align: center;
+}
+
+.video-lightbox-caption small {
+  flex-basis: 100%;
+  color: var(--sun);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.video-lightbox-caption strong {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.video-lightbox-caption a {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.8rem;
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.video-lightbox-caption a:hover {
+  color: var(--sun);
+}
+
+.video-lightbox-caption a:focus-visible {
+  outline: 2px solid var(--sun);
+  outline-offset: 3px;
+}
+
+@keyframes video-lightbox-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 680px) {
+  .video-lightbox {
+    --chrome: 226px;
+    padding: 58px 12px 16px;
+  }
+  .video-lightbox-caption strong { font-size: 1.15rem; }
+}
+
+/* Phones on their side: the picture takes the whole screen and the caption steps aside. */
+@media (max-height: 520px) {
+  .video-lightbox {
+    --chrome: 24px;
+    padding: 12px;
+  }
+  .video-lightbox-caption { display: none; }
+  .video-lightbox .lightbox-close { top: 10px; right: 10px; }
+}
+
 /* Responsive */
 @media (max-width: 1120px) {
   .nav-cta { display: none; }

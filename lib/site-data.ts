@@ -79,6 +79,7 @@ export const navigation = [
   { href: "/menu", label: "Menu" },
   { href: "/reservations", label: "Reservations" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/live", label: "Live Performances" },
   { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ];
