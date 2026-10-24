@@ -18,9 +18,13 @@ const page = definePage({
 export const metadata: Metadata = page.metadata;
 
 export default function MenuPage() {
+  // Temporary operational control until Phase 2 provides authenticated menu management.
+  // Set MENU_PRICES_VISIBLE=false in the deployment environment and redeploy to hide prices.
+  const showPrices = process.env.MENU_PRICES_VISIBLE !== "false";
+
   return (
     <>
-      <StructuredData data={[...page.jsonLd, menuJsonLd()]} />
+      <StructuredData data={[...page.jsonLd, menuJsonLd(showPrices)]} />
 
       <PageHero
         eyebrow="Food & drinks"
@@ -40,7 +44,7 @@ export default function MenuPage() {
               availability may change; contact us for the current menu and prices.
             </p>
           </div>
-          <MenuExplorer />
+          <MenuExplorer showPrices={showPrices} />
         </div>
       </section>
 

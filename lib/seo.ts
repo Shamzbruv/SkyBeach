@@ -257,14 +257,14 @@ function parsePrice(raw: string | undefined) {
   return { price: match[1].replace(/,/g, ""), unit: match[2] };
 }
 
-function menuItemJsonLd(item: { name: string; note?: string; price?: string }) {
+function menuItemJsonLd(item: { name: string; note?: string; price?: string }, includePrices: boolean) {
   const parsed = parsePrice(item.price);
 
   return {
     "@type": "MenuItem",
     name: item.name,
     ...(item.note ? { description: item.note } : {}),
-    ...(parsed
+    ...(includePrices && parsed
       ? {
           offers: parsed.unit
             ? {
@@ -283,17 +283,19 @@ function menuItemJsonLd(item: { name: string; note?: string; price?: string }) {
   };
 }
 
-function menuSectionsJsonLd(categories: typeof foodMenu) {
+function menuSectionsJsonLd(categories: typeof foodMenu, includePrices: boolean) {
   return categories.map((category) => ({
     "@type": "MenuSection",
     name: category.category,
-    ...(category.note ? { description: category.note } : {}),
-    hasMenuItem: category.items.map(menuItemJsonLd),
+    ...(category.note && (includePrices || !category.note.includes("$"))
+      ? { description: category.note }
+      : {}),
+    hasMenuItem: category.items.map((item) => menuItemJsonLd(item, includePrices)),
   }));
 }
 
 /** Full food & drinks menu, generated from the same data that renders the menu tab. */
-export function menuJsonLd() {
+export function menuJsonLd(includePrices = true) {
   return {
     "@context": "https://schema.org",
     "@type": "Menu",
@@ -303,8 +305,8 @@ export function menuJsonLd() {
     inLanguage: "en-JM",
     provider: { "@id": restaurantId },
     hasMenuSection: [
-      { "@type": "MenuSection", name: "Food", hasMenuSection: menuSectionsJsonLd(foodMenu) },
-      { "@type": "MenuSection", name: "Drinks", hasMenuSection: menuSectionsJsonLd(drinkMenu) },
+      { "@type": "MenuSection", name: "Food", hasMenuSection: menuSectionsJsonLd(foodMenu, includePrices) },
+      { "@type": "MenuSection", name: "Drinks", hasMenuSection: menuSectionsJsonLd(drinkMenu, includePrices) },
     ],
   };
 }

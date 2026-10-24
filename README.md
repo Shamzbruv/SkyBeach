@@ -68,3 +68,16 @@ food menu artwork:
 
 Confirm these details with the client before connecting the website to the live
 domain.
+
+## Temporary menu price visibility control
+
+While the October 2026 POS, online menu, and website price updates are being coordinated,
+set `MENU_PRICES_VISIBLE=false` in the deployment environment **and redeploy** to hide
+menu item prices (including price-bearing category notes and menu structured data).
+The customer menu will instead ask visitors to confirm current prices directly.
+Unset the variable or set it to `true`, then redeploy to restore prices after
+Mrs. McKenzie's approved price list has been applied to `lib/site-data.ts`.
+
+This is a temporary **deployment-controlled** feature, not a Phase 2 admin login,
+a live point-of-sale integration, or an automatic price synchronization tool.
+Keep POS, online menu, and website changes coordinated before restoring prices.

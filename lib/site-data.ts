@@ -400,7 +400,7 @@ export const foodMenu: MenuCategory[] = [
       { name: "Tofu", note: "Fried, Jerked, Curry-Coconut, Curried Garlic", price: "$1,800" },
       { name: "Veggie Mince", note: "Sweet & Sour, Curry-Coconut, Curried Garlic", price: "$1,800" },
       { name: "Veggie Chunks", note: "Jerked, Curry-Coconut, Curried Garlic", price: "$1,800" },
-      { name: "Ackee", note: "Sautéed with or without Veggie Mince / Tofu", price: "$1,800" },
+      { name: "Ackee", note: "Sautéed with or without Veggie Mince / Tofu. Served with boiled food", price: "$1,800" },
       { name: "Veggie Fried Rice", note: "Curry-Coconut, Curried Garlic", price: "$1,800" },
     ],
   },

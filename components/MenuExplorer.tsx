@@ -112,8 +112,8 @@ function getDrinkCategories(subTab: string): MenuCategory[] {
   }
 }
 
-function MenuCard({ group, index }: { group: MenuCategory; index: number }) {
-  const hasAnyPrice = group.items.some((item) => item.price);
+function MenuCard({ group, index, showPrices }: { group: MenuCategory; index: number; showPrices: boolean }) {
+  const hasAnyPrice = showPrices && group.items.some((item) => item.price);
   const bgImage = categoryBg[group.category];
 
   return (
@@ -141,7 +141,11 @@ function MenuCard({ group, index }: { group: MenuCategory; index: number }) {
         <h3>{group.category}</h3>
         <div className="mx-card-header-line" aria-hidden="true" />
       </div>
-      {group.note && <p className="mx-card-note">{group.note}</p>}
+      {group.note && (
+        <p className="mx-card-note">
+          {showPrices ? group.note : group.note.replace(/\s*[—–-]\s*\$[\d,]+(?:\.\d{2})?/g, "")}
+        </p>
+      )}
 
       <ul>
         {group.items.map((item) => (
@@ -165,7 +169,7 @@ function MenuCard({ group, index }: { group: MenuCategory; index: number }) {
   );
 }
 
-export function MenuExplorer() {
+export function MenuExplorer({ showPrices = true }: { showPrices?: boolean }) {
   const [mainTab, setMainTab] = useState<"food" | "drinks">("food");
   const [foodSubTab, setFoodSubTab] = useState("popular");
   const [drinkSubTab, setDrinkSubTab] = useState("cocktails-frozen");
@@ -290,15 +294,17 @@ export function MenuExplorer() {
 
       {/* Currency note */}
       <p className="mx-note">
-        {mainTab === "food"
-          ? "All prices in JMD · GCT and service charge will be added"
-          : "GCT and service charge will be added to your bill"}
+        {!showPrices
+          ? "Menu prices are being updated. Please contact Sky Beach to confirm current pricing."
+          : mainTab === "food"
+            ? "All prices in JMD · GCT and service charge will be added"
+            : "GCT and service charge will be added to your bill"}
       </p>
 
       {/* Menu cards grid */}
       <div className="mx-grid" key={animKey}>
         {categories.map((group, i) => (
-          <MenuCard key={group.category} group={group} index={i} />
+          <MenuCard key={group.category} group={group} index={i} showPrices={showPrices} />
         ))}
       </div>
     </div>
