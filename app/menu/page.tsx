@@ -17,14 +17,19 @@ const page = definePage({
 
 export const metadata: Metadata = page.metadata;
 
+// Price activation is evaluated for each request, never frozen at build time.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default function MenuPage() {
   // Temporary operational control until Phase 2 provides authenticated menu management.
   // Set MENU_PRICES_VISIBLE=false in the deployment environment and redeploy to hide prices.
+  const pricingTimeMs = Date.now();
   const showPrices = process.env.MENU_PRICES_VISIBLE !== "false";
 
   return (
     <>
-      <StructuredData data={[...page.jsonLd, menuJsonLd(showPrices)]} />
+      <StructuredData id="sky-beach-menu-data" data={[...page.jsonLd, menuJsonLd(showPrices, pricingTimeMs)]} />
 
       <PageHero
         eyebrow="Food & drinks"
@@ -44,7 +49,7 @@ export default function MenuPage() {
               availability may change; contact us for the current menu and prices.
             </p>
           </div>
-          <MenuExplorer showPrices={showPrices} />
+          <MenuExplorer showPrices={showPrices} initialPricingTimeMs={pricingTimeMs} />
         </div>
       </section>
 

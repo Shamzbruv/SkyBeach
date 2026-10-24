@@ -136,6 +136,10 @@ const vinextListeners = server.listeners("request");
 server.removeAllListeners("request");
 server.on("request", (req, res) => {
   const pathname = (req.url ?? "/").split("?")[0];
+  if (pathname === "/menu" || pathname === "/menu/" || pathname === "/api/menu-pricing") {
+    res.setHeader("Cache-Control", "no-store, max-age=0");
+    res.setHeader("CDN-Cache-Control", "no-store");
+  }
   // Serve unlisted concept pages separately so the static asset handler cannot
   // override their no-store policy. No directory listing or guessed slug works.
   if (pathname.startsWith("/review/")) {

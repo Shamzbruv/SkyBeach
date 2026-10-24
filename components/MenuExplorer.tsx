@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { trackEvent } from "@/lib/analytics";
 import { foodMenu, drinkMenu, type MenuCategory } from "@/lib/site-data";
+import { foodMenuAt, MENU_PRICE_CHANGE_AT_MS } from "@/lib/menu-pricing";
+import { menuSectionsJsonLd } from "@/lib/menu-schema";
 
 /* ── Background image mapping ── */
 const categoryBg: Record<string, string> = {
@@ -58,34 +60,34 @@ const drinkTabs = [
   { key: "non-alcoholic", label: "🧃 Non-Alcoholic" },
 ];
 
-function getFoodCategories(subTab: string): MenuCategory[] {
+function getFoodCategories(subTab: string, activeMenu: MenuCategory[]): MenuCategory[] {
   switch (subTab) {
     case "popular":
-      return foodMenu.filter((c) =>
+      return activeMenu.filter((c) =>
         ["Appetizers", "Seafood", "Meats"].includes(c.category)
       );
     case "seafood":
-      return foodMenu.filter((c) => c.category === "Seafood");
+      return activeMenu.filter((c) => c.category === "Seafood");
     case "meats":
-      return foodMenu.filter((c) => c.category === "Meats");
+      return activeMenu.filter((c) => c.category === "Meats");
     case "pasta-pizza":
-      return foodMenu.filter((c) =>
+      return activeMenu.filter((c) =>
         ["Pasta", "Pizza"].includes(c.category)
       );
     case "sides-soups":
-      return foodMenu.filter((c) =>
+      return activeMenu.filter((c) =>
         ["Soups", "Salads", "Side Orders"].includes(c.category)
       );
     case "vegan":
-      return foodMenu.filter((c) => c.category === "Vegan Cuisine");
+      return activeMenu.filter((c) => c.category === "Vegan Cuisine");
     case "kids-burgers":
-      return foodMenu.filter((c) =>
+      return activeMenu.filter((c) =>
         ["Kids Menu", "Burgers & Panini"].includes(c.category)
       );
     case "desserts":
-      return foodMenu.filter((c) => c.category === "Desserts");
+      return activeMenu.filter((c) => c.category === "Desserts");
     default:
-      return foodMenu;
+      return activeMenu;
   }
 }
 
@@ -169,7 +171,14 @@ function MenuCard({ group, index, showPrices }: { group: MenuCategory; index: nu
   );
 }
 
-export function MenuExplorer({ showPrices = true }: { showPrices?: boolean }) {
+export function MenuExplorer({
+  showPrices = true,
+  initialPricingTimeMs,
+}: {
+  showPrices?: boolean;
+  initialPricingTimeMs: number;
+}) {
+  const [pricingTimeMs, setPricingTimeMs] = useState(initialPricingTimeMs);
   const [mainTab, setMainTab] = useState<"food" | "drinks">("food");
   const [foodSubTab, setFoodSubTab] = useState("popular");
   const [drinkSubTab, setDrinkSubTab] = useState("cocktails-frozen");
@@ -183,7 +192,7 @@ export function MenuExplorer({ showPrices = true }: { showPrices?: boolean }) {
 
   const categories =
     mainTab === "food"
-      ? getFoodCategories(foodSubTab)
+      ? getFoodCategories(foodSubTab, foodMenuAt(foodMenu, pricingTimeMs))
       : getDrinkCategories(drinkSubTab);
 
   function handleMainTab(tab: "food" | "drinks") {
@@ -203,6 +212,82 @@ export function MenuExplorer({ showPrices = true }: { showPrices?: boolean }) {
       subTabsRef.current.scrollLeft = 0;
     }
   }, [mainTab]);
+
+  // A server-based timeout silently updates menus left open across midnight.
+  // Focus/visibility/online checks also cover suspended tabs and device-clock errors.
+  useEffect(() => {
+    let stopped = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let syncing = false;
+    const controller = new AbortController();
+
+    function arm(serverNowMs: number) {
+      if (timer) clearTimeout(timer);
+      if (serverNowMs >= MENU_PRICE_CHANGE_AT_MS) {
+        setPricingTimeMs((current) => Math.max(current, serverNowMs));
+        return;
+      }
+      timer = setTimeout(() => {
+        if (stopped) return;
+        setPricingTimeMs(MENU_PRICE_CHANGE_AT_MS);
+        void syncTime();
+      }, MENU_PRICE_CHANGE_AT_MS - serverNowMs);
+    }
+
+    async function syncTime() {
+      if (stopped || syncing) return;
+      syncing = true;
+      try {
+        const response = await fetch("/api/menu-pricing", {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        if (!response.ok) return;
+        const data = await response.json();
+        if (stopped || !Number.isFinite(data.serverNowMs)) return;
+        setPricingTimeMs((current) => Math.max(current, data.serverNowMs));
+        arm(data.serverNowMs);
+      } catch {
+        // Keep the initial server-clock timer if offline. No public notice is needed.
+      } finally {
+        syncing = false;
+      }
+    }
+
+    function onVisible() {
+      if (document.visibilityState === "visible") void syncTime();
+    }
+    arm(initialPricingTimeMs);
+    void syncTime();
+    window.addEventListener("focus", onVisible);
+    window.addEventListener("online", onVisible);
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      stopped = true;
+      controller.abort();
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("focus", onVisible);
+      window.removeEventListener("online", onVisible);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [initialPricingTimeMs]);
+
+  // Keep the menu's search-engine offers synchronized when an open tab switches.
+  useEffect(() => {
+    const script = document.getElementById("sky-beach-menu-data");
+    if (!script?.textContent) return;
+    try {
+      const documents = JSON.parse(script.textContent);
+      for (const entry of documents) {
+        if (entry["@type"] !== "Menu") continue;
+        const food = entry.hasMenuSection?.find((section: { name: string }) => section.name === "Food");
+        if (food) food.hasMenuSection = menuSectionsJsonLd(foodMenuAt(foodMenu, pricingTimeMs), showPrices);
+      }
+      script.textContent = JSON.stringify(documents).replace(/</g, "\\u003c");
+    } catch {
+      // The server-rendered schema remains valid if another script has replaced it.
+    }
+  }, [pricingTimeMs, showPrices]);
 
   /* Apply theme to the parent section */
   useEffect(() => {
