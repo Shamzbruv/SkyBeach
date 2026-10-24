@@ -136,6 +136,37 @@ const vinextListeners = server.listeners("request");
 server.removeAllListeners("request");
 server.on("request", (req, res) => {
   const pathname = (req.url ?? "/").split("?")[0];
+  // Serve unlisted concept pages separately so the static asset handler cannot
+  // override their no-store policy. No directory listing or guessed slug works.
+  if (pathname.startsWith("/review/")) {
+    const headers = {
+      "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet",
+      "Cache-Control": "private, no-store",
+      "Referrer-Policy": "no-referrer",
+      "X-Content-Type-Options": "nosniff",
+    };
+    if (req.method !== "GET" && req.method !== "HEAD") {
+      return sendStatus(res, 405, { ...headers, Allow: "GET, HEAD" });
+    }
+    if (!/^\/review\/[a-f0-9]{36}\.html$/.test(pathname)) {
+      return sendStatus(res, 404, headers);
+    }
+    const file = path.join(outDir, "client", pathname);
+    stat(file).then((info) => {
+      if (!info.isFile()) return sendStatus(res, 404, headers);
+      res.writeHead(200, {
+        ...headers,
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Length": String(info.size),
+      });
+      if (req.method === "HEAD") return res.end();
+      pipeline(createReadStream(file), res, () => {});
+    }).catch(() => {
+      if (!res.headersSent) sendStatus(res, 404, headers);
+      else res.destroy();
+    });
+    return;
+  }
   if (pathname.startsWith("/videos/")) {
     if (req.method !== "GET" && req.method !== "HEAD") return sendStatus(res, 405, { Allow: "GET, HEAD" });
     serveVideo(req, res, pathname).catch(() => {

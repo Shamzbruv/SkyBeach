@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: "/review/",
     },
     host: siteOrigin,
     sitemap: `${siteOrigin}/sitemap.xml`,
