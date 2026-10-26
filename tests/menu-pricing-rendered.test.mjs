@@ -42,6 +42,10 @@ test("production HTML and server-clock endpoint switch on the boundary without a
       assert.ok(schema, "server-rendered menu JSON-LD missing");
       assert.equal(price(schema, "Seafood", "Fish (Whole)"), fishPrice);
       assert.equal(price(schema, "Appetizers", "Ackee & Saltfish"), appetizerPrice);
+      if (active) {
+        assert.equal(price(schema, "Pasta", "Rasta Pasta — Shrimp"), "3500");
+        assert.equal(price(schema, "Pasta", "Rasta Pasta — Lobster"), "4500");
+      }
       assert.ok(html.includes('id="sky-beach-menu-data"'));
       assert.ok(!html.includes('id="menu-price-timer"'), "private countdown leaked into public menu");
       assert.ok(!/new prices|countdown|price announcement/i.test(html));

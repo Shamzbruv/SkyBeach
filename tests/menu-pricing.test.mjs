@@ -40,7 +40,7 @@ test("all 78 food prices are covered, while names, descriptions and original dat
     });
   });
   assert.equal(count, 78);
-  assert.equal(changed, 55);
+  assert.equal(changed, 57);
   foodMenuAt(foodMenu, MENU_PRICE_CHANGE_AT_MS);
   assert.equal(JSON.stringify(foodMenu), original);
   assert.equal(JSON.stringify(drinkMenu), originalDrinks);
@@ -51,7 +51,8 @@ test("per-pound prices, pasta rows, lower prices and the vegan heading match the
     ["Seafood", "Fish (Whole)", "$3,000/lb"],
     ["Seafood", "Crab", "$2,600/lb"],
     ["Seafood", "Lobster Tail / Meat", "$4,500/lb"],
-    ["Pasta", "Rasta Pasta — Lobster", "$4,200/lb"],
+    ["Pasta", "Rasta Pasta — Lobster", "$4,500/lb"],
+    ["Pasta", "Rasta Pasta — Shrimp", "$3,500"],
     ["Pasta", "Rasta Pasta — Chicken", "$2,200"],
     ["Pasta", "Rasta Pasta — Veggie", "$2,000"],
     ["Appetizers", "Ackee & Saltfish", "$800"],

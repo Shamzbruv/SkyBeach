@@ -52,8 +52,8 @@ export const APPROVED_FOOD_PRICES: Readonly<Record<string, Readonly<Record<strin
     // The unadorned Rasta Pasta row is the base/veggie option, followed by Chicken.
     "Rasta Pasta — Veggie": "$2,000",
     "Rasta Pasta — Fish": "$3,000",
-    "Rasta Pasta — Shrimp": "$3,000",
-    "Rasta Pasta — Lobster": "$4,200/lb",
+    "Rasta Pasta — Shrimp": "$3,500",
+    "Rasta Pasta — Lobster": "$4,500/lb",
   },
   Pizza: {
     "Cheese (Only)": "$2,000",
