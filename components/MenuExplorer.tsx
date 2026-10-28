@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { trackEvent } from "@/lib/analytics";
 import { foodMenu, drinkMenu, type MenuCategory } from "@/lib/site-data";
-import { foodMenuAt, MENU_PRICE_CHANGE_AT_MS } from "@/lib/menu-pricing";
+import { foodMenuAt, MENU_PRICE_CHANGE_AT_MS, MENU_PRICES_VISIBLE } from "@/lib/menu-pricing";
 import { menuSectionsJsonLd } from "@/lib/menu-schema";
 
 /* ── Background image mapping ── */
@@ -172,7 +172,7 @@ function MenuCard({ group, index, showPrices }: { group: MenuCategory; index: nu
 }
 
 export function MenuExplorer({
-  showPrices = true,
+  showPrices = MENU_PRICES_VISIBLE,
   initialPricingTimeMs,
 }: {
   showPrices?: boolean;
@@ -380,7 +380,7 @@ export function MenuExplorer({
       {/* Currency note */}
       <p className="mx-note">
         {!showPrices
-          ? "Menu prices are being updated. Please contact Sky Beach to confirm current pricing."
+          ? "Please contact Sky Beach for current pricing."
           : mainTab === "food"
             ? "All prices in JMD · GCT and service charge will be added"
             : "GCT and service charge will be added to your bill"}

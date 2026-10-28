@@ -12,19 +12,17 @@ function getMenuSchema(html) {
   return scripts.flatMap((match) => JSON.parse(match[1])).find((entry) => entry["@type"] === "Menu");
 }
 
-function price(schema, category, name) {
-  const entry = schema.hasMenuSection.find((s) => s.name === "Food").hasMenuSection
-    .find((s) => s.name === category).hasMenuItem.find((i) => i.name === name);
-  return entry.offers.price ?? entry.offers.priceSpecification.price;
-}
 
-test("production HTML and server-clock endpoint switch on the boundary without a deploy or public notice", async () => {
+test("production menu keeps all prices hidden before and after activation, even with an environment override", async () => {
   const realNow = Date.now;
+  const oldVisibility = process.env.MENU_PRICES_VISIBLE;
+  process.env.MENU_PRICES_VISIBLE = "true";
   try {
-    for (const [now, active, fishPrice, appetizerPrice] of [
-      [MENU_PRICE_CHANGE_AT_MS - 1, false, "2600", "1900"],
-      [MENU_PRICE_CHANGE_AT_MS, true, "3000", "800"],
-      [MENU_PRICE_CHANGE_AT_MS + 1000, true, "3000", "800"],
+    for (const [now, active] of [
+      [MENU_PRICE_CHANGE_AT_MS - 1, false],
+      [MENU_PRICE_CHANGE_AT_MS, true],
+      [MENU_PRICE_CHANGE_AT_MS + 1000, true],
+      [Date.parse("2026-10-28T11:00:00-05:00"), true],
     ]) {
       Date.now = () => now;
       const clockResponse = await fetchPath("/api/menu-pricing");
@@ -40,17 +38,21 @@ test("production HTML and server-clock endpoint switch on the boundary without a
       const html = await response.text();
       const schema = getMenuSchema(html);
       assert.ok(schema, "server-rendered menu JSON-LD missing");
-      assert.equal(price(schema, "Seafood", "Fish (Whole)"), fishPrice);
-      assert.equal(price(schema, "Appetizers", "Ackee & Saltfish"), appetizerPrice);
-      if (active) {
-        assert.equal(price(schema, "Pasta", "Rasta Pasta — Shrimp"), "3500");
-        assert.equal(price(schema, "Pasta", "Rasta Pasta — Lobster"), "4500");
-      }
+      const sections = schema.hasMenuSection.flatMap((section) => section.hasMenuSection);
+      assert.ok(sections.length > 12, "both food and drink sections must be present");
+      assert.ok(sections.every((section) => section.hasMenuItem.every((item) => !Object.hasOwn(item, "offers"))));
+      assert.doesNotMatch(JSON.stringify(schema), /priceCurrency|priceSpecification|\$[\d,]/);
+      // RSC uses "$2" and similar internal references; check visible markup separately.
+      const markup = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "");
+      assert.doesNotMatch(markup, /class="mx-item-price"|\$[\d,]/);
+      assert.match(html, /Please contact Sky Beach for current pricing/);
       assert.ok(html.includes('id="sky-beach-menu-data"'));
       assert.ok(!html.includes('id="menu-price-timer"'), "private countdown leaked into public menu");
       assert.ok(!/new prices|countdown|price announcement/i.test(html));
     }
   } finally {
     Date.now = realNow;
+    if (oldVisibility === undefined) delete process.env.MENU_PRICES_VISIBLE;
+    else process.env.MENU_PRICES_VISIBLE = oldVisibility;
   }
 });

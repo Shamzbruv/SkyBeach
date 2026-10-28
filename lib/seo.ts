@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { foodMenuAt } from "@/lib/menu-pricing";
+import { foodMenuAt, MENU_PRICES_VISIBLE } from "@/lib/menu-pricing";
 import { menuSectionsJsonLd } from "@/lib/menu-schema";
 import { isoDuration, liveVideos } from "@/lib/live-data";
 import { contact, drinkMenu, foodMenu, hutStories, socials } from "@/lib/site-data";
@@ -253,7 +253,7 @@ export function definePage(options: PageMetadataOptions & { schemaType?: PageSch
 /* ── Menu ── */
 
 /** Full food & drinks menu, generated from the same data that renders the menu tab. */
-export function menuJsonLd(includePrices = true, nowMs = Date.now()) {
+export function menuJsonLd(includePrices = MENU_PRICES_VISIBLE, nowMs = Date.now()) {
   return {
     "@context": "https://schema.org",
     "@type": "Menu",

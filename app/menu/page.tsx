@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { MENU_PRICES_VISIBLE } from "@/lib/menu-pricing";
 import { MenuExplorer } from "@/components/MenuExplorer";
 import { PageHero } from "@/components/PageHero";
 import { StructuredData } from "@/components/StructuredData";
@@ -22,10 +23,10 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default function MenuPage() {
-  // Temporary operational control until Phase 2 provides authenticated menu management.
-  // Set MENU_PRICES_VISIBLE=false in the deployment environment and redeploy to hide prices.
+  // The repository visibility policy keeps prices hidden until further notice.
+  // The environment can additionally hide prices, but cannot override this policy.
   const pricingTimeMs = Date.now();
-  const showPrices = process.env.MENU_PRICES_VISIBLE !== "false";
+  const showPrices = MENU_PRICES_VISIBLE && process.env.MENU_PRICES_VISIBLE !== "false";
 
   return (
     <>

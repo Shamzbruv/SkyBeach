@@ -4,6 +4,7 @@ import { foodMenu, drinkMenu } from "../lib/site-data.ts";
 import {
   APPROVED_FOOD_PRICES,
   MENU_PRICE_CHANGE_AT,
+  MENU_PRICES_VISIBLE,
   MENU_PRICE_CHANGE_AT_MS,
   areUpdatedMenuPricesActive,
   foodMenuAt,
@@ -59,6 +60,7 @@ test("per-pound prices, pasta rows, lower prices and the vegan heading match the
     ["Appetizers", "Mozzarella Sticks", "$700"],
     ["Pizza", "Extra Topping (Whole)", "$350"],
     ["Desserts", "Ice Cream Cake", "$850"],
+    ["Desserts", "Jamaican Fruit Cake", "$1,200"],
   ]) assert.equal(item(after, category, name).price, price, `${category}/${name}`);
   assert.equal(after.find((g) => g.category === "Vegan Cuisine").note, "All Vegetarian Meals — $1,950");
   assert.ok(after.find((g) => g.category === "Vegan Cuisine").items.every((i) => i.price === "$1,950"));
@@ -74,4 +76,8 @@ test("structured-data offers use active prices and keep per-pound units; hidden 
   const hidden = menuSectionsJsonLd(after, false);
   assert.ok(hidden.every((g) => g.hasMenuItem.every((i) => !Object.hasOwn(i, "offers"))));
   assert.ok(!JSON.stringify(hidden).includes("$1,950"));
+});
+
+test("public prices remain disabled until the restaurant approves re-enabling them", () => {
+  assert.equal(MENU_PRICES_VISIBLE, false);
 });

@@ -5,6 +5,10 @@ import type { MenuCategory } from "./site-data";
 export const MENU_PRICE_CHANGE_AT = "2026-10-25T00:00:00-05:00";
 export const MENU_PRICE_CHANGE_AT_MS = Date.parse(MENU_PRICE_CHANGE_AT);
 
+// Requested 28 October 2026: hide public food and drink prices until further notice.
+// Re-enable only after the restaurant approves publishing prices again.
+export const MENU_PRICES_VISIBLE = false;
+
 export const APPROVED_FOOD_PRICES: Readonly<Record<string, Readonly<Record<string, string>>>> = {
   Soups: {
     "Fish Tea": "$600",
@@ -100,7 +104,7 @@ export const APPROVED_FOOD_PRICES: Readonly<Record<string, Readonly<Record<strin
   },
   Desserts: {
     "Fruit Cup": "$600",
-    "Jamaican Fruit Cake": "$1,000",
+    "Jamaican Fruit Cake": "$1,200", // Approved correction, 28 October 2026.
     "Rum Cake": "$800",
     "Carrot Cake": "$800",
     "Sky Beach Potato Pudding": "$800",
